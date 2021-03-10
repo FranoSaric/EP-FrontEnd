@@ -64,6 +64,7 @@ export default {
         return this.currentUser.roles.includes('admin');
       }
 
+
       return false;
     },
     showModeratorBoard() {
