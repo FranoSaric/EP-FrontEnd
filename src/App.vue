@@ -61,22 +61,14 @@ export default {
     },
     showAdminBoard() {
       if (this.currentUser && this.currentUser.roles) {
-<<<<<<< HEAD
         return this.currentUser.roles.includes('admin');
-=======
-        return this.currentUser.roles.includes('ROLE_ADMIN');
->>>>>>> bf6a36b27570f807130048dbb0a2ed751e9f2dff
       }
 
       return false;
     },
     showModeratorBoard() {
       if (this.currentUser && this.currentUser.roles) {
-<<<<<<< HEAD
         return this.currentUser.roles.includes('moderator');
-=======
-        return this.currentUser.roles.includes('ROLE_MODERATOR');
->>>>>>> bf6a36b27570f807130048dbb0a2ed751e9f2dff
       }
 
       return false;

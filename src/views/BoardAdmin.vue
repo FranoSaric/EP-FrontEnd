@@ -29,7 +29,6 @@
             <img src="images/hello.svg" alt="" />
             <div v-if="currentUser" class="main__greeting">
               <h1>Pozdrav {{ currentUser.ime }}</h1>
-              {{kolegijid.id}}
             </div>
           </div>
 
@@ -170,7 +169,7 @@
             <ul id="example-1">
               <li  @click='analytics = false; listStudents= true;' class="sidebar__link" v-for="content in kolegijicontents" :key="content.naziv">
                 <font-awesome-icon icon="book" />
-                <span @click='getTerminId(content.id)'> {{ content.naziv }}</span>
+                <span @click='getTerminid(content.id)'> {{ content.naziv }}</span>
               </li>
             </ul>
           </div>
@@ -185,7 +184,7 @@
 </template>
 
 <script>
-import TerminiService from '../services/termini.service';
+import {GetTermins} from '../services/termini.service';
 import KolegijiService from '../services/kolegiji.service';
 
 export default {
@@ -194,7 +193,6 @@ export default {
   data() {
     return {
       kolegijicontents: [],
-      kolegijid: 1,
       terminicontents: [],
       analytics: true,
       listStudents: false
@@ -210,18 +208,18 @@ export default {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     },
-
-    getTerminId(kolegijid){
-      /* eslint-disable no-console */
-      console.log(kolegijid);
-      /* eslint-enable no-console */
-      this.kolegijid = this.kolegijicontents.find(obj => {
-        return obj.id === kolegijid;
-      }) 
-      this.kolegijid = this.kolegijid.id;
-      /* eslint-disable no-console */
-      console.log(this.kolegijid);
-      /* eslint-enable no-console */
+    getTerminid: function(id){
+      GetTermins.getTermini(id).then(
+      response => {
+        this.terminicontents = response.data;
+      },
+      error => {
+        this.terminicontents =
+          (error.response && error.response.data && error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
     }
   },
   mounted() {
@@ -235,18 +233,7 @@ export default {
           error.message ||
           error.toString();
       }
-    ),
-    TerminiService.getTermini(this.kolegijid).then(
-      response => {
-        this.terminicontents = response.data;
-      },
-      error => {
-        this.terminicontents =
-          (error.response && error.response.data && error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
+    )
   }
 };
 </script>
