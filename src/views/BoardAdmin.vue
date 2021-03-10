@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="example-1">
       <nav class="navbar">
         <div class="nav_icon" onclick="toggleSidebar()">
           <i class="fa fa-bars" aria-hidden="true"></i>
@@ -122,13 +122,27 @@
         </div>
       </main>
 
-      <!-- LIST OF STUDENTS -->
+      <!-- ISPIS TERMINA -->
+      <main v-show='listTermins'>
+        <div class="main__container">
+          <ul>
+            <li @click='analytics = false; listTermins= false; listStudents=true;' class="list termins" v-for="content in terminicontents" :key="content.datum">
+              <font-awesome-icon icon="book" />
+                <span @click='getStudentid(content.id)'> {{ content.datum }} </span>
+            </li>
+          </ul>
+        </div>
+      </main>
+
+      <!-- ISPIS STUDENATA -->
       <main v-show='listStudents'>
         <div class="main__container">
-          <ul id="example-1">
-            <li class="list" v-for="content in terminicontents" :key="content.datum">
-              <font-awesome-icon icon="book" />
-                <span> {{ content.datum }} </span>
+          <ul>
+            <li class="list" v-for="content in studenticontents" :key="content.korisnik">
+              <font-awesome-icon icon="user" />
+                <p class="font-weight-bold"> Korisnik: </p> {{ content.korisnik.ime }} {{ content.korisnik.prezime }} 
+                <p class="font-weight-bold"> Br. indexa: </p>{{ content.korisnik.brojIndexa }}
+                <p class="font-weight-bold"> Vrijeme prijave: </p>{{ content.createdAt }}
             </li>
           </ul>
         </div>
@@ -157,17 +171,17 @@
           <h2>OPĆENITO</h2>
           <div class="sidebar__link">
             <i class="fa fa-user-secret" aria-hidden="true"></i>
-            <a href="#" @click='analytics = true; listStudents=false'>Administratorsko upravljanje</a>
+            <a href="#" @click='analytics = true; listTermins=false'>Administratorsko upravljanje</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-wrench"></i>
             <a href="#">Postavke</a>
           </div>
-          
+          <!-- ISPIS KOLEGIJA -->
           <h2>KOLEGIJI</h2>
           <div class="sidebar__link">
-            <ul id="example-1">
-              <li  @click='analytics = false; listStudents= true;' class="sidebar__link" v-for="content in kolegijicontents" :key="content.naziv">
+            <ul>
+              <li  @click='analytics = false; listTermins= true; listStudents=false;' class="sidebar__link" v-for="content in kolegijicontents" :key="content.naziv">
                 <font-awesome-icon icon="book" />
                 <span @click='getTerminid(content.id)'> {{ content.naziv }}</span>
               </li>
@@ -184,6 +198,7 @@
 </template>
 
 <script>
+import {GetStudents} from '../services/studenti.service';
 import {GetTermins} from '../services/termini.service';
 import KolegijiService from '../services/kolegiji.service';
 
@@ -194,7 +209,9 @@ export default {
     return {
       kolegijicontents: [],
       terminicontents: [],
+      studenticontents: [],
       analytics: true,
+      listTermins: false,
       listStudents: false
     };
   },
@@ -215,6 +232,19 @@ export default {
       },
       error => {
         this.terminicontents =
+          (error.response && error.response.data && error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
+    },
+    getStudentid: function(id){
+      GetStudents.getStudent(id).then(
+      response => {
+        this.studenticontents = response.data[0].ucionica.evidencijas;
+      },
+      error => {
+        this.terminicstudenticontentsontents =
           (error.response && error.response.data && error.response.data.message) ||
           error.message ||
           error.toString();
@@ -548,6 +578,10 @@ main {
   padding: 25px;
   border-radius: 5px;
   font-size: 14px;
+}
+
+.termins{
+  cursor: pointer;
 }
 
 /*  SIDEBAR STARTS HERE  */
