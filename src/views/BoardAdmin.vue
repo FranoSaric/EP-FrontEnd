@@ -137,14 +137,14 @@
       <!-- ISPIS STUDENATA -->
       <main v-show='listStudents'>
         <div class="main__container">
-          <ul>
+          <ul ref="printTable">
             <li class="list" v-for="content in studenticontents" :key="content.korisnik">
-              <font-awesome-icon icon="user" />
                 <p class="font-weight-bold"> Korisnik: </p> {{ content.korisnik.ime }} {{ content.korisnik.prezime }} 
                 <p class="font-weight-bold"> Br. indexa: </p>{{ content.korisnik.brojIndexa }}
                 <p class="font-weight-bold"> Vrijeme prijave: </p>{{ content.createdAt }}
             </li>
           </ul>
+          <button class="btn btn-dark font-weight-bold text-white p-1" @click="printData"> <font-awesome-icon icon="print" /> Ispis </button>
         </div>
       </main>
 
@@ -212,7 +212,8 @@ export default {
       studenticontents: [],
       analytics: true,
       listTermins: false,
-      listStudents: false
+      listStudents: false,
+      newWin: window.open("")
     };
   },
   computed: {
@@ -221,6 +222,14 @@ export default {
     }
   },
   methods: {
+    printData()
+    {
+      var divToPrint= this.$refs.printTable
+      this.newWin= window.open("")
+      this.newWin.document.write(divToPrint.outerHTML);
+      this.newWin.print();
+      this.newWin.close();
+    },
     logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');

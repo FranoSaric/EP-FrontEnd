@@ -16,10 +16,11 @@ import {
   faSignOutAlt,
   faBook,
   faSearch,
-  faClock
+  faClock,
+  faPrint
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt, faBook, faSearch, faClock);
+library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt, faBook, faSearch, faClock, faPrint);
 
 Vue.config.productionTip = false;
 
