@@ -142,7 +142,7 @@
               <th scope="col">BROJ INDEXA</th>
               <th scope="col">IME</th>
               <th scope="col">PREZIME</th>
-              <th scope="col">VRIJEME DOLASKA</th>
+              <th scope="col">VRIJEME PRIJAVE</th>
             </tr>
           </thead>
           <tbody>
