@@ -136,7 +136,26 @@
 
       <!-- ISPIS STUDENATA -->
       <main v-show='listStudents'>
-        <div class="main__container">
+        <table class="table table-bordered" ref="printTable">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">BROJ INDEXA</th>
+              <th scope="col">IME</th>
+              <th scope="col">PREZIME</th>
+              <th scope="col">VRIJEME DOLASKA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="content in studenticontents" :key="content.korisnik">
+              <th scope="row">{{ content.korisnik.brojIndexa }}</th>
+              <td>{{ content.korisnik.ime }}</td>
+              <td>{{ content.korisnik.prezime }}</td>
+              <td>{{ content.createdAt }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-dark font-weight-bold text-white p-1 mr-5 mt-3 float-right" @click="printData"> <font-awesome-icon icon="print" /> Ispis </button>
+        <!-- <div class="main__container">
           <ul ref="printTable">
             <li class="list" v-for="content in studenticontents" :key="content.korisnik">
                 <p class="font-weight-bold"> Korisnik: </p> {{ content.korisnik.ime }} {{ content.korisnik.prezime }} 
@@ -145,7 +164,7 @@
             </li>
           </ul>
           <button class="btn btn-dark font-weight-bold text-white p-1" @click="printData"> <font-awesome-icon icon="print" /> Ispis </button>
-        </div>
+        </div> -->
       </main>
 
       <div id="sidebar">
@@ -212,8 +231,7 @@ export default {
       studenticontents: [],
       analytics: true,
       listTermins: false,
-      listStudents: false,
-      newWin: window.open("")
+      listStudents: false
     };
   },
   computed: {
