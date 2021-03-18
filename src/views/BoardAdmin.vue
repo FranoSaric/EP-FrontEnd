@@ -5,7 +5,7 @@
           <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
         <div class="navbar__left">
-          <a class="active_link" href="#">Admin</a>
+          <a class="active_link" href="#">Profesor</a>
         </div>
         <div class="navbar__right">
           <a href="#">

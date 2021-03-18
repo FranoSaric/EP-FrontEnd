@@ -56,7 +56,7 @@
                             <div v-if="message" class="alert alert-danger" role="alert">{{message}}</div>
                         </div>
                         <a href="#">Zaboravili ste lozinku?</a>
-                        <p>Nemate račun? <a href="signup.html">Registrijte se ovdje</a></p>
+                        
                     </form>
                 </div>
             </div>
@@ -83,7 +83,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push('/profile');
+      this.$router.push('/admin');
     }
   },
   methods: {
@@ -98,7 +98,7 @@ export default {
         if (this.user.brojIndexa && this.user.lozinka) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
-              this.$router.push('/profile');
+              this.$router.push('/admin');
             },
             error => {
               this.loading = false;

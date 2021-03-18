@@ -12,17 +12,17 @@ export const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Login
     },
-    {
+    /* {
       path: '/home',
-      component: Home
-    },
+      component: Login
+    }, */
     {
       path: '/login',
       component: Login
     },
-    {
+    /*{
       path: '/register',
       component: Register
     },
@@ -31,7 +31,7 @@ export const router = new Router({
       name: 'profile',
       // lazy-loaded
       component: () => import('./views/Profile.vue')
-    },
+    }, */
     {
       path: '/admin',
       name: 'admin',
