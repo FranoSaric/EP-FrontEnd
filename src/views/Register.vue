@@ -8,7 +8,7 @@
                 <div class="col-lg-7 px-5 pt-5">
                     <img src="../assets/Artboard_2.png" class="img-fluid rounded mx-auto d-block" alt="">
                     <h1 class="font-weight-bold py-3 text-center">Sve evidencije na jednom mjestu</h1>
-                    <h4>Registrirajte se</h4>
+                    <h4>Registrirajte profesora</h4>
                     <form name="form" @submit.prevent="handleRegister">
                         <div v-if="!successful">
                             <div class="form-row">
@@ -98,10 +98,9 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-lg-12">
-                                    <button class="btn1 mt-3 mb-3">Registrirajte se</button>
+                                    <button class="btn1 mt-3 mb-3">Registrirajte profesora</button>
                                 </div>
                             </div>
-                            <p>Već imate račun? <a href="index.html">Prijavite se ovdje</a></p>
                         </div>
                     </form>
                     <div
@@ -136,7 +135,7 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push('/profile');
+      this.$router.push('/admin/register');
     }
   },
   methods: {
@@ -150,6 +149,7 @@ export default {
               this.message = data.message;
               this.successful = true;
             },
+            setTimeout( () => this.$router.push({ path: '/admin'}), 3000),
             error => {
               this.message =
                 (error.response && error.response.data && error.response.data.message) ||

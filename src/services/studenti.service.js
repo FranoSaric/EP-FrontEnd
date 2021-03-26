@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:8080/';
 
 
   export const GetStudents = {
-    getStudent: function(id) {
-      return axios.get(API_URL + 'findkorisnik/' + id, { headers: authHeader() });
+    getStudent: function(id,startTime,endTime) {
+      return axios.get(API_URL + 'findkorisnik/' + id + '/' + startTime + '/' + endTime, { headers: authHeader() });
     }
   };

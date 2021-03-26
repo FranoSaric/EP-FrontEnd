@@ -126,9 +126,9 @@
       <main v-show='listTermins'>
         <div class="main__container">
           <ul>
-            <li @click='analytics = false; listTermins= false; listStudents=true;' class="list termins" v-for="content in terminicontents" :key="content.datum">
+            <li @click='analytics = false; listTermins= false; listStudents=true; listProfessors=false' class="list termins" v-for="content in terminicontents" :key="content.datum">
               <font-awesome-icon icon="book" />
-                <span @click='getStudentid(content.id)'> {{ content.datum }} </span>
+                <span @click='getStudentid(content.id,content.startTime,content.endTime)'> {{ content.datum }} </span>
             </li>
           </ul>
         </div>
@@ -146,15 +146,35 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="content in studenticontents" :key="content.korisnik">
-              <th scope="row">{{ content.korisnik.brojIndexa }}</th>
-              <td>{{ content.korisnik.ime }}</td>
-              <td>{{ content.korisnik.prezime }}</td>
+            <tr v-for="content in studenticontents" :key="content.brojIndexa">
+              <th scope="row">{{ content.brojIndexa }}</th>
+              <td>{{ content.ime }}</td>
+              <td>{{ content.prezime }}</td>
               <td>{{ content.createdAt }}</td>
             </tr>
           </tbody>
         </table>
         <button class="btn btn-dark font-weight-bold text-white p-1 mr-5 mt-3 float-right" @click="printData"> <font-awesome-icon icon="print" /> Ispis </button>
+      </main>
+
+      <!-- ISPIS PROFESORA -->
+      <main v-show='listProfessors'>
+        <table class="table table-bordered" ref="printTable">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">BROJ INDEXA</th>
+              <th scope="col">IME</th>
+              <th scope="col">PREZIME</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="content in profesoricontents" :key="content.brojIndexa">
+              <th scope="row">{{ content.brojIndexa }}</th>
+              <td>{{ content.ime }}</td>
+              <td>{{ content.prezime }}</td>
+            </tr>
+          </tbody>
+        </table>
       </main>
 
       <div id="sidebar">
@@ -180,7 +200,15 @@
           <h2>OPĆENITO</h2>
           <div class="sidebar__link">
             <i class="fa fa-user-secret" aria-hidden="true"></i>
-            <a href="#" @click='analytics = true; listTermins=false'>Administratorsko upravljanje</a>
+            <a href="#" @click='analytics = true; listTermins=false; listProfessors=false; listStudents=false'>Administratorsko upravljanje</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-user-secret" aria-hidden="true"></i>
+            <a href="/admin/register">Registriraj profesora</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-user-secret" aria-hidden="true"></i>
+            <a href="#" @click='analytics = false; listTermins=false; listProfessors=true; listStudents=false; getProfessors();'>Ispis profesora</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-wrench"></i>
@@ -190,7 +218,7 @@
           <h2>KOLEGIJI</h2>
           <div class="sidebar__link">
             <ul>
-              <li  @click='analytics = false; listTermins= true; listStudents=false;' class="sidebar__link" v-for="content in kolegijicontents" :key="content.naziv">
+              <li  @click='analytics = false; listTermins= true; listStudents=false; ; listProfessors=false' class="sidebar__link" v-for="content in kolegijicontents" :key="content.naziv">
                 <font-awesome-icon icon="book" />
                 <span @click='getTerminid(content.id)'> {{ content.naziv }}</span>
               </li>
@@ -208,6 +236,7 @@
 
 <script>
 import {GetStudents} from '../services/studenti.service';
+import {GetProfessors} from '../services/profesori.service';
 import {GetTermins} from '../services/termini.service';
 import KolegijiService from '../services/kolegiji.service';
 
@@ -219,9 +248,11 @@ export default {
       kolegijicontents: [],
       terminicontents: [],
       studenticontents: [],
+      profesoricontents: [],
       analytics: true,
       listTermins: false,
-      listStudents: false
+      listStudents: false,
+      listProfessors: false
     };
   },
   computed: {
@@ -242,31 +273,47 @@ export default {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     },
+    register() {
+      this.$store.dispatch('admin/register');
+    },
     getTerminid: function(id){
       GetTermins.getTermini(id).then(
-      response => {
-        this.terminicontents = response.data;
-      },
-      error => {
-        this.terminicontents =
-          (error.response && error.response.data && error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
+        response => {
+          this.terminicontents = response.data;
+        },
+        error => {
+          this.terminicontents =
+            (error.response && error.response.data && error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
     },
-    getStudentid: function(id){
-      GetStudents.getStudent(id).then(
-      response => {
-        this.studenticontents = response.data[0].ucionica.evidencijas;
-      },
-      error => {
-        this.terminicstudenticontentsontents =
-          (error.response && error.response.data && error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
+    getStudentid: function(id,startTime,endTime){
+      GetStudents.getStudent(id,startTime,endTime).then(
+        response => {
+          this.studenticontents = response.data;
+        },
+        error => {
+          this.studenticontents =
+            (error.response && error.response.data && error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    },
+    getProfessors: function(){
+      GetProfessors.getProfessor().then(
+        response => {
+          this.profesoricontents = response.data;
+        },
+        error => {
+          this.profesoricontents =
+            (error.response && error.response.data && error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
     }
   },
   mounted() {

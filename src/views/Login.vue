@@ -13,18 +13,18 @@
                         <div class="form-row">
                             <div class="col-lg-12">
                                 <input
-                                    v-model="user.brojIndexa"
+                                    v-model="user.email"
                                     v-validate="'required'"
                                     type="text"
                                     class="form-control my-3 p-4"
-                                    name="brojIndexa"
-                                    placeholder="Broj indexa"
+                                    name="email"
+                                    placeholder="E-mail"
                                 />
                                 <div
-                                    v-if="errors.has('brojIndexa')"
+                                    v-if="errors.has('email')"
                                     class="alert alert-danger"
                                     role="alert"
-                                >Broj indexa je potreban!</div>
+                                >Email je potreban!</div>
                             </div>
                         </div>
                         <div class="form-row">
@@ -95,7 +95,7 @@ export default {
           return;
         }
 
-        if (this.user.brojIndexa && this.user.lozinka) {
+        if (this.user.email && this.user.lozinka) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
               this.$router.push('/admin');
