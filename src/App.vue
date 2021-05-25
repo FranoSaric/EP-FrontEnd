@@ -13,8 +13,16 @@ export default {
       return this.$store.state.auth.user;
     },
     showAdminBoard() {
+      if (this.currentUser && this.currentUser.user.sumEduPersonAffiliation) {
+        return this.currentUser.user.sumEduPersonAffiliation.includes('student');
+      }
+
+
+      return false;
+    },
+    showSuperAdminBoard() {
       if (this.currentUser && this.currentUser.roles) {
-        return this.currentUser.roles.includes('admin');
+        return this.currentUser.roles.includes('superadmin');
       }
 
 

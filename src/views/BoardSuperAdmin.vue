@@ -28,7 +28,7 @@
           <div class="main__title">
             <img src="images/hello.svg" alt="" />
             <div v-if="currentUser" class="main__greeting">
-              <h1>Pozdrav {{ currentUser.user.givenname }}</h1>
+              <h1>Pozdrav {{ currentUser.ime }}</h1>
             </div>
           </div>
 
@@ -122,40 +122,27 @@
         </div>
       </main>
 
-      <!-- ISPIS TERMINA -->
-      <main v-show='listTermins'>
-        <div class="main__container">
-          <ul>
-            <li @click='analytics = false; listTermins= false; listStudents=true;' class="list termins" v-for="content in terminicontents" :key="content.datum">
-              <font-awesome-icon icon="book" />
-                <span @click='getStudentid(content.id,content.startTime,content.endTime)'> {{ content.datum }} </span>
-            </li>
-          </ul>
-        </div>
-      </main>
 
-      <!-- ISPIS STUDENATA -->
-      <main v-show='listStudents'>
+      <!-- ISPIS PROFESORA -->
+      <main v-show='listProfessors'>
         <table class="table table-bordered" ref="printTable">
           <thead class="thead-dark">
             <tr>
               <th scope="col">BROJ INDEXA</th>
               <th scope="col">IME</th>
               <th scope="col">PREZIME</th>
-              <th scope="col">VRIJEME PRIJAVE</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="content in studenticontents" :key="content.brojIndexa">
+            <tr v-for="content in profesoricontents" :key="content.brojIndexa">
               <th scope="row">{{ content.brojIndexa }}</th>
               <td>{{ content.ime }}</td>
               <td>{{ content.prezime }}</td>
-              <td>{{ content.evidencijas[0].createdAt.split('T')[1].split('.')[0] }}</td>
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-dark font-weight-bold text-white p-1 mr-5 mt-3 float-right" @click="printData"> <font-awesome-icon icon="print" /> Ispis </button>
       </main>
+
       <div id="sidebar">
         <div class="sidebar__title">
           <div class="sidebar__img">
@@ -182,6 +169,14 @@
             <a href="#" @click='analytics = true; listTermins=false; listProfessors=false; listStudents=false'>Administratorsko upravljanje</a>
           </div>
           <div class="sidebar__link">
+            <i class="fa fa-user-secret" aria-hidden="true"></i>
+            <a href="/superadmin/register">Registriraj profesora</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fa fa-user-secret" aria-hidden="true"></i>
+            <a href="#" @click='analytics = false; listTermins=false; listProfessors=true; listStudents=false; getProfessors();'>Ispis profesora</a>
+          </div>
+          <div class="sidebar__link">
             <i class="fa fa-wrench"></i>
             <a href="#">Postavke</a>
           </div>
@@ -189,7 +184,7 @@
           <h2>KOLEGIJI</h2>
           <div class="sidebar__link">
             <ul>
-              <li  @click='analytics = false; listTermins= true; listStudents=false;' class="sidebar__link" v-for="content in kolegijicontents" :key="content.naziv">
+              <li  @click='analytics = false; listTermins= true; listStudents=false; ; listProfessors=false' class="sidebar__link" v-for="content in kolegijicontents" :key="content.naziv">
                 <font-awesome-icon icon="book" />
                 <span @click='getTerminid(content.id)'> {{ content.naziv }}</span>
               </li>
@@ -206,8 +201,7 @@
 </template>
 
 <script>
-import {GetStudents} from '../services/studenti.service';
-import {GetTermins} from '../services/termini.service';
+import {GetProfessors} from '../services/profesori.service';
 import KolegijiService from '../services/kolegiji.service';
 
 export default {
@@ -216,11 +210,9 @@ export default {
   data() {
     return {
       kolegijicontents: [],
-      terminicontents: [],
-      studenticontents: [],
+      profesoricontents: [],
       analytics: true,
-      listTermins: false,
-      listStudents: false
+      listProfessors: false
     };
   },
   computed: {
@@ -229,38 +221,20 @@ export default {
     }
   },
   methods: {
-    printData()
-    {
-      var divToPrint= this.$refs.printTable
-      this.newWin= window.open("")
-      this.newWin.document.write(divToPrint.outerHTML);
-      this.newWin.print();
-      this.newWin.close();
-    },
     logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     },
-    getTerminid: function(id){
-      GetTermins.getTermini(id).then(
-        response => {
-          this.terminicontents = response.data;
-        },
-        error => {
-          this.terminicontents =
-            (error.response && error.response.data && error.response.data.message) ||
-            error.message ||
-            error.toString();
-        }
-      );
+    register() {
+      this.$store.dispatch('admin/register');
     },
-    getStudentid: function(id,startTime,endTime){
-      GetStudents.getStudent(id,startTime,endTime).then(
+    getProfessors: function(){
+      GetProfessors.getProfessor().then(
         response => {
-          this.studenticontents = response.data;
+          this.profesoricontents = response.data;
         },
         error => {
-          this.studenticontents =
+          this.profesoricontents =
             (error.response && error.response.data && error.response.data.message) ||
             error.message ||
             error.toString();

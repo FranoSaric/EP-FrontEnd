@@ -1,9 +1,9 @@
 export default class User {
-  constructor(brojIndexa, ime, prezime, email, lozinka) {
-    this.brojIndexa = brojIndexa;
-    this.ime = ime;
-    this.prezime = prezime;
-    this.email = email;
-    this.lozinka = lozinka;
+  constructor(sumEduPersonUniqueID, givenname, sn, mail, password) {
+    this.sumEduPersonUniqueID = sumEduPersonUniqueID;
+    this.givenname = givenname;
+    this.sn = sn;
+    this.mail = mail;
+    this.password = password;
   }
 }

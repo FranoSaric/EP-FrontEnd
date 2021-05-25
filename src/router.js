@@ -22,7 +22,7 @@ export const router = new Router({
       component: Login
     },
     {
-      path: '/admin/register',
+      path: '/superadmin/register',
       component: Register
     },/*
     {
@@ -42,6 +42,12 @@ export const router = new Router({
       name: 'moderator',
       // lazy-loaded
       component: () => import('./views/BoardModerator.vue')
+    },
+    {
+      path: '/superadmin',
+      name: 'superadmin',
+      // lazy-loaded
+      component: () => import('./views/BoardSuperAdmin.vue')
     },
     {
       path: '/user',
