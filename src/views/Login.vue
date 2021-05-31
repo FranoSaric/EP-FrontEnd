@@ -83,7 +83,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push('/admin');
+      this.$router.push('/student');
     }
   },
   methods: {
@@ -98,7 +98,7 @@ export default {
         if (this.user.email && this.user.lozinka) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
-              this.$router.push('/superadmin');
+              this.$router.push('/student');
             },
             error => {
               this.loading = false;

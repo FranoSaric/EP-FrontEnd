@@ -211,7 +211,7 @@ import {GetTermins} from '../services/termini.service';
 import KolegijiService from '../services/kolegiji.service';
 
 export default {
-  name: 'Admin',
+  name: 'Profesor',
   el: '#example-1',
   data() {
     return {

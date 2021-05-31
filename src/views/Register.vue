@@ -99,8 +99,8 @@
                             <div class="form-row">
                                 <div class="col-lg-12">
                                     <select name="roles" class="form-select">
-                                      <option value="[3]">Admin</option>
-                                      <option value="[4]">Superadmin</option>
+                                      <option value="[3]">Student</option>
+                                      <option value="[4]">Asistent</option>
                                     </select>
                                     <div
                                         v-if="submitted && errors.has('roles')"
@@ -111,7 +111,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-lg-12">
-                                    <button class="btn1 mt-3 mb-3">Registrirajte profesora</button>
+                                    <button class="btn1 mt-3 mb-3">Registrirajte korisnika</button>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push('/superadmin/register');
+      this.$router.push('/profesor/register');
     }
   },
   methods: {
@@ -162,7 +162,7 @@ export default {
               this.message = data.message;
               this.successful = true;
             },
-            setTimeout( () => this.$router.push({ path: '/superadmin'}), 3000),
+            setTimeout( () => this.$router.push({ path: '/profesor'}), 3000),
             error => {
               this.message =
                 (error.response && error.response.data && error.response.data.message) ||

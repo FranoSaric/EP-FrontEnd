@@ -170,7 +170,7 @@
           </div>
           <div class="sidebar__link">
             <i class="fa fa-user-secret" aria-hidden="true"></i>
-            <a href="/superadmin/register">Registriraj profesora</a>
+            <a href="/profesor/register">Registriraj profesora</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-user-secret" aria-hidden="true"></i>
@@ -205,7 +205,7 @@ import {GetProfessors} from '../services/profesori.service';
 import KolegijiService from '../services/kolegiji.service';
 
 export default {
-  name: 'Admin',
+  name: 'Profesor',
   el: '#example-1',
   data() {
     return {
@@ -226,7 +226,7 @@ export default {
       this.$router.push('/login');
     },
     register() {
-      this.$store.dispatch('admin/register');
+      this.$store.dispatch('profesor/register');
     },
     getProfessors: function(){
       GetProfessors.getProfessor().then(

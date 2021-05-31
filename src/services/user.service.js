@@ -8,20 +8,16 @@ class UserService {
     return axios.get(API_URL + 'all');
   }
 
-  getUserBoard() {
-    return axios.get(API_URL + 'user', { headers: authHeader() });
+  getStudentBoard() {
+    return axios.get(API_URL + 'student', { headers: authHeader() });
   }
 
-  getModeratorBoard() {
-    return axios.get(API_URL + 'mod', { headers: authHeader() });
+  getAsistentBoard() {
+    return axios.get(API_URL + 'asistent', { headers: authHeader() });
   }
 
-  getAdminBoard() {
+  getProfesorBoard() {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
-  }
-
-  getSuperAdminBoard() {
-    return axios.get(API_URL + 'superadmin', { headers: authHeader() });
   }
 }
 

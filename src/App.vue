@@ -12,7 +12,7 @@ export default {
     currentUser() {
       return this.$store.state.auth.user;
     },
-    showAdminBoard() {
+    showStudentBoard() {
       if (this.currentUser && this.currentUser.user.sumEduPersonAffiliation) {
         return this.currentUser.user.sumEduPersonAffiliation.includes('student');
       }
@@ -20,17 +20,17 @@ export default {
 
       return false;
     },
-    showSuperAdminBoard() {
-      if (this.currentUser && this.currentUser.roles) {
-        return this.currentUser.roles.includes('superadmin');
+    showProfesorBoard() {
+      if (this.currentUser && this.currentUser.uloga) {
+        return this.currentUser.uloga.includes('profesor');
       }
 
 
       return false;
     },
-    showModeratorBoard() {
-      if (this.currentUser && this.currentUser.roles) {
-        return this.currentUser.roles.includes('moderator');
+    showAsistentBoard() {
+      if (this.currentUser && this.currentUser.uloga) {
+        return this.currentUser.uloga.includes('asistent');
       }
 
       return false;

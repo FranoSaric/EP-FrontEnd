@@ -22,7 +22,7 @@ export const router = new Router({
       component: Login
     },
     {
-      path: '/superadmin/register',
+      path: '/profesor/register',
       component: Register
     },/*
     {
@@ -32,20 +32,20 @@ export const router = new Router({
       component: () => import('./views/Profile.vue')
     }, */
     {
-      path: '/admin',
-      name: 'admin',
+      path: '/student',
+      name: 'student',
       // lazy-loaded
       component: () => import('./views/BoardAdmin.vue')
     },
     {
-      path: '/mod',
-      name: 'moderator',
+      path: '/asistent',
+      name: 'asistent',
       // lazy-loaded
       component: () => import('./views/BoardModerator.vue')
     },
     {
-      path: '/superadmin',
-      name: 'superadmin',
+      path: '/profesor',
+      name: 'profesor',
       // lazy-loaded
       component: () => import('./views/BoardSuperAdmin.vue')
     },

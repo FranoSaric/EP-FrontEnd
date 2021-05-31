@@ -6,12 +6,12 @@ const headers = {
 }
 
 class AuthService {
-  login() {
+  login(user) {
     return axios
       .post(API_URL, {
         headers: headers,
-        username: "Fsaric@sum.ba",
-        password: "Sarke.007"
+        username: user.email,
+        password: user.lozinka
       })
       .then(response => {
         
@@ -19,6 +19,20 @@ class AuthService {
         
 
         return response.data;
+      })
+      .then((response) => {
+        return axios
+          .post('http://localhost:8080/signup', {
+            brojIndexa: response.user.sumEduPersonUniqueID,
+            username: response.user.uid,
+            ime: response.user.givenname,
+            prezime: response.user.sn,
+            email: response.user.mail,
+            lozinka: response.user.userpassword,
+            datumKreiranja: new Date(),
+            ulogaFK: response.user.sumEduPersonAffiliation,
+            ustanovaFK: response.user.sumEduPersonHomeOrg.split('.')[0]
+      })
       });
   }
 
@@ -26,7 +40,7 @@ class AuthService {
     localStorage.removeItem('user');
   }
 
-  register(user) {
+  /* register(user) {
     return axios.post(API_URL + 'signup', {
       brojIndexa: user.brojIndexa,
       ime: user.ime,
@@ -34,7 +48,7 @@ class AuthService {
       email: user.email,
       lozinka: user.lozinka
     });
-  }
+  } */
 }
 
 export default new AuthService();
