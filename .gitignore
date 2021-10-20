@@ -1,0 +1,24 @@
+ 
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+ 
+/.vs
+betting/.vs/*
+betting/package-lock.json
+betting/package-lock.json
+betting/.eslintcache
+betting/.npmrc
+webbo/package-lock.json

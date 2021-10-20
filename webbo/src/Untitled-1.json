@@ -1,0 +1,25 @@
+{
+    "menu": [
+        {
+            "name": "das",
+            "route": "/das"
+        },
+        {
+            "name": "reports",
+            "route": "/reports",
+            "key": "keyRole",
+            "item": [
+                {
+                    "name": "report1",
+                    "route": "/report1/:idPartner",
+                    "item": [
+                        {
+                            "name": "partner name1",
+                            "route": "/1"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

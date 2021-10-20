@@ -1,0 +1,50 @@
+{
+    "name": "material-ui-tut",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@material-ui/core": "^4.12.3",
+        "@material-ui/data-grid": "^4.0.0-alpha.35",
+        "@material-ui/icons": "^4.11.2",
+        "@material-ui/lab": "^4.0.0-alpha.60",
+        "@testing-library/jest-dom": "^5.11.9",
+        "@testing-library/react": "^11.2.5",
+        "@testing-library/user-event": "^12.7.1",
+        "i18next": "^20.6.0",
+        "i18next-xhr-backend": "^3.2.2",
+        "password-hash": "^1.2.2",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-i18next": "^11.11.4",
+        "react-responsive": "^9.0.0-beta.3",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.2",
+        "react-timezone-select": "^1.0.7",
+        "recharts": "^2.0.10",
+        "web-vitals": "^1.1.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
