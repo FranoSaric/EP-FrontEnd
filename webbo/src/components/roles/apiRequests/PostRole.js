@@ -6,7 +6,7 @@ import FetchRequest from "../../../api/FetchRequest";
  * @returns either response or error
  */
 async function PostRole(model) {
-    const URL = process.env.REACT_APP_API_USER + "/addRole";
+    const URL = process.env.REACT_APP_API_LOCALE + "/createRole";
     const data = await FetchRequest(URL, "post", model);
     
     return data;

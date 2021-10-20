@@ -11,7 +11,7 @@ import useGlobalState from "../../../store/useGlobalState";
  * @returns
  */
 async function GetByParameter({ filter, page, pageSize }) {
-	const URL = process.env.REACT_APP_API_USER + "/getRole";
+	const URL = process.env.REACT_APP_API_LOCALE + "/getRoles";
 
 	const setLoadedTable = useGlobalState()[0];
 
@@ -19,24 +19,25 @@ async function GetByParameter({ filter, page, pageSize }) {
 
 	let dataArray = [];
 	let partnerId=parseInt(localStorage.getItem("partnerId"));
-	const data = await FetchRequest(URL, "post", {});
-	JSON.parse(data.data).forEach((element) => {
+	const data = await FetchRequest(URL, "get", {});
+	console.log("data",data);
+	data.forEach((element) => {
 		dataArray.push({
-			id: element.IDRole,
-			name: element.Name,
+			id: element.id,
+			name: element.name,
 		});
 	});
-	let newArray=[];
-	if(partnerId!==0){
-		dataArray.forEach((element)=>{
-			if(element.name!=="Developer"){
-				newArray.push(element);
-			}
-		})
-	}else{
-		newArray=dataArray;
-	}
-	dataArray=newArray
+	// let newArray=[];
+	// if(partnerId!==0){
+	// 	dataArray.forEach((element)=>{
+	// 		if(element.name!=="Developer"){
+	// 			newArray.push(element);
+	// 		}
+	// 	})
+	// }else{
+	// 	newArray=dataArray;
+	// }
+	// dataArray=newArray
 	
 	dataArray = FilterData({ filter, dataArray });
 	let pagedData = GetPagedData(dataArray, pageSize);

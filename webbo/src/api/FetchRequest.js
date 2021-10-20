@@ -13,7 +13,7 @@ async function FetchRequest(url, method, model) {
         options = {
             method: "GET",
             headers: {
-				"Authorization": `Bearer ${localStorage.getItem("token")}`,
+				"x-access-token": `${localStorage.getItem("accessToken")}`,
                 "Content-Type": "application/json",
             },
         };

@@ -5,8 +5,8 @@ function CopyrightComp() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {"Copyright © "}
-            <Link color="inherit" href="http://diplomat.ba/">
-                Diplomat
+            <Link color="inherit" href="#">
+                Frano
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}

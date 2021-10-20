@@ -5,14 +5,7 @@
  * @returns array of claims sorted by their respective types and packed into objects
  */
 const ClaimPacker=(dataClaims)=>{
-	console.log("dataClaims",Object.keys(dataClaims))
-	Object.keys(dataClaims)
-	let data = dataClaims;
-	let types=[];
 	let typeArray=[];
-	let counter=0;
-	let counterType=0;
-	let type="";
 	let claimTypeNames=Object.keys(dataClaims);
 	claimTypeNames.forEach((type)=>{
 		typeArray.push({

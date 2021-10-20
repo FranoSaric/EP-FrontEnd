@@ -86,17 +86,9 @@ export default function SignIn() {
         } else {
             console.log(response);
             let claims = ClaimPacker(response.claims);
-            // localStorage.setItem("role", temp.role);
-            // localStorage.setItem("partnerId", temp.partnerId);
             localStorage.setItem("accessToken", response.accessToken);
             localStorage.setItem("claims", JSON.stringify(claims));
-            // localStorage.setItem("rememberMe", rememberMe);
-            // localStorage.setItem(
-            // 	"username",
-            // 	inputFieldValuesObject["userName"]
-            // );
-            // localStorage.setItem("authLevel", 4);
-            // localStorage.setItem("authenticated", true);
+            localStorage.setItem("username", response.firstName);
             setInputFieldValuesObject(initialState);
             setFormIsValid(false);
         }
@@ -173,7 +165,7 @@ export default function SignIn() {
                     </Button>
                     <Container>
                         <Grid item xs>
-                            <Link href="http://diplomat.ba/" variant="body2">
+                            <Link href="#" variant="body2">
                                 {t("forgotPassword")}
                             </Link>
                         </Grid>
