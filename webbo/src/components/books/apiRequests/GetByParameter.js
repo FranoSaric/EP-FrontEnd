@@ -21,6 +21,7 @@ async function GetByParameter({ filter, page, pageSize, specialFilter }) {
     let dataArray = [];
 
     const data = await FetchRequest(URL, "get", { });
+    console.log("data",data)
     // item.nazivDrzave === nazivDrzave
     const filteredData = data.filter(item => item.category.id === specialFilter);
     filteredData.forEach((element) => {
