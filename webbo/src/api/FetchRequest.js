@@ -8,6 +8,7 @@ import { logger } from "../hooks/functions/Logger";
  */
 async function FetchRequest(url, method, model) {
     let options = {};
+    console.log(method);
 
     if (method === "get") {
         options = {
@@ -24,9 +25,19 @@ async function FetchRequest(url, method, model) {
             method: "POST",
             body: JSON.stringify(model),
             headers: {
-				"Authorization": `Bearer ${localStorage.getItem("token")}`,
+				"x-access-token": `${localStorage.getItem("accessToken")}`,
                 "Content-Type": "application/json",
-                accept: "*/*",
+            },
+        };
+    }
+
+    if (method === "delete") {
+        options = {
+            method: "DELETE",
+            body: JSON.stringify(model),
+            headers: {
+				"x-access-token": `${localStorage.getItem("accessToken")}`,
+                "Content-Type": "application/json",
             },
         };
     }

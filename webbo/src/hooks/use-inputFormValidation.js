@@ -31,6 +31,10 @@ import type from "./actions/validationDescription";
 import value from"./actions/validationDescription";
 import productID from "./actions/validationUserType";
 import productName from  "./actions/validationDescription";
+import institutionId from "./actions/validationUserType";
+import author from "./actions/validationDescription";
+import barCode from "./actions/validationUsername";
+import categoryFK from "./actions/validationUserType";
 
 const validate = {
 	userName,
@@ -65,6 +69,10 @@ const validate = {
 	productID,
 	productName,
 	language,
+	institutionId,
+	author,
+	barCode,
+	categoryFK
 };
 
 const useInputFormValidation = {

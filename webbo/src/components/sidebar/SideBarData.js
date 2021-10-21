@@ -14,6 +14,9 @@ import MapIcon from "@material-ui/icons/Map";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PlaceIcon from "@material-ui/icons/Place";
+import LibraryBooks from "@material-ui/icons/LibraryBooks";
+import LocalLibrary from "@material-ui/icons/LocalLibrary";
+import MenuBook from "@material-ui/icons/MenuBook";
 
 import React from "react";
 /**
@@ -164,7 +167,7 @@ export const menu = [
                     },
                 ],
             },
-			{
+            {
                 title: "products",
                 icon: <ListAltIcon />,
                 to: "/administration/products",
@@ -205,6 +208,63 @@ export const menu = [
         ],
     },
     {
+        title: "library",
+        icon: <LocalLibrary />,
+        to: "/library",
+        items: [
+            {
+                title: "libraryManagement",
+                to: "/library/libraryManagement",
+                icon: <></>,
+                claim: "library.read",
+            },
+            {
+                title: "addLibrary",
+                to: "/library/addLibrary",
+                icon: <></>,
+                claim: "library.create",
+            },
+            {
+                title: "books",
+                icon: <LibraryBooks />,
+                to: "/library/books",
+                items: [
+                    {
+                        title: "booksManagement",
+                        to: "/library/books/booksManagement",
+                        icon: <></>,
+                        claim: "books.read",
+                    },
+                    {
+                        title: "addBook",
+                        to: "/library/books/addBooks",
+                        icon: <></>,
+                        claim: "books.create",
+                    },
+                ],
+            },
+            {
+                title: "booksCategories",
+                icon: <MenuBook />,
+                to: "/library/category",
+                items: [
+                    {
+                        title: "categoryManagement",
+                        to: "/library/category/categoryManagement",
+                        icon: <></>,
+                        claim: "category.read",
+                    },
+                    {
+                        title: "addCategory",
+                        to: "/library/category/addCategory",
+                        icon: <></>,
+                        claim: "category.create",
+                    },
+                ],
+            },
+        ],
+    },
+    {
         title: "partners",
         icon: <ListAltIcon />,
         to: "/partners",
@@ -215,7 +275,6 @@ export const menu = [
                 icon: <></>,
                 claim: "partnerProduct.create",
             },
-            
         ],
     },
 ];

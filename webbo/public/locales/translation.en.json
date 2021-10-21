@@ -202,5 +202,28 @@
     "placesManager" : "Place Management",
     "addPlace": "Add Place",
     "updatePlace": "Update Place",
-    "selectState": "Select a state to display places"
+    "selectState": "Select a state to display places",
+
+   
+    "library": "Library",
+    "libraryManagement": "Library management",
+    "addLibrary": "Add library",
+
+    "institutions": "Institutions",
+
+    "booksCategories": "Books Categories",
+    "categoryManagement": "Category management",
+    "addCategory": "Add category",
+    "updateCategory": "Update category",
+    "selectCategory": "Select category",
+    "categories": "Categories",
+    "categoryName": "Category name",
+
+    "books": "Books",
+    "booksManagement": "Books management",
+    "addBook": "Add book",
+    "updateBook": "Update book",
+    "author": "Author",
+    "barCode": "Barcode"
+
 }

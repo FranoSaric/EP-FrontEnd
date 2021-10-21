@@ -42,7 +42,7 @@
     "density": "Gustoća",
     "export": "Izvod",
     "id": "ID",
-    "name": "Ime",
+    "name": "Naziv",
     "surname": "Prezime",
     "email": "E-mail",
     "phoneNumber": "Broj telefona",
@@ -205,6 +205,28 @@
     "placesManager" : "Upravljanje mjestima",
     "addPlace": "Dodaj mjesto",
     "updatePlace": "Uredi mjesto",
-    "selectState": "Odaberite državu kako bi prikazali mjesta"
+    "selectState": "Odaberite državu kako bi prikazali mjesta",
+
+
+    "library": "Knjižnica",
+    "libraryManagement": "Upravljanje knjižnicom",
+    "addLibrary": "Dodaj knjižnicu",
+
+    "institutions": "Institucije",
+
+    "booksCategories": "Kategorije knjiga",
+    "categoryManagement": "Upravljanje kategorijama",
+    "addCategory": "Dodaj kategoriju",
+    "updateCategory": "Uredi kategoriju",
+    "selectCategory": "Odaberi kategoriju",
+    "categories": "Kategorije",
+    "categoryName": "Naziv kategorije",
+
+    "books": "Knjige",
+    "booksManagement": "Upravljanje knjigama",
+    "addBook": "Dodaj knjigu",
+    "updateBook": "Uredi knjigu",
+    "author": "Autor",
+    "barCode": "Barkod"
 
 }

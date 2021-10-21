@@ -22,6 +22,15 @@ import TableOfProductPermissionScope from "../components/productPermissionScope/
 import ProductPermissionScopeForm from "../components/productPermissionScope/productPermissionScopeForm/ProductPermissionScopeForm";
 import UserRoleForm from "../components/userRoleMapper/userRoleForm/UserRoleForm";
 import PartnerProductForm from "../components/partnerProduct/partnerProductForm/PartnerProductForm";
+import CategoryForm from "../components/categories/CategoryForm/CategoryForm";
+import TableOfCategories from "../components/categories/tableOfCategories/TableOfCategories";
+import BookForm from "../components/books/bookForm/BookForm";
+import TableOfBooks from "../components/books/tableOfBooks/TableOfBooks";
+
+/////////////////////////////////////
+
+import LibraryForm from "../components/libraries/libraryForm/LibraryForm";
+import TableOfLibraries from "../components/libraries/tableOfLibraries/TableOfLibraries";
 
 /**
  * all routes and their components
@@ -257,6 +266,74 @@ const Routes = [
         component: PartnerProductForm,
         exact: true,
         claimValue: "partnerProduct.create",
+    },
+
+/////////////////////////////////////////////////////////////////////////////////
+    {
+        path: "/library/libraryManagement",
+        name: "Library Manager",
+        component: TableOfLibraries,
+        exact: true,
+        claimValue: "library.read",
+    },
+    {
+        path: "/library/addLibrary",
+        name: "Add Library",
+        component: LibraryForm,
+        exact: true,
+        claimValue: "library.create",
+    },
+    {
+        path: "/library/addLibrary/:libraryId",
+        name: "Library Form",
+        component: LibraryForm,
+        exact: true,
+        claimValue: "library.update",
+    },
+
+    {
+        path: "/library/category/categoryManagement",
+        name: "Category Manager",
+        component: TableOfCategories,
+        exact: true,
+        claimValue: "category.read",
+    },
+    {
+        path: "/library/category/addCategory",
+        name: "Add Category",
+        component: CategoryForm,
+        exact: true,
+        claimValue: "category.create",
+    },
+    {
+        path: "/library/category/categoryForm/:categoryId",
+        name: "Category Form",
+        component: CategoryForm,
+        exact: true,
+        claimValue: "category.update",
+    },
+
+
+    {
+        path: "/library/books/booksManagement",
+        name: "books Manager",
+        component: TableOfBooks,
+        exact: true,
+        claimValue: "books.read",
+    },
+    {
+        path: "/library/books/addBooks",
+        name: "Add Books",
+        component: BookForm,
+        exact: true,
+        claimValue: "books.create",
+    },
+    {
+        path: "/library/books/bookForm/:bookId",
+        name: "Books Form",
+        component: BookForm,
+        exact: true,
+        claimValue: "books.update",
     },
 
 ];
