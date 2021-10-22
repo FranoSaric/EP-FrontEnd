@@ -7,8 +7,8 @@ import FetchRequest from "../../../api/FetchRequest";
  */
 async function DeletPermissionClaim(model) {
     const URL =
-        process.env.REACT_APP_API_PARTNER + "/deletePermissionClaim";
-    const data = await FetchRequest(URL, "post", model);
+        process.env.REACT_APP_API_LOCALE + "/deletePermissionClaim";
+    const data = await FetchRequest(URL, "delete", model);
     return data;
 }
 

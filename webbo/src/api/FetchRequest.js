@@ -8,7 +8,7 @@ import { logger } from "../hooks/functions/Logger";
  */
 async function FetchRequest(url, method, model) {
     let options = {};
-    console.log(method);
+    console.log(model);
 
     if (method === "get") {
         options = {
@@ -41,6 +41,8 @@ async function FetchRequest(url, method, model) {
             },
         };
     }
+
+    console.log(options)
 
     try {
         const data = await fetch(url, options)

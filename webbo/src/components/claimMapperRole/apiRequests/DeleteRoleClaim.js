@@ -6,8 +6,8 @@ import FetchRequest from "../../../api/FetchRequest";
  * @returns either response or error
  */
 async function DeleteRoleClaim(model) {
-    const URL = process.env.REACT_APP_API_USER + "/deleteRoleClaim";
-    const data = await FetchRequest(URL, "post", model);
+    const URL = process.env.REACT_APP_API_LOCALE + "/deleteRoleClaim";
+    const data = await FetchRequest(URL, "delete", model);
     return data;
 }
 

@@ -55,6 +55,7 @@ const Type=(props)=>{
 					roleId={props.roleId}
 					mapperType={props.mapperType}
 					refreshState={props.refreshState}
+					claimId={element.claimId}
 					/>;}
 			)
 			}

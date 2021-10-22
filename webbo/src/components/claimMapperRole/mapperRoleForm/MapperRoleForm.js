@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import useGlobalStateClaims from "../../../store/useGlobalStateClaims";
 import useGlobalState from "../../../store/useGlobalState";
 import GetAllClaims from "../../claimMapperComponents/apiRequests/GetAllClaims";
-import Scope from "../../claimMapperComponents/Scope";
+import Type from "../../claimMapperComponents/Type";
 import GetRoleClaims from "../apiRequests/GetRoleClaims";
 // import SaveChanges from "../apiRequests/SaveChanges";
 
@@ -20,7 +20,7 @@ const MapperRoleForm=()=>{
 	let history = useHistory();
 	const params = useParams();
 	//state 
-	const [scopes, setScopes] = useState([]);
+	const [types, setTypes] = useState([]);
 	const [roleName, setRoleName]=useState("");
 	const [enteredFromAdd, setEnteredFromAdd]=useState(false);
 	// const [changed, setChanged]=useState(false);
@@ -55,7 +55,7 @@ const MapperRoleForm=()=>{
 		
 		existingClaimsSetter().
 		then(()=>{
-			scopesSetter();
+			typesSetter();
 		});
 		
 		return(()=>{
@@ -63,9 +63,9 @@ const MapperRoleForm=()=>{
 		});
 	}, []);
 	
-	async function scopesSetter(){
+	async function typesSetter(){
 		const data=await GetAllClaims();
-		setScopes(data);
+		setTypes(data);
 	}
 	
 	async function existingClaimsSetter(){
@@ -100,30 +100,20 @@ const MapperRoleForm=()=>{
 	// const handleBackdropClick=()=>{
 		
 	// }
-	
 	return (
 		<TemplateForm title={t("roleClaimManagement")+": "}>
 			<Typography variant="h6" gutterBottom>
 				{roleName}
 			</Typography>
 			
-			{scopes.map((scope)=> <Scope 
-				key={scope.scopeId} 
-				scopeObject={scope}
+			{types.map((type)=> <Type 
+				key={type.values.claimId}
+				typeObject={type}
 				roleId={parseInt(params.roleId)}
 				mapperType={"role"}
-				refreshState={scopes}/> )}
+				refreshState={types}/> )}
 			
-			{/* <Button
-				type="submit"
-				// disabled={!changed}
-				onClick={saveClickHandler}
-				variant="contained"
-				color="primary"
-				className={classes.button}
-			>
-				{t("save")}
-			</Button> */}
+			
 			<Button
 				onClick={() => history.replace(enteredFromAdd ? "/administration/roles/rolesManagement" : "/administration/roles/roleForm/"+params.roleId)}
 				variant="contained"
@@ -132,14 +122,7 @@ const MapperRoleForm=()=>{
 			>
 				{t("back")}
 			</Button>
-			{/* {ctx.isModalOn && <MsgBox
-                    type={type}
-                    title={title}
-                    content={content}
-                    handleOK={handleModal}
-                    handleBackdropClick={handleBackdropClick}
-                    handleError={handleModal}
-                />} */}
+			
 		</TemplateForm>
 	);
 }

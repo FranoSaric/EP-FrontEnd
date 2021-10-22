@@ -21,7 +21,6 @@ import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
  * @returns
  */
 const initialState = {
-	scopePermissionID: "",
 	type: "",
 	value: "",
 };
@@ -58,10 +57,6 @@ function PermissionClaimForm() {
 
 	// used to check if it's add new or update existing item
 	useEffect(() => {
-		fetchSelectFieldMenuItems(["scopePermission"]).then((data) =>
-			setMenuItemsObject(data)
-		);
-
 		if (params.claimId) {
 			//dohvati podatke za taj id
 			const model = getRow(params.claimId);
@@ -119,17 +114,12 @@ function PermissionClaimForm() {
 		let response = {};
 		let claim = {};
 		if (isUpdate) {
-			delete claim["scopePermissionName"];
-		}
-		if (isUpdate) {
 			setType("done");
 			setTitle("successTitle");
 			setContent("successContentUpdate");
-			delete inputFieldValuesObject["id"];
-			delete inputFieldValuesObject["scopePermissionName"];
 			claim = {
 				...inputFieldValuesObject,
-				idPermissionClaim: parseInt(params.claimId),
+				id: parseInt(params.claimId),
 			};
 		} else {
 			setType("done");
@@ -186,22 +176,6 @@ function PermissionClaimForm() {
 			}
 		>
 			<Grid container spacing={3}>
-				<Grid item xs={12}>
-					<SelectField
-						id={"scopePermission"}
-						name={"scopePermissionID"}
-						label="scopePermissionName"
-						menuItemsData={menuItemsObject}
-						value={inputFieldValuesObject}
-						valueHandler={handleChange}
-						validationValues={
-							validationMessageAndValidityObject[
-								"scopePermission"
-							]
-						}
-						readonly={isUpdate}
-					/>
-				</Grid>
 				<Grid item xs={12}>
 					<InputField
 						name="type"

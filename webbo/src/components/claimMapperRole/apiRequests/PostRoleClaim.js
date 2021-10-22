@@ -11,7 +11,7 @@ import FetchRequest from "../../../api/FetchRequest";
  * @returns either response or error
  */
 async function PostRoleClaim(model) {
-    const URL = process.env.REACT_APP_API_USER + "/addRoleClaim";
+    const URL = process.env.REACT_APP_API_LOCALE + "/createRoleClaim";
     const data = await FetchRequest(URL, "post", model);
     return data;
 }

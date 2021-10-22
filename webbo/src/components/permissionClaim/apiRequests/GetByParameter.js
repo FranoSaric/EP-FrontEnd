@@ -11,7 +11,7 @@ import useGlobalState from "../../../store/useGlobalState";
  * @returns
  */
 async function GetByParameter({ filter, page, pageSize }) {
-    const URL = process.env.REACT_APP_API_PARTNER + "/getPermissionClaim";
+    const URL = process.env.REACT_APP_API_LOCALE + "/getPermissionClaims";
 
     const setLoadedTable = useGlobalState()[0];
 
@@ -19,15 +19,13 @@ async function GetByParameter({ filter, page, pageSize }) {
 
     let dataArray = [];
 
-    const data = await FetchRequest(URL, "post", {});
+    const data = await FetchRequest(URL, "get");
     
-    JSON.parse(data.data).forEach((element) => {
+    data.forEach((element) => {
         dataArray.push({
-            id: element.IDPermissionClaim,
-            scopePermissionName: element.ScopePermissionName,
-            scopePermissionID: element.ScopePermissionID,
-            type: element.Type,
-            value: element.Value,
+            id: element.id,
+            type: element.type,
+            value: element.value,
         });
     });
 

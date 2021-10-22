@@ -7,12 +7,6 @@ import CloseIcon from "@material-ui/icons/Close";
  */
 export const columns = [
     {
-        field: "scopePermissionName",
-        headerName: "scopePermissionName",
-        width: 200,
-        filterOperators: stringOperators,
-    },
-    {
         field: "type",
         headerName: "claimType",
         width: 200,

@@ -6,7 +6,7 @@ import FetchRequest from "../../../api/FetchRequest";
  * @returns either response or error
  */
 async function PostPermissionClaim(model) {
-    const URL = process.env.REACT_APP_API_PARTNER + "/addPermissionClaim";
+    const URL = process.env.REACT_APP_API_LOCALE + "/createPermissionClaim";
     const data = await FetchRequest(URL, "post", model);
 
     return data;

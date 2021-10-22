@@ -100,26 +100,23 @@ const CustomFormControl = (props) => {
                     "UserID": props.userId,
                     "claimType": type, 
                     "claimValue": value});
-                // console.log("response: ", response);
                 const extractedId=parseInt(response.data.split(":")[1].replace("]", ""));
                 setId(extractedId);
             }else{
                 const response=await DeleteUserClaim({"idUserClaim": id});
-                // console.log("response: ", response);
                 setId(0);
             }
         }else if(props.mapperType==="role"){
             if(id===0){
+                console.log("props", props)
                 const response=await PostRoleClaim({
-                    "roleID": props.roleId,
-                    "claimType": type,
-                    "claimValue": value
+                    "roleFK": props.roleId,
+                    "permissionClaimFK": props.claimId
                 });
-                // console.log("response: ", response);
-                const extractedId=parseInt(response.data.split(":")[1].replace("]", ""));
+                const extractedId=response.roleClaimId;
                 setId(extractedId);
             }else{
-                const response=await DeleteRoleClaim({"idRoleClaim": id});
+                const response=await DeleteRoleClaim({"id": id});
                 // console.log("response: ", response);
                 setId(0);
             }

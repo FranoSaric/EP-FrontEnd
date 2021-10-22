@@ -2,6 +2,7 @@ import FetchRequest from "../../../api/FetchRequest";
 import FilterData from "../../../api/dataGridApi/FilterData";
 import GetPagedData from "../../../api/dataGridApi/GetPagedData";
 import useGlobalState from "../../../store/useGlobalState";
+import { PausePresentationTwoTone } from "@material-ui/icons";
 
 /**
  *
@@ -11,7 +12,7 @@ import useGlobalState from "../../../store/useGlobalState";
  * @returns
  */
 async function GetRoleClaims(roleID) {
-    const URL = process.env.REACT_APP_API_USER + "/getRoleClaim";
+    const URL = process.env.REACT_APP_API_LOCALE + "/getRoleClaim";
 	
 	const setLoadedTable=useGlobalState()[0];
     // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page,",pagesize: ",pageSize);
@@ -20,17 +21,15 @@ async function GetRoleClaims(roleID) {
     let partnerId = parseInt(localStorage.getItem("partnerId"));
 	
     // const data = await FetchRequest(URL, "post", { partnerID: partnerId });
-    const model={
-        "roleID": parseInt(roleID)
-    }
-    const data = await FetchRequest(URL, "post", model);
+    const data = await FetchRequest(URL, "post", {id: parseInt(roleID)});
 	
-	JSON.parse(data.data).forEach((element) => {
+	data.forEach((element) => {
         dataArray.push({
-            id: element.IDRoleClaim,
-            RoleID: element.RoleID,
-            ClaimType: element.ClaimType,
-            ClaimValue: element.ClaimValue,
+            id: element.id,
+            RoleID: element.roleFK,
+            ClaimId: element.permissionClaimFK,
+            ClaimType: element.permissionClaim.type,
+            ClaimValue: element.permissionClaim.value,
         });
     });
 	
