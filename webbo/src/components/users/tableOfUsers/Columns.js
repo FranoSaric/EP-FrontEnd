@@ -8,8 +8,8 @@ import CloseIcon from "@material-ui/icons/Close";
  */
 export const columns = [
     {
-        field: "institution",
-        headerName: "institution",
+        field: "instutionFK",
+        headerName: "instutionFK",
         width: 200,
         filterOperators: stringOperators,
     },
@@ -44,8 +44,8 @@ export const columns = [
         filterOperators: stringOperators,
     },
     {
-        field: "role",
-        headerName: "role",
+        field: "roleFK",
+        headerName: "roleFK",
         width: 200,
         filterOperators: stringOperators,
     },

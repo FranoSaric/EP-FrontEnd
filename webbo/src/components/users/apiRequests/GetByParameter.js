@@ -31,10 +31,11 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             firstName: element.firstName,
             lastName: element.lastName,
             email: element.email,
-			roleFK: element.roleFK,
-			instutionFK: element.institutionFK
+			roleFK: element.role.name,
+			instutionFK: element.institution.name
         });
     });
+    console.log("data",data)
 
 
     dataArray = FilterData({ filter, dataArray });

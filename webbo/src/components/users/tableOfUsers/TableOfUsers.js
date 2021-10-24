@@ -49,7 +49,7 @@ function TableOfUsers() {
                 <SelectField
                     className={classes.selectField}
                     name="institutionId"
-                    id="institutionId"
+                    id="institutions"
 					label="institutionId"
                     menuItemsData={menuItemsObject}
                     value={inputFieldValuesObject}
