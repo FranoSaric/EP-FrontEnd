@@ -15,7 +15,7 @@ import SelectField from "../../UI/SelectField";
  * depends on given context (isModalOn)
  */
 const initialState = {
-    partnerID: "",
+    institutionId: "",
 };
 function TableOfUsers() {
     //other hooks
@@ -32,7 +32,7 @@ function TableOfUsers() {
         return { ...column, headerName: t(column.headerName) };
     });
     useEffect(() => {
-        fetchSelectFieldMenuItems(["partnerID", "userType"]).then((data) =>
+        fetchSelectFieldMenuItems(["institutions"]).then((data) =>
             setMenuItemsObject(data)
         );
     }, []);
@@ -48,9 +48,9 @@ function TableOfUsers() {
             <TemplateForm title={t("userManagement")} size="large">
                 <SelectField
                     className={classes.selectField}
-                    name="partnerID"
-                    id="partnerID"
-					label="partners"
+                    name="institutionId"
+                    id="institutionId"
+					label="institutionId"
                     menuItemsData={menuItemsObject}
                     value={inputFieldValuesObject}
                     valueHandler={handleChange}
@@ -62,7 +62,7 @@ function TableOfUsers() {
                     initialPageSize={10}
                     dataGridClasses={classes.dataGrid}
                     tableName={"Users"}
-                    specialFilter={inputFieldValuesObject["partnerID"]}
+                    specialFilter={inputFieldValuesObject["institutionId"]}
                 />
             </TemplateForm>
         </React.Fragment>

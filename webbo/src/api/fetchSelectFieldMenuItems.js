@@ -49,6 +49,10 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 url = `${process.env.REACT_APP_API_LOCALE}/getCategories`;
                 break;
 
+            case "roleFK":
+                url = `${process.env.REACT_APP_API_LOCALE}/getRoles`;
+                break;
+
             default:
                 url = `${process.env.REACT_APP_API_USER}/getUserType`;
                 break;

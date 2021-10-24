@@ -7,9 +7,15 @@ import CloseIcon from "@material-ui/icons/Close";
  * Defined columns of the data grid
  */
 export const columns = [
+    {
+        field: "institution",
+        headerName: "institution",
+        width: 200,
+        filterOperators: stringOperators,
+    },
 	{
-        field: "userTypeName",
-        headerName: "userType",
+        field: "indexNumber",
+        headerName: "indexNumber",
         width: 120,
         filterOperators: numberOperators,
     },
@@ -38,8 +44,8 @@ export const columns = [
         filterOperators: stringOperators,
     },
     {
-        field: "phoneNumber",
-        headerName: "phoneNumber",
+        field: "role",
+        headerName: "role",
         width: 200,
         filterOperators: stringOperators,
     },
