@@ -86,6 +86,7 @@ const validate = {
 const useInputFormValidation = {
 	
 	validateAllValues: function(valuesObject){
+		console.log("object values", valuesObject)
 		let temp;
 		for (const [key, value] of Object.entries(valuesObject)) {
 			temp = {

@@ -24,7 +24,7 @@ const SelectField = (props) => {
 			}
 		}
 	}, [props.menuItemsData]);
-	console.log(props.value)
+	console.log("PROPS", props.value[props.name])
 	return (
 		<FormControl fullWidth margin="dense">
 			<InputLabel id={`${props.id}-label`}>{props.label ? t(props.label) : t(props.id)}</InputLabel>
