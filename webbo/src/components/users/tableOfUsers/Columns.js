@@ -8,10 +8,16 @@ import CloseIcon from "@material-ui/icons/Close";
  */
 export const columns = [
 	{
-        field: "userTypeName",
-        headerName: "userType",
+        field: "institution",
+        headerName: "institution",
         width: 120,
         filterOperators: numberOperators,
+    },
+    {
+        field: "indexNumber",
+        headerName: "indexNumber",
+        width: 120,
+        filterOperators: stringOperators,
     },
     {
         field: "userName",
@@ -38,8 +44,8 @@ export const columns = [
         filterOperators: stringOperators,
     },
     {
-        field: "phoneNumber",
-        headerName: "phoneNumber",
+        field: "creationDate",
+        headerName: "creationDate",
         width: 200,
         filterOperators: stringOperators,
     },
