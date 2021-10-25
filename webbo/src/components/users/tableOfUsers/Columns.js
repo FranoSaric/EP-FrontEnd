@@ -14,10 +14,16 @@ export const columns = [
         filterOperators: stringOperators,
     },
 	{
+        field: "institution",
+        headerName: "institution",
+        width: 120,
+        filterOperators: numberOperators,
+    },
+    {
         field: "indexNumber",
         headerName: "indexNumber",
         width: 120,
-        filterOperators: numberOperators,
+        filterOperators: stringOperators,
     },
     {
         field: "userName",
@@ -44,8 +50,8 @@ export const columns = [
         filterOperators: stringOperators,
     },
     {
-        field: "roleFK",
-        headerName: "roleFK",
+        field: "creationDate",
+        headerName: "phoneNumber",
         width: 200,
         filterOperators: stringOperators,
     },

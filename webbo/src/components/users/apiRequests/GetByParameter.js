@@ -2,6 +2,7 @@ import FetchRequest from "../../../api/FetchRequest";
 import FilterData from "../../../api/dataGridApi/FilterData";
 import GetPagedData from "../../../api/dataGridApi/GetPagedData";
 import useGlobalState from "../../../store/useGlobalState";
+import sortByName from "../../../functions/sortByName";
 
 /**
  *
@@ -15,7 +16,7 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     const setLoadedTable = useGlobalState()[0];
 
-    // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page,",pagesize: ",pageSize);
+    // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
 
     let dataArray = [];
     // let partnerId = parseInt(localStorage.getItem("partnerId"));
