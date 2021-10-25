@@ -45,7 +45,7 @@ export const columns = [
     },
     {
         field: "creationDate",
-        headerName: "creationDate",
+        headerName: "phoneNumber",
         width: 200,
         filterOperators: stringOperators,
     },

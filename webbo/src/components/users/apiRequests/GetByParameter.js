@@ -11,7 +11,7 @@ import sortByName from "../../../functions/sortByName";
  * @param {integer} pageSize - number of rows per page
  * @returns
  */
-async function GetByParameter({ filter, page, pageSize, specialFilter }) {
+async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
     const URL = process.env.REACT_APP_API_LOCALE + "/getUsers";
 
     const setLoadedTable = useGlobalState()[0];
@@ -19,11 +19,12 @@ async function GetByParameter({ filter, page, pageSize, specialFilter }) {
     // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
 
     let dataArray = [];
+    // let partnerId = parseInt(localStorage.getItem("partnerId"));
+    
+    
+    const data = await FetchRequest(URL, "get");
 
-    const data = await FetchRequest(URL, "get", { });
-    console.log("data",data)
-    const filteredData = data.filter(item => item.institution.id === specialFilter);
-    filteredData.forEach((element) => {
+    data.forEach((element) => {
         dataArray.push({
             id: element.id,
             indexNumber: element.indexNumber,
@@ -31,23 +32,22 @@ async function GetByParameter({ filter, page, pageSize, specialFilter }) {
             firstName: element.firstName,
             lastName: element.lastName,
             email: element.email,
-			creationDate: element.creationDate,
-			roleFK: element.roleFK,
-			institutionFK: element.institutionFK,
+			roleFK: element.role.name,
+			instutionFK: element.institution.name
         });
     });
-	dataArray = sortByName(dataArray, "name");
+    console.log("data",data)
+
+
     dataArray = FilterData({ filter, dataArray });
-    let pagedData = GetPagedData(dataArray, pageSize);
+	let pagedData = GetPagedData(dataArray, pageSize);
+	
+	const numberOfRows = dataArray.length;
+	const pageOfRows = pagedData[page];
 
-    const numberOfRows = dataArray.length;
-    const pageOfRows = pagedData[page];
+	setLoadedTable(pageOfRows);
 
-    setLoadedTable(pageOfRows);
-
-    return { numberOfRows, pageOfRows };
+	return { numberOfRows, pageOfRows };
 }
 
 export default GetByParameter;
-
-

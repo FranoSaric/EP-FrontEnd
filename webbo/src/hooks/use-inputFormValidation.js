@@ -32,9 +32,13 @@ import value from"./actions/validationDescription";
 import productID from "./actions/validationUserType";
 import productName from  "./actions/validationDescription";
 import institutionId from "./actions/validationUserType";
+import institutionFK from "./actions/validationUserType";
 import author from "./actions/validationDescription";
 import barCode from "./actions/validationUsername";
 import categoryFK from "./actions/validationUserType";
+import roleFK from "./actions/validationUserType";
+import creationDate from "./actions/validationDescription";
+import indexNumber from "./actions/validationUsername";
 
 const validate = {
 	userName,
@@ -70,9 +74,13 @@ const validate = {
 	productName,
 	language,
 	institutionId,
+	institutionFK,
 	author,
 	barCode,
-	categoryFK
+	categoryFK,
+	roleFK,
+	creationDate,
+	indexNumber
 };
 
 const useInputFormValidation = {
