@@ -7,6 +7,12 @@ import CloseIcon from "@material-ui/icons/Close";
  * Defined columns of the data grid
  */
 export const columns = [
+    {
+        field: "institutionFK",
+        headerName: "institutionFK",
+        width: 200,
+        filterOperators: stringOperators,
+    },
 	{
         field: "institutions",
         headerName: "institutions",

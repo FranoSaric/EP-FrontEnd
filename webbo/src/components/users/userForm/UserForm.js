@@ -82,9 +82,6 @@ function UserForm() {
         history.goBack();
       } else {
         let temp;
-        if (model.phoneNumber === null || model.phoneNumber === undefined) {
-          model = { ...model, phoneNumber: "" };
-        }
         temp = useInputFormValidation.validateAllValues(model);
         setInputFieldValuesObject(model);
         setValidationMessageAndValidityObject(temp);
@@ -270,7 +267,9 @@ function UserForm() {
             label={t("creationDate")}
             value={inputFieldValuesObject}
             valueHandler={handleChange}
-            validationValues={validationMessageAndValidityObject["creationDate"]}
+            validationValues={
+              validationMessageAndValidityObject["creationDate"]
+            }
           />
         </Grid>
 
@@ -286,7 +285,7 @@ function UserForm() {
             }
           />
         </Grid>
-        {!isUpdate && (
+        
           <Grid item xs={12} sm={6}>
             <SelectField
               name="roleFK"
@@ -299,7 +298,7 @@ function UserForm() {
               readonly={isUpdate}
             />
           </Grid>
-        )}
+        
         <Grid item xs={12} sm={6}>
           <FormControlLabel
             control={

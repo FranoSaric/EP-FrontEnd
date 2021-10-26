@@ -23,6 +23,7 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
     
     
     const data = await FetchRequest(URL, "get");
+    console.log(data)
 
     data.forEach((element) => {
         dataArray.push({
@@ -32,8 +33,9 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             firstName: element.firstName,
             lastName: element.lastName,
             email: element.email,
+            creationDate: element.creationDate,
 			roleFK: element.role.name,
-			instutionFK: element.institution.name
+			institutionFK: element.institution.name
         });
     });
     console.log("data",data)
