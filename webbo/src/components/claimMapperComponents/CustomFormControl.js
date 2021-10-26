@@ -70,7 +70,6 @@ const CustomFormControl = (props) => {
                         props.claimType,
                         props.claimValue
                     );
-                    console.log("claim iz roleClaimova: ", claim);
                     if (claim !== undefined) {
                         setDisabled(true);
                         setChecked(true);
@@ -87,31 +86,12 @@ const CustomFormControl = (props) => {
     }, [props.refreshState]);
 
     async function checkHandler(event) {
-        // if (checked) {
-        //     if (id === 0) {
-        //         removeFromAdding({
-        //             claimType: type,
-        //             claimValue: value,
-        //         });
-        //     } else {
-        //         addToDeletion(id);
-        //     }
-        // } else {
-        //     if (id !== 0) {
-        //         removeFromDeletion(id);
-        //     } else {
-        //         addToAdding({
-        //             claimType: type,
-        //             claimValue: value,
-        //         });
-        //     }
-        // }
         setDisabled(true);
         let response;
         let messageType = "";
+        console.log("mapper type", props.mapperType)
         if (props.mapperType === "user") {
             if (id === 0) {
-                console.log("PROPS USER", props)
                 response = await PostUserClaim({
                     userFK: props.userId,
                     permissionClaimFK: props.claimId,
@@ -121,7 +101,7 @@ const CustomFormControl = (props) => {
                 setId(extractedId);
                 messageType = "post";
             } else {
-                const response = await DeleteUserClaim({ id: id });
+                response = await DeleteUserClaim({ id: id });
                 setId(0);
                 messageType = "delete";
             }
@@ -140,8 +120,9 @@ const CustomFormControl = (props) => {
                 messageType = "delete";
             }
         }
-
+        console.log("response", response)
         if (response) {
+            console.log("response", response)
             if (response.status === 101) {
                 setChecked(!checked);
             }
@@ -178,6 +159,8 @@ const CustomFormControl = (props) => {
     const TransitionComponent = (props) => {
         return <Slide {...props} direction="up" />;
     };
+
+    console.log("checked", checked);
 
     return (
         <>

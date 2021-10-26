@@ -23,7 +23,7 @@ async function GetUserClaims(userID) {
 	
 	data.forEach((element) => {
         dataArray.push({
-            id: element.permissionClaimFK,
+            id: element.id,
             userID: element.userFK,
             ClaimType: element.permissionClaim.type,
             ClaimValue: element.permissionClaim.value

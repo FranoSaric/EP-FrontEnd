@@ -34,8 +34,10 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             lastName: element.lastName,
             email: element.email,
             creationDate: element.creationDate,
-			roleFK: element.role.name,
-			institutionFK: element.institution.name
+			roleFK: element.role.roleFK,
+			institutionFK: element.institution.institutionFK,
+            roleName: element.role.name,
+            institutionName: element.institution.name
         });
     });
     console.log("data",data)

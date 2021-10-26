@@ -35,6 +35,8 @@ const initialState = {
   creationDate: "",
   institutionFK: "",
   roleFK: "",
+  roleName: "",
+  institutionName: ""
 };
 function UserForm() {
   //path handling hooks

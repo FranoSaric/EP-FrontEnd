@@ -74,7 +74,6 @@ const CustomFormControlReadOnly=(props)=>{
 		label={props.claimValue}
 	/>
 	;
-	
 	return(
 			checked 
 			?

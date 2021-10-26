@@ -35,6 +35,8 @@ import institutionId from "./actions/validationUserType";
 import institutionFK from "./actions/validationUserType";
 import author from "./actions/validationDescription";
 import barCode from "./actions/validationUsername";
+import roleName from "./actions/validationUsername";
+import institutionName from "./actions/validationUsername";
 import categoryFK from "./actions/validationUserType";
 import roleFK from "./actions/validationUserType";
 import creationDate from "./actions/validationDescription";
@@ -80,7 +82,9 @@ const validate = {
 	categoryFK,
 	roleFK,
 	creationDate,
-	indexNumber
+	indexNumber,
+	roleName,
+	institutionName
 };
 
 const useInputFormValidation = {
