@@ -23,13 +23,13 @@ import Role from "../../claimMapperComponents/Role";
 const AccordionItem = (props) => {
     const [item, setItem] = useState(props.item);
     const [expanded, setExpanded] = useState(false);
-
+    
     const classes = useStyles();
-
+    
     const handleExpand = () => {
         setExpanded(!expanded);
     };
-
+    
     return (
         <Accordion className={classes.accordion} expanded={expanded}>
             <AccordionSummary aria-controls="panel1a-content">

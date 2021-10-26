@@ -12,32 +12,13 @@ let claimsFromRoles=[];
 let userRoles=[];
 let claimsLoaded=false;
 
-async function ClaimsFromRolesSetter(userId){
-	claimsFromRoles=[];
-	if(claimsFromRoles.length<1){
-	}
-	userRoles=await GetUserRoles(userId);
-	
-	let key=0;
-	key=await prva(key);
-	
-	if(key!==0){
-		claimsLoaded=true;
-	}
-	return(claimsFromRoles);
+async function ClaimsFromRolesSetter(claimsArray){
+	claimsFromRoles=claimsArray;
+	claimsLoaded=true;
 }
 
 export default ClaimsFromRolesSetter;
 
-async function prva(key){
-	if(key===userRoles.length){
-		return key;
-	}
-	let array=await GetRoleClaims(userRoles[key].roleId)
-	claimsFromRoles=[...claimsFromRoles, ...array];
-	let newKey=await prva(key+1);
-	return newKey;
-}
 
 export const getClaimFromUserRoles=(type, value)=>{
 	const array=claimsFromRoles.filter((element)=>{

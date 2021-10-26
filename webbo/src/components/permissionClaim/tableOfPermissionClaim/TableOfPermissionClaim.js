@@ -33,7 +33,7 @@ function TableOfPermissionClaim() {
     async function handleDelete() {
         if (type === "delete") {
             const model = {
-                idPermissionClaim: ctx.itemId,
+                id: ctx.itemId,
             };
             const data = await DeletePermissionClaim(model);
 

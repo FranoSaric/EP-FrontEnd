@@ -4,6 +4,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import GlobalStateRole from "./GlobalStateRole";
 import PostUserRole from "../apiRequests/PostUserRole";
 import DeleteUserRole from "../apiRequests/DeleteUserRole";
+import { useTranslation } from "react-i18next";
+import { Alert } from "@material-ui/lab";
+import { Snackbar } from "@material-ui/core";
+import { Slide } from "@material-ui/core";
+
+let timer;
 
 /**
  * 
@@ -29,6 +35,13 @@ const CustomCheckbox=(props)=>{
 		findRole, 
 		getUserRoleId
 		} = GlobalStateRole();
+	
+	//state for managing alert
+    const [alertToggled, setAlertToggled] = useState(false);
+    const [severity, setSeverity] = useState("");
+    const [alertMessage, setAlertMessage] = useState("");
+	
+	const { t } = useTranslation();
 	
 	useEffect(()=>{
 		if(findRole(roleId)){
@@ -68,28 +81,85 @@ const CustomCheckbox=(props)=>{
 		// }
 		props.setRoleCheckboxDisabled(true);
 		setDisabled(true);
+		let response;
+		let messageType="";
 		if(userRoleId===0){
-			const response=await PostUserRole(userId, roleId);
+			response=await PostUserRole(userId, roleId);
 			const extractedId=parseInt(response.data.split(":")[1].replace("]", ""));
 			setUserRoleId(extractedId);
+			messageType="post";
 		}else{
-			const response=await DeleteUserRole(userRoleId);
+			response=await DeleteUserRole(userRoleId);
 			setUserRoleId(0);
+			messageType="delete";
 		}
 		props.setRefreshState(Math.random());
-		setChecked(!checked);
 		if(!props.roleCheckboxDisabled){
 			setDisabled(false);
 		}
+		if(response){
+			if(response.status===101){
+				setChecked(!checked);
+			}
+			toggleAlert(response.status, messageType);
+		}
 	}
 	
+	
+	const toggleAlert = (status, messageType) => {
+        if(messageType==="post"){
+            
+            if(status===101){
+                setSeverity("success");
+                setAlertMessage("alertSuccessAddMessage");
+            }else{
+                setSeverity("error");
+                setAlertMessage("alertErrorAddMessage");
+            }
+        }else{
+            if(status===101){
+                setSeverity("success");
+                setAlertMessage("alertSuccessDeleteMessage");
+            }else{
+                setSeverity("error");
+                setAlertMessage("alertErrorDeleteMessage");
+            }
+        }
+        setAlertToggled(true);
+        clearTimeout(timer);
+        timer=setTimeout(()=>{
+            setAlertToggled(false);
+        }, 3500);
+    }
+    
+	const TransitionComponent= (props) =>{
+        return (<Slide {...props} direction="up"/>)  ;  
+    }
+	
 	return(
+		<>
 		<Checkbox
 			checked={checked}
 			onChange={checkHandler}
 			color="primary"
 			disabled={disabled}
 		/>
+		
+		<Snackbar
+			open={alertToggled}
+			anchorOrigin={{vertical: "bottom", horizontal: "left"}}
+			TransitionComponent={TransitionComponent}
+			// autoHideDuration={3500}
+		>
+			<Alert 
+			severity={severity}
+			variant="filled"
+			>
+				{t(alertMessage)}
+			</Alert>
+		</Snackbar>
+		
+		</>
 	);
 }
 

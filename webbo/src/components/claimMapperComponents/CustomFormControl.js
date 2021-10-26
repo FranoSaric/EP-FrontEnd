@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CustomCheckbox from "./CustomCheckbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import useStyles from "./Styles.js";
+import { useTranslation } from "react-i18next";
 import useGlobalStateClaims from "../../store/useGlobalStateClaims";
 import {
     getClaimFromUserRoles,
@@ -13,6 +14,10 @@ import PostUserClaim from "../claimMapperUser/apiRequests/PostUserClaim";
 import PostRoleClaim from "../claimMapperRole/apiRequests/PostRoleClaim";
 import DeleteRoleClaim from "../claimMapperRole/apiRequests/DeleteRoleClaim";
 
+import { Alert } from "@material-ui/lab";
+import { Snackbar } from "@material-ui/core";
+import { Slide } from "@material-ui/core";
+
 /**
  * component with checkbox logic management
  * @param {string} claimType
@@ -23,6 +28,9 @@ import DeleteRoleClaim from "../claimMapperRole/apiRequests/DeleteRoleClaim";
  * @param {int} refreshState - state used to trigger component rerender
  * @returns
  */
+
+let timer;
+
 const CustomFormControl = (props) => {
     //state
     const [type, setType] = useState(props.claimType);
@@ -33,17 +41,21 @@ const CustomFormControl = (props) => {
     const [disabled, setDisabled] = useState(true);
     //hoooks
     const classes = useStyles();
+    const { t } = useTranslation();
     //global state claims hooks
     const { getClaim } = useGlobalStateClaims();
     // const { addToDeletion } = useGlobalStateClaims();
     // const { addToAdding } = useGlobalStateClaims();
     // const { removeFromAdding } = useGlobalStateClaims();
     // const { removeFromDeletion } = useGlobalStateClaims();
+    const [alertToggled, setAlertToggled] = useState(false);
+    const [severity, setSeverity] = useState("");
+    const [alertMessage, setAlertMessage] = useState("");
 
     useEffect(() => {
         setDisabled(true);
         setChecked(false);
-        const timer=setTimeout(() => {
+        const timer = setTimeout(() => {
             let claim = getClaim(props.claimType, props.claimValue);
             setDisabled(false);
             if (claim !== undefined) {
@@ -58,6 +70,7 @@ const CustomFormControl = (props) => {
                         props.claimType,
                         props.claimValue
                     );
+                    console.log("claim iz roleClaimova: ", claim);
                     if (claim !== undefined) {
                         setDisabled(true);
                         setChecked(true);
@@ -68,12 +81,12 @@ const CustomFormControl = (props) => {
                 }
             }
         }, 1050);
-        return()=>{
+        return () => {
             clearTimeout(timer);
-        }
+        };
     }, [props.refreshState]);
 
-    async function checkHandler(event){
+    async function checkHandler(event) {
         // if (checked) {
         //     if (id === 0) {
         //         removeFromAdding({
@@ -94,54 +107,107 @@ const CustomFormControl = (props) => {
         //     }
         // }
         setDisabled(true);
-        if(props.mapperType==="user"){
-            if(id===0){
-                const response=await PostUserClaim({
-                    "UserID": props.userId,
-                    "claimType": type, 
-                    "claimValue": value});
-                const extractedId=parseInt(response.data.split(":")[1].replace("]", ""));
-                setId(extractedId);
-            }else{
-                const response=await DeleteUserClaim({"idUserClaim": id});
-                setId(0);
-            }
-        }else if(props.mapperType==="role"){
-            if(id===0){
-                console.log("props", props)
-                const response=await PostRoleClaim({
-                    "roleFK": props.roleId,
-                    "permissionClaimFK": props.claimId
+        let response;
+        let messageType = "";
+        if (props.mapperType === "user") {
+            if (id === 0) {
+                response = await PostUserClaim({
+                    UserID: props.userId,
+                    claimType: type,
+                    claimValue: value,
                 });
-                const extractedId=response.roleClaimId;
+                const extractedId = parseInt(
+                    response.data.split(":")[1].replace("]", "")
+                );
                 setId(extractedId);
-            }else{
-                const response=await DeleteRoleClaim({"id": id});
-                // console.log("response: ", response);
+                messageType = "post";
+            } else {
+                const response = await DeleteUserClaim({ idUserClaim: id });
                 setId(0);
+                messageType = "delete";
+            }
+        } else if (props.mapperType === "role") {
+            if (id === 0) {
+                response = await PostRoleClaim({
+                    roleFK: props.roleId,
+                    permissionClaimFK: props.claimId,
+                });
+                const extractedId = response.roleClaimId;
+                setId(extractedId);
+                messageType = "post";
+            } else {
+                response = await DeleteRoleClaim({ id: id });
+                setId(0);
+                messageType = "delete";
             }
         }
-        
-        setChecked(!checked);
+
+        if (response) {
+            if (response.status === 101) {
+                setChecked(!checked);
+            }
+            toggleAlert(response.status, messageType);
+        }
         setDisabled(false);
+    }
+
+    const toggleAlert = (status, messageType) => {
+        if (messageType === "post") {
+            if (status === 101) {
+                setSeverity("success");
+                setAlertMessage("alertSuccessAddMessage");
+            } else {
+                setSeverity("error");
+                setAlertMessage("alertErrorAddMessage");
+            }
+        } else {
+            if (status === 101) {
+                setSeverity("success");
+                setAlertMessage("alertSuccessDeleteMessage");
+            } else {
+                setSeverity("error");
+                setAlertMessage("alertErrorDeleteMessage");
+            }
+        }
+        setAlertToggled(true);
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            setAlertToggled(false);
+        }, 3500);
+    };
+
+    const TransitionComponent = (props) => {
+        return <Slide {...props} direction="up" />;
     };
 
     return (
-        <FormControlLabel
-            classes={{
-                label: classes.label,
-            }}
-            control={
-                <CustomCheckbox
-                    checked={checked}
-                    onChange={checkHandler}
-                    name="create"
-                    color="primary"
-                    disabled={disabled}
-                />
-            }
-            label={props.claimValue}
-        />
+        <>
+            <FormControlLabel
+                classes={{
+                    label: classes.label,
+                }}
+                control={
+                    <CustomCheckbox
+                        checked={checked}
+                        onChange={checkHandler}
+                        name="create"
+                        color="primary"
+                        disabled={disabled}
+                    />
+                }
+                label={props.claimValue}
+            />
+            <Snackbar
+                open={alertToggled}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                TransitionComponent={TransitionComponent}
+                // autoHideDuration={3500}
+            >
+                <Alert severity={severity} variant="filled">
+                    {t(alertMessage)}
+                </Alert>
+            </Snackbar>
+        </>
     );
 };
 export default CustomFormControl;

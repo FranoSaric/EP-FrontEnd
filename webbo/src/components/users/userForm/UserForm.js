@@ -68,13 +68,13 @@ function UserForm() {
   useEffect(() => {
     if (params.userId === undefined) {
       fetchSelectFieldMenuItems(["institutions", "roleFK"]).then((data) =>
-        setMenuItemsObject(data)
+          setMenuItemsObject(data)
       );
       if (isUpdate) {
         setIsUpdate(false);
       }
     } else {
-      fetchSelectFieldMenuItems(["roleFK"]).then((data) =>
+      fetchSelectFieldMenuItems(["institutions","roleFK"]).then((data) =>
         setMenuItemsObject(data)
       );
       let model = getRow(params.userId);
@@ -328,7 +328,7 @@ function UserForm() {
           <Button
             onClick={() =>
               history.push(
-                "/administration/users/roleManagement/" + params.userId
+                "/administration/users/claimManagement/" + params.userId
               )
             }
             variant="contained"

@@ -20,12 +20,12 @@ import ProductsForm from "../components/products/productsForm/ProductsForm";
 import TableOfProducts from "../components/products/tableOfProducts/TableOfProducts";
 import TableOfProductPermissionScope from "../components/productPermissionScope/tableOfProductPermissionScope/TableOfProductPermissionScope";
 import ProductPermissionScopeForm from "../components/productPermissionScope/productPermissionScopeForm/ProductPermissionScopeForm";
-import UserRoleForm from "../components/userRoleMapper/userRoleForm/UserRoleForm";
 import PartnerProductForm from "../components/partnerProduct/partnerProductForm/PartnerProductForm";
 import CategoryForm from "../components/categories/CategoryForm/CategoryForm";
 import TableOfCategories from "../components/categories/tableOfCategories/TableOfCategories";
 import BookForm from "../components/books/bookForm/BookForm";
 import TableOfBooks from "../components/books/tableOfBooks/TableOfBooks";
+import UserClaimForm from "../components/userClaimMapper/userClaimForm/UserClaimForm";
 
 /////////////////////////////////////
 
@@ -58,9 +58,9 @@ const Routes = [
         claimValue: "users.update",
     },
     {
-        path: "/administration/users/roleManagement/:userId",
-        name: "User claim mapper",
-        component: UserRoleForm,
+        path: "/administration/users/claimManagement/:userId",
+        name: "Claim Management",
+        component: UserClaimForm,
         exact: true,
         claimValue: "users.manageClaims",
     },
