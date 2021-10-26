@@ -43,13 +43,13 @@ function ProfileMenu(props) {
 
 	const handleLogout = () => {
 		signOut({}).then((data => {
-			if(data === 200){
+			// if(data === 200){
 				localStorage.setItem("authenticated", false);
 				localStorage.clear();
 				window.location.reload();
-			}else{
-				console.log("what now");
-			}
+			// }else{
+			// 	console.log("what now");
+			// }
 		}))
 	};
 	return (
