@@ -9,9 +9,9 @@ import {
     isLoaded,
 } from "../claimMapperUser/apiRequests/ClaimsFromRolesSetter";
 
-import DeleteUserClaim from "../claimMapperUser/apiRequests/DeleteUserClaim";
-import PostUserClaim from "../claimMapperUser/apiRequests/PostUserClaim";
-import PostRoleClaim from "../claimMapperRole/apiRequests/PostRoleClaim";
+import DeleteUserClaim from "../userClaimMapper/apiRequests/DeleteUserClaim";
+import PostUserClaim from "../userClaimMapper/apiRequests/PostUserClaim";
+import PostRoleClaim from "../userClaimMapper/apiRequests/PostRoleClaim";
 import DeleteRoleClaim from "../claimMapperRole/apiRequests/DeleteRoleClaim";
 
 import { Alert } from "@material-ui/lab";
@@ -111,18 +111,17 @@ const CustomFormControl = (props) => {
         let messageType = "";
         if (props.mapperType === "user") {
             if (id === 0) {
+                console.log("PROPS USER", props)
                 response = await PostUserClaim({
-                    UserID: props.userId,
-                    claimType: type,
-                    claimValue: value,
+                    userFK: props.userId,
+                    permissionClaimFK: props.claimId,
                 });
-                const extractedId = parseInt(
-                    response.data.split(":")[1].replace("]", "")
-                );
+                console.log(response)
+                const extractedId = response.userClaimId
                 setId(extractedId);
                 messageType = "post";
             } else {
-                const response = await DeleteUserClaim({ idUserClaim: id });
+                const response = await DeleteUserClaim({ id: id });
                 setId(0);
                 messageType = "delete";
             }
