@@ -31,6 +31,8 @@ import UserClaimForm from "../components/userClaimMapper/userClaimForm/UserClaim
 
 import LibraryForm from "../components/libraries/libraryForm/LibraryForm";
 import TableOfLibraries from "../components/libraries/tableOfLibraries/TableOfLibraries";
+import TableOfInstitution from "../components/institutions/tableOfInstitution/TableOfInstitution";
+import InstitutionForm from "../components/institutions/institutionForm/InstitutionForm";
 
 /**
  * all routes and their components
@@ -65,25 +67,25 @@ const Routes = [
         claimValue: "users.manageClaims",
     },
     {
-        path: "/administration/states/statesManagement",
-        name: "State Manager",
-        component: TableOfState,
+        path: "/administration/institutions/institutionsManagement",
+        name: "Institution Manager",
+        component: TableOfInstitution,
         exact: true,
-        claimValue: "states.read",
+        claimValue: "institutions.read",
     },
     {
-        path: "/administration/states/addstate",
-        name: "Add State",
-        component: StateForm,
+        path: "/administration/institutions/addInstitution",
+        name: "Add Institution",
+        component: InstitutionForm,
         exact: true,
-        claimValue: "states.create",
+        claimValue: "institutions.create",
     },
     {
-        path: "/administration/states/addstate/:stateId",
-        name: "Add State",
-        component: StateForm,
+        path: "/administration/institutions/addInstitution/:institutionId",
+        name: "Add Institution",
+        component: InstitutionForm,
         exact: true,
-        claimValue: "states.update",
+        claimValue: "institutions.update",
     },
     {
         path: "/administration/places/placesManagement",

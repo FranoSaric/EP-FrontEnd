@@ -17,6 +17,7 @@ import PlaceIcon from "@material-ui/icons/Place";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import LocalLibrary from "@material-ui/icons/LocalLibrary";
 import MenuBook from "@material-ui/icons/MenuBook";
+import Apartment from "@material-ui/icons/Apartment";
 
 import React from "react";
 /**
@@ -54,21 +55,21 @@ export const menu = [
                 ],
             },
             {
-                title: "states",
-                icon: <LocationCityIcon />,
-                to: "/administration/states",
+                title: "institutions",
+                icon: <Apartment />,
+                to: "/administration/institutions",
                 items: [
                     {
-                        title: "stateManager",
-                        to: "/administration/states/statesManagement",
+                        title: "institutionManager",
+                        to: "/administration/institutions/institutionsManagement",
                         icon: <></>,
-                        claim: "states.read",
+                        claim: "institutions.read",
                     },
                     {
-                        title: "addState",
-                        to: "/administration/states/addstate",
+                        title: "addInstitution",
+                        to: "/administration/institutions/addInstitution",
                         icon: <></>,
-                        claim: "states.create",
+                        claim: "institutions.create",
                     },
                 ],
             },

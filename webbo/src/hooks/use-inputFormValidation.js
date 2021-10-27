@@ -41,6 +41,9 @@ import categoryFK from "./actions/validationUserType";
 import roleFK from "./actions/validationUserType";
 import creationDate from "./actions/validationDescription";
 import indexNumber from "./actions/validationDescription";
+import address from "./actions/validationDescription";
+import giroAccount from "./actions/validationUsername";
+import contact from "./actions/validationUsername";
 
 const validate = {
 	userName,
@@ -84,7 +87,10 @@ const validate = {
 	creationDate,
 	indexNumber,
 	roleName,
-	institutionName
+	institutionName,
+	address,
+	giroAccount,
+	contact
 };
 
 const useInputFormValidation = {
