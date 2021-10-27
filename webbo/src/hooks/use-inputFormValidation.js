@@ -40,7 +40,7 @@ import institutionName from "./actions/validationUsername";
 import categoryFK from "./actions/validationUserType";
 import roleFK from "./actions/validationUserType";
 import creationDate from "./actions/validationDescription";
-import indexNumber from "./actions/validationUsername";
+import indexNumber from "./actions/validationDescription";
 
 const validate = {
 	userName,
@@ -90,7 +90,6 @@ const validate = {
 const useInputFormValidation = {
 	
 	validateAllValues: function(valuesObject){
-		console.log("object values", valuesObject)
 		let temp;
 		for (const [key, value] of Object.entries(valuesObject)) {
 			temp = {

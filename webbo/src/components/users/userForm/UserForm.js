@@ -35,8 +35,6 @@ const initialState = {
   creationDate: "",
   institutionFK: "",
   roleFK: "",
-  roleName: "",
-  institutionName: ""
 };
 function UserForm() {
   //path handling hooks
@@ -80,6 +78,9 @@ function UserForm() {
         setMenuItemsObject(data)
       );
       let model = getRow(params.userId);
+      console.log("model", model)
+      delete model["roleName"];
+      delete model["institutionName"];
       if (model === undefined || model === null || Object.keys(model) <= 0) {
         history.goBack();
       } else {
@@ -138,12 +139,7 @@ function UserForm() {
       setType("done");
       setTitle("successTitle");
       setContent("successContentUpdate");
-      delete user["id"];
-      user = {
-        ...user,
-        id: parseInt(params.userId),
-      };
-
+      console.log("user",user)
       response = await PostUser(user).then((data) => {
         return data;
       });
@@ -198,7 +194,6 @@ function UserForm() {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <InputField
-            readonly={isUpdate}
             name="indexNumber"
             label={t("indexNumber")}
             value={inputFieldValuesObject}
@@ -209,7 +204,6 @@ function UserForm() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <InputField
-            readonly={isUpdate}
             name="userName"
             label={t("username")}
             value={inputFieldValuesObject}
@@ -222,7 +216,6 @@ function UserForm() {
           <Grid item xs={12} sm={6}>
             <InputField
               name="password"
-              readonly={isUpdate}
               label={t("password")}
               value={inputFieldValuesObject}
               valueHandler={handleChange}
@@ -234,7 +227,6 @@ function UserForm() {
         <Grid item xs={12} sm={6}>
           <InputField
             name="firstName"
-            readonly={isUpdate}
             label={t("name")}
             value={inputFieldValuesObject}
             valueHandler={handleChange}
@@ -245,7 +237,6 @@ function UserForm() {
         <Grid item xs={12} sm={6}>
           <InputField
             name="lastName"
-            readonly={isUpdate}
             label={t("surname")}
             value={inputFieldValuesObject}
             valueHandler={handleChange}

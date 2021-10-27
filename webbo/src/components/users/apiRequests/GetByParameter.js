@@ -20,12 +20,14 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     let dataArray = [];
     // let partnerId = parseInt(localStorage.getItem("partnerId"));
-    
-    
-    const data = await FetchRequest(URL, "get");
-    console.log(data)
 
-    data.forEach((element) => {
+    const data = await FetchRequest(URL, "get");
+
+    const filteredData = data.filter(
+        (item) => item.institution.id === specialFilter
+    );
+
+    filteredData.forEach((element) => {
         dataArray.push({
             id: element.id,
             indexNumber: element.indexNumber,
@@ -34,24 +36,23 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             lastName: element.lastName,
             email: element.email,
             creationDate: element.creationDate,
-			roleFK: element.role.roleFK,
-			institutionFK: element.institution.institutionFK,
+            roleFK: element.roleFK,
+            institutionFK: element.institutionFK,
             roleName: element.role.name,
-            institutionName: element.institution.name
+            institutionName: element.institution.name,
         });
     });
-    console.log("data",data)
-
+    console.log("data", data);
 
     dataArray = FilterData({ filter, dataArray });
-	let pagedData = GetPagedData(dataArray, pageSize);
-	
-	const numberOfRows = dataArray.length;
-	const pageOfRows = pagedData[page];
+    let pagedData = GetPagedData(dataArray, pageSize);
 
-	setLoadedTable(pageOfRows);
+    const numberOfRows = dataArray.length;
+    const pageOfRows = pagedData[page];
 
-	return { numberOfRows, pageOfRows };
+    setLoadedTable(pageOfRows);
+
+    return { numberOfRows, pageOfRows };
 }
 
 export default GetByParameter;

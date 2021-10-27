@@ -59,7 +59,6 @@ export default async function fetchSelectFieldMenuItems(ids) {
         }
         let data = await getData(url);
         let sortedArray = sortByName(data, name);
-        console.log(sortedArray);
         sortedDataObjects = { ...sortedDataObjects, [ids[i]]: sortedArray };
     }
 

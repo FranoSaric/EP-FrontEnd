@@ -16,7 +16,7 @@ import SelectField from "../../UI/SelectField";
  * depends on given context (isModalOn)
  */
 const initialState = {
-    institutionId: "",
+    institutionFK: "",
 };
 function TableOfUsers() {
     //other hooks
@@ -47,11 +47,12 @@ function TableOfUsers() {
         <React.Fragment>
             <CssBaseline />
             <TemplateForm title={t("userManagement")} size="large">
+            <h3>{t("selectInstitution")}</h3>
                 <SelectField
                     className={classes.selectField}
-                    name="institutionId"
+                    name="institutionFK"
                     id="institutions"
-					label="institutionId"
+					label="institutionFK"
                     menuItemsData={menuItemsObject}
                     value={inputFieldValuesObject}
                     valueHandler={handleChange}
@@ -63,7 +64,7 @@ function TableOfUsers() {
                     initialPageSize={10}
                     dataGridClasses={classes.dataGrid}
                     tableName={"Users"}
-                    specialFilter={inputFieldValuesObject["institutionId"]}
+                    specialFilter={inputFieldValuesObject["institutionFK"]}
                 />
             </TemplateForm>
         </React.Fragment>
