@@ -14,11 +14,11 @@ function App() {
 					</MsgBoxContextProvider>
 				</ErrorBoundary>
 			</Route>
-			{/* <PrivateRoute> */}
+			<PrivateRoute>
 				<ErrorBoundary>
 					<Layout />
 				</ErrorBoundary>
-			{/* </PrivateRoute> */}
+			</PrivateRoute>
 		</Switch>
 	);
 }

@@ -59,7 +59,7 @@ function TableOfPermissionClaim() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <TemplateForm title={t("permissionClaimManagement")} size="medium">
+            <TemplateForm title={t("permissionClaimManagement")} size="small">
                 <DataTable
                     columns={newColumns}
                     getByParameter={GetByParameter}

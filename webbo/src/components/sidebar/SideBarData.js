@@ -13,7 +13,7 @@ import AddIcon from "@material-ui/icons/Add";
 import MapIcon from "@material-ui/icons/Map";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import PlaceIcon from "@material-ui/icons/Place";
+import MeetingRoom from "@material-ui/icons/MeetingRoom";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import LocalLibrary from "@material-ui/icons/LocalLibrary";
 import MenuBook from "@material-ui/icons/MenuBook";
@@ -74,21 +74,21 @@ export const menu = [
                 ],
             },
             {
-                title: "places",
-                icon: <PlaceIcon />,
-                to: "/administration/places",
+                title: "classrooms",
+                icon: <MeetingRoom />,
+                to: "/administration/classrooms",
                 items: [
                     {
-                        title: "placesManager",
-                        to: "/administration/places/placesManagement",
+                        title: "classroomsManager",
+                        to: "/administration/classrooms/classroomsManagement",
                         icon: <></>,
-                        claim: "places.read",
+                        claim: "classrooms.read",
                     },
                     {
                         title: "addPlace",
-                        to: "/administration/places/addplace",
+                        to: "/administration/classrooms/addClassroom",
                         icon: <></>,
-                        claim: "places.create",
+                        claim: "classrooms.create",
                     },
                 ],
             },

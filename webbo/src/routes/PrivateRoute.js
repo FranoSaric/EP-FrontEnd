@@ -10,7 +10,7 @@ const PrivateRoute = ({ children, ...rest }) => {
 		<Route
 			{...rest}
 			render={({ location }) => {
-				return localStorage.getItem("authenticated") === "false" ? (
+				return localStorage.getItem("authenticated") === "true" ? (
 					children
 				) : (
 					<Redirect

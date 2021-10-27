@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
 	layoutLarge: {
 		[theme.breakpoints.up("xs")]: {
 			width: "95%",
-			maxWidth: "1035px",
+			maxWidth: "1700px",
 			marginLeft: "auto",
 			marginRight: "auto",
 		},
@@ -41,19 +41,31 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 		marginTop: theme.spacing(3),
 		marginBottom: theme.spacing(3),
-		padding: theme.spacing(2),
+		// padding: theme.spacing(2),
+		borderRadius: '12px',
+		
 		[theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
 			justifyContent: "center",
 			marginTop: theme.spacing(6),
 			marginBottom: theme.spacing(6),
-			padding: theme.spacing(2),
+			// padding: theme.spacing(2),
 		},
 	},
 	title: {
 		marginBottom: "1.5rem",
-		borderBottom: "1px solid black",
+		// background: "rgba(30, 41, 59, 0.05)",
+		background: "rgb(221 229 236)",
+		padding: '16px',
+		color: '#414b66',
+		fontWeight: '600',
+		borderTopLeftRadius: '12px',
+		borderTopRightRadius: '12px',
 		// textShadow: "-0.6px -0.6px 100px rgba(0,0,0,0.1),-0.6px 0.6px 0 rgba(0,0,0,0.2),0.6px -0.6px 0 rgba(0,0,0,0.2),0.6px 0.6px 0 rgba(0,0,0,0.2)"
 	},
+	contentWrapper: {
+		padding: "16px",
+		
+	}
 }));
 
 function TemplateForm(props) {
@@ -85,7 +97,9 @@ function TemplateForm(props) {
 							{props.title}
 						</Typography>
 					)}{" "}
-					{props.children}
+					<div className={classes.contentWrapper}>
+						{props.children}
+					</div>
 				</Paper>
 			</form >
 		</>

@@ -33,6 +33,8 @@ import LibraryForm from "../components/libraries/libraryForm/LibraryForm";
 import TableOfLibraries from "../components/libraries/tableOfLibraries/TableOfLibraries";
 import TableOfInstitution from "../components/institutions/tableOfInstitution/TableOfInstitution";
 import InstitutionForm from "../components/institutions/institutionForm/InstitutionForm";
+import TableOfClassrooms from "../components/classrooms/tableOfClassrooms/TableOfClassrooms";
+import ClassroomForm from "../components/classrooms/classroomForm/ClassroomForm";
 
 /**
  * all routes and their components
@@ -88,25 +90,25 @@ const Routes = [
         claimValue: "institutions.update",
     },
     {
-        path: "/administration/places/placesManagement",
-        name: "Place Manager",
-        component: TableOfPlace,
+        path: "/administration/classrooms/classroomsManagement",
+        name: "Classroom Manager",
+        component: TableOfClassrooms,
         exact: true,
-        claimValue: "places.read",
+        claimValue: "classrooms.read",
     },
     {
-        path: "/administration/places/addplace",
-        name: "Add Place",
-        component: PlaceForm,
+        path: "/administration/classrooms/addClassroom",
+        name: "Add Classroom",
+        component: ClassroomForm,
         exact: true,
-        claimValue: "places.create",
+        claimValue: "classrooms.create",
     },
     {
-        path: "/administration/places/addplace/:placeId",
-        name: "Add Place",
-        component: PlaceForm,
+        path: "/administration/classrooms/classroomForm/:classroomId",
+        name: "Add Classroom",
+        component: ClassroomForm,
         exact: true,
-        claimValue: "places.update",
+        claimValue: "classrooms.update",
     },
     {
         path: "/settings",

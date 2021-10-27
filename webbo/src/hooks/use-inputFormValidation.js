@@ -44,6 +44,10 @@ import indexNumber from "./actions/validationDescription";
 import address from "./actions/validationDescription";
 import giroAccount from "./actions/validationUsername";
 import contact from "./actions/validationUsername";
+import numberOfClassroom from "./actions/validationNumber";
+import numberOfSeats from "./actions/validationNumber";
+import floor from "./actions/validationNumber";
+import free from "./actions/validationNumber";
 
 const validate = {
 	userName,
@@ -90,7 +94,11 @@ const validate = {
 	institutionName,
 	address,
 	giroAccount,
-	contact
+	contact,
+	numberOfClassroom,
+	numberOfSeats,
+	floor,
+	free
 };
 
 const useInputFormValidation = {

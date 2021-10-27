@@ -84,11 +84,11 @@ export default function SignIn() {
         if (response === undefined) {
             ctx.setIsModalOn(true);
         } else {
-            console.log(response);
             let claims = ClaimPacker(response.claims);
             localStorage.setItem("accessToken", response.accessToken);
             localStorage.setItem("claims", JSON.stringify(claims));
             localStorage.setItem("username", response.firstName);
+            localStorage.setItem("authenticated", true);
             setInputFieldValuesObject(initialState);
             setFormIsValid(false);
         }
