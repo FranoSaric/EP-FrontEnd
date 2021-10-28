@@ -1,30 +1,33 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import Button from "@material-ui/core/Button";
 import useStyles from "../../UI/TemplateForm/TemplateFormStyles";
 import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
-import PostPermissionClaim from "../apiRequests/PostPermissionClaim";
+import PostStudy from "../apiRequests/PostStudy";
 import InputField from "../../UI/InputField";
 import { useTranslation } from "react-i18next";
 import useGlobalState from "../../../store/useGlobalState";
 import useFormValidation from "../../../hooks/use-formValidation";
 import SelectField from "../../UI/SelectField";
-import useInputFormValidation from "../../../hooks/use-inputFormValidation";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
+import useInputFormValidation from "../../../hooks/use-inputFormValidation";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 /**
  * Add user form with validation for every user input, form validation and connected country and city select input values
  * @returns
  */
 const initialState = {
-	type: "",
-	value: "",
+	name: "",
+	year: "",
+	cycle: "",
+	institutionFK:""
 };
-function PermissionClaimForm() {
+function StudyForm() {
 	//path handling hooks
 	let history = useHistory();
 	const params = useParams();
@@ -36,14 +39,14 @@ function PermissionClaimForm() {
 	const classes = useStyles();
 	const getRow = useGlobalState()[1];
 	//state for modal window
-	const [type, setType] = useState("");
+	const [type, setType] = useState("done");
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
-	//state for select field menu items
+	// state for select field menu items
 	const [menuItemsObject, setMenuItemsObject] = useState({});
 	//state for response status when data are posted on server
 	const [responseStatus, setResponseStatus] = useState();
-	//state for input values
+	//input fields state
 	const [inputFieldValuesObject, setInputFieldValuesObject] =
 		useState(initialState);
 	//state for form validity checks
@@ -55,12 +58,15 @@ function PermissionClaimForm() {
 	);
 	const [formIsValid, setFormIsValid] = useState(false);
 
+	
 	// used to check if it's add new or update existing item
 	useEffect(() => {
-		if (params.claimId) {
-			//dohvati podatke za taj id
-			const model = getRow(params.claimId);
-			console.log("model", model);
+		fetchSelectFieldMenuItems(["institutions"]).then((data) =>
+			setMenuItemsObject(data)
+		);
+		if (params.studyId !== undefined) {
+			let model = getRow(params.studyId);
+			delete model["institutionName"];
 			if (
 				model === undefined ||
 				model === null ||
@@ -86,10 +92,13 @@ function PermissionClaimForm() {
 		} else {
 			if (isUpdate) {
 				setIsUpdate(false);
+				let temp = useInputFormValidation.validateAllValues(initialState);
+			setInputFieldValuesObject(initialState);
+			setValidationMessageAndValidityObject(temp);
+			setFormIsValid(useInputFormValidation.validateWholeForm(temp));
 			}
 		}
-	}, [params.claimId]);
-
+	}, [params.studyId]);
 	const handleChange = (event) => {
 		event.preventDefault();
 		const { name, value } = event.target;
@@ -108,55 +117,48 @@ function PermissionClaimForm() {
 		}
 		setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
 	};
-
 	async function saveClickHandler(event) {
 		event.preventDefault();
 		let response = {};
-		let claim = {};
+		let studies = {};
 		if (isUpdate) {
-			setType("done");
-			setTitle("successTitle");
-			setContent("successContentUpdate");
-			claim = {
-				...inputFieldValuesObject,
-				id: parseInt(params.claimId),
-			};
-		} else {
+		setType("done");
+		setTitle("successTitle");
+		setContent("successContentUpdate");
+		studies = {
+			...inputFieldValuesObject,
+			id: parseInt(params.studyId),
+		};
+		}else {
 			setType("done");
 			setTitle("successTitle");
 			setContent("successContentAdd");
-			claim = inputFieldValuesObject;
+			studies = inputFieldValuesObject;
 		}
+		console.log("post data", studies)
 
-		response = await PostPermissionClaim(claim).then((data) => {
-			return data;
+		response = await PostStudy(studies).then((data) => {
+		    return data;
 		});
 
 		if (response !== undefined) {
-			setResponseStatus(response.status);
-			if (response.status === 101) {
-				if (isUpdate) {
-					setType("done");
-					setTitle("successTitle");
-					setContent("successContentUpdate");
-				} else {
-					setType("done");
-					setTitle("successTitle");
-					setContent("successContentAdd");
-				}
-				let tempVal = { ...inputFieldValuesObject};
-				let temp = useInputFormValidation.validateAllValues(tempVal);
-				setInputFieldValuesObject(tempVal);
+		    setResponseStatus(response.status);
+		    if (response.status === 101) {
+		        setType("done");
+				setTitle("successTitle");
+				setContent("successContentUpdate");
+				let temp = useInputFormValidation.validateAllValues(initialState);
+				setInputFieldValuesObject(initialState);
 				setFormIsValid(useInputFormValidation.validateWholeForm(temp));
-			} else {
-				setType("warning");
-				setTitle("updateWarningTitle");
-				setContent("updateWarningContent");
-			}
+		    } else {
+		        setType("error");
+		        setTitle("errorTitle");
+		        setContent("errorContent");
+		    }
 		} else {
-			setType("warning");
-			setTitle("updateWarningTitle");
-			setContent("updateWarningContent");
+		    setType("error");
+		    setTitle("errorTitle");
+		    setContent("errorContent");
 		}
 
 		ctx.setIsModalOn(true);
@@ -170,38 +172,58 @@ function PermissionClaimForm() {
 	};
 	
 	return (
-		<TemplateForm
-			title={
-				isUpdate ? t("updatePermissionClaim") : t("addPermissionClaim")
-			}
-		>
+		<TemplateForm title={isUpdate ? t("updateStudy") : t("addStudy")}>
 			<Grid container spacing={3}>
 				<Grid item xs={12}>
-					<InputField
-						name="type"
-						label={t("type")}
+					<SelectField
+						id={"institutions"}
+						name={"institutionFK"}
+						menuItemsData={menuItemsObject}
 						value={inputFieldValuesObject}
 						valueHandler={handleChange}
 						validationValues={
-							validationMessageAndValidityObject["type"]
+							validationMessageAndValidityObject["institutionFK"]
+						}
+						readonly={isUpdate}
+					/>
+				</Grid>
+				<Grid item xs={12}>
+					<InputField
+						name="name"
+						label={t("name")}
+						value={inputFieldValuesObject}
+						valueHandler={handleChange}
+						validationValues={
+							validationMessageAndValidityObject["name"]
 						}
 					/>
 				</Grid>
 				<Grid item xs={12}>
 					<InputField
-						name="value"
-						label={t("value")}
+						name="year"
+						label={t("year")}
 						value={inputFieldValuesObject}
 						valueHandler={handleChange}
 						validationValues={
-							validationMessageAndValidityObject["value"]
+							validationMessageAndValidityObject["year"]
 						}
 					/>
 				</Grid>
+				<Grid item xs={12}>
+					<InputField
+						name="cycle"
+						label={t("cycle")}
+						value={inputFieldValuesObject}
+						valueHandler={handleChange}
+						validationValues={
+							validationMessageAndValidityObject["cycle"]
+						}
+					/>
+				</Grid>
+				
 			</Grid>
-
 			<div className={classes.buttons}>
-				{params.claimId && (
+				{params.placeId && (
 					<Button
 						onClick={() => history.goBack()}
 						variant="contained"
@@ -218,7 +240,7 @@ function PermissionClaimForm() {
 					color="primary"
 					className={classes.button}
 				>
-					{isUpdate ? t("save") : t("addPermissionClaim")}
+					{isUpdate ? t("save") : t("addStudy")}
 				</Button>
 				{ctx.isModalOn && (
 					<MsgBox
@@ -236,4 +258,4 @@ function PermissionClaimForm() {
 	);
 }
 
-export default PermissionClaimForm;
+export default StudyForm;

@@ -48,6 +48,9 @@ import numberOfClassroom from "./actions/validationNumber";
 import numberOfSeats from "./actions/validationNumber";
 import floor from "./actions/validationNumber";
 import free from "./actions/validationNumber";
+import year from "./actions/validationNumber";
+import cycle from "./actions/validationNumber";
+
 
 const validate = {
 	userName,
@@ -98,7 +101,9 @@ const validate = {
 	numberOfClassroom,
 	numberOfSeats,
 	floor,
-	free
+	free,
+	year,
+	cycle
 };
 
 const useInputFormValidation = {

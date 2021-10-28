@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         },
         //ovi ja da se title row scale-aq sa slideron
         '& .MuiDataGrid-columnHeaderWrapper': {
-            minWidth: '800px !important',
+            minWidth: '1000px !important',
             maxWidth: 'none !important',
             width: "100% !important",
             display: "flex !important",
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         '& .MuiDataGrid-columnHeader': {
             minWidth: 'unset !important',
             maxWidth: 'none !important',
-            width: '14% !important',
+            width: '11% !important',
             display: "flex !important",
         },
         '& .MuiDataGrid-columnHeaderDraggableContainer': {
@@ -73,13 +73,13 @@ const useStyles = makeStyles((theme) => ({
         },
 		// ova je zasluzna za slider:
         '& .MuiDataGrid-dataContainer': {
-            minWidth: '800px !important',
+            minWidth: '1000px !important',
             maxWidth: 'none !important',
             width: "100% !important",
             display: "flex !important",
         },
         '& .MuiDataGrid-renderingZone': {
-            minWidth: '800px !important',
+            minWidth: '1000px !important',
             maxWidth: 'none !important',
             width: "100% !important",
         },
@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
         },
         '& .MuiDataGrid-cell': {
             whiteSpace: 'normal',
-            width: '14%',
+            width: '11%',
             minWidth: 'unset !important',
             maxWidth: 'none !important',
 			borderBottom: 'none !important',

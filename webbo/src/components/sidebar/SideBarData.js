@@ -93,6 +93,25 @@ export const menu = [
                 ],
             },
             {
+                title: "studies",
+                icon: <MeetingRoom />,
+                to: "/administration/studies",
+                items: [
+                    {
+                        title: "studiesManager",
+                        to: "/administration/studies/studiesManagement",
+                        icon: <></>,
+                        claim: "studies.read",
+                    },
+                    {
+                        title: "addStudy",
+                        to: "/administration/studies/addStudy",
+                        icon: <></>,
+                        claim: "studies.create",
+                    },
+                ],
+            },
+            {
                 title: "roles",
                 icon: <AssignmentIndIcon />,
                 to: "/administration/roles",

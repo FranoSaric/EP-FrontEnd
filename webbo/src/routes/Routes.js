@@ -35,6 +35,8 @@ import TableOfInstitution from "../components/institutions/tableOfInstitution/Ta
 import InstitutionForm from "../components/institutions/institutionForm/InstitutionForm";
 import TableOfClassrooms from "../components/classrooms/tableOfClassrooms/TableOfClassrooms";
 import ClassroomForm from "../components/classrooms/classroomForm/ClassroomForm";
+import TableOfStudies from "../components/studies/tableOfStudies/TableOfStudies";
+import StudyForm from "../components/studies/studyForm/StudyForm";
 
 /**
  * all routes and their components
@@ -109,6 +111,27 @@ const Routes = [
         component: ClassroomForm,
         exact: true,
         claimValue: "classrooms.update",
+    },
+    {
+        path: "/administration/studies/studiesManagement",
+        name: "Classroom Manager",
+        component: TableOfStudies,
+        exact: true,
+        claimValue: "studies.read",
+    },
+    {
+        path: "/administration/studies/addStudy",
+        name: "Add Study",
+        component: StudyForm,
+        exact: true,
+        claimValue: "studies.create",
+    },
+    {
+        path: "/administration/studies/studyForm/:studyId",
+        name: "Add Study",
+        component: StudyForm,
+        exact: true,
+        claimValue: "studies.update",
     },
     {
         path: "/settings",
