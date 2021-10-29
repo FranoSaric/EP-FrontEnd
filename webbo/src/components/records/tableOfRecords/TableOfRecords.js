@@ -10,7 +10,7 @@ import MsgBox from "../../msgBox/MsgBox";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
-import DeleteCourse from "../apiRequests/DeleteCourse";
+import DeleteCourse from "../apiRequests/DeleteRecord";
 import SelectField from "../../UI/SelectField";
 /**
  *

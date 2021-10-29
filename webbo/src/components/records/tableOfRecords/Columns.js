@@ -34,7 +34,7 @@ export const columns = [
     {
         field: "editDelete",
         headerName: "edit/delete",
-        width: 150,
+        width: 100,
         filterable: false,
         sortable: false,
         editable: false,
