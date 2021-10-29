@@ -21,7 +21,7 @@ async function GetUserClaims(UserID) {
 	
     // const data = await FetchRequest(URL, "post", { partnerID: partnerId });
     const model={
-        "UserID": parseInt(UserID)
+        "id": parseInt(UserID)
     }
     const data = await FetchRequest(URL, "post", model);
 	

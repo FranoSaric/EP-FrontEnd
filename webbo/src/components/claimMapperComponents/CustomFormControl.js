@@ -89,7 +89,6 @@ const CustomFormControl = (props) => {
         setDisabled(true);
         let response;
         let messageType = "";
-        console.log("mapper type", props.mapperType)
         if (props.mapperType === "user") {
             if (id === 0) {
                 response = await PostUserClaim({
@@ -120,9 +119,7 @@ const CustomFormControl = (props) => {
                 messageType = "delete";
             }
         }
-        console.log("response", response)
         if (response) {
-            console.log("response", response)
             if (response.status === 101) {
                 setChecked(!checked);
             }
@@ -160,7 +157,6 @@ const CustomFormControl = (props) => {
         return <Slide {...props} direction="up" />;
     };
 
-    console.log("checked", checked);
 
     return (
         <>

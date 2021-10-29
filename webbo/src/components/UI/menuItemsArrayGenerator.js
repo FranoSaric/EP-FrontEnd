@@ -83,6 +83,15 @@ const menuItemsArrayGenerator = (id, itemsData) => {
                 );
             });
             break;
+        case "users":
+            generatedItems = itemsData.map((listItem, index) => {
+                return (
+                    <MenuItem key={index} value={listItem.id}>
+                        {listItem.firstName} {listItem.lastName}
+                    </MenuItem>
+                );
+            });
+            break;
 
         default:
             generatedItems = itemsData.map((listItem, index) => {

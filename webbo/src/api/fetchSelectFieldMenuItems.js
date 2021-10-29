@@ -16,6 +16,16 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 url = `${process.env.REACT_APP_API_USER}/getUserType`;
                 break;
 
+            case "users":
+                url = `${process.env.REACT_APP_API_LOCALE}/getUsers`;
+                name = "firstName";
+                break;
+
+            case "studies":
+                url = `${process.env.REACT_APP_API_LOCALE}/getStudies`;
+                name = "name";
+                break;
+
             case "scopePermission":
                 url = `${process.env.REACT_APP_API_PARTNER}/getPermissionScope`;
                 name = "Name";

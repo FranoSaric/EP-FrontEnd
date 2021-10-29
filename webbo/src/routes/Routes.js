@@ -37,6 +37,8 @@ import TableOfClassrooms from "../components/classrooms/tableOfClassrooms/TableO
 import ClassroomForm from "../components/classrooms/classroomForm/ClassroomForm";
 import TableOfStudies from "../components/studies/tableOfStudies/TableOfStudies";
 import StudyForm from "../components/studies/studyForm/StudyForm";
+import TableOfCourses from "../components/courses/tableOfCourses/TableOfCourses";
+import CourseForm from "../components/courses/courseForm/courseForm";
 
 /**
  * all routes and their components
@@ -132,6 +134,27 @@ const Routes = [
         component: StudyForm,
         exact: true,
         claimValue: "studies.update",
+    },
+    {
+        path: "/administration/courses/coursesManagement",
+        name: "Course Manager",
+        component: TableOfCourses,
+        exact: true,
+        claimValue: "courses.read",
+    },
+    {
+        path: "/administration/courses/addCourse",
+        name: "Add Course",
+        component: CourseForm,
+        exact: true,
+        claimValue: "courses.create",
+    },
+    {
+        path: "/administration/courses/addCourse/:courseId",
+        name: "Add Course",
+        component: CourseForm,
+        exact: true,
+        claimValue: "courses.update",
     },
     {
         path: "/settings",

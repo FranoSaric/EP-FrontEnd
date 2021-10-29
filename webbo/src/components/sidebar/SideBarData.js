@@ -1,23 +1,18 @@
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import PeopleIcon from "@material-ui/icons/People";
-import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
-import SettingsIcon from "@material-ui/icons/Settings";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
-import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
-import BlurCircularIcon from "@material-ui/icons/BlurCircular";
-import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
-import LocationCityIcon from "@material-ui/icons/LocationCity";
-import AddLocationIcon from "@material-ui/icons/AddLocation";
-import AddIcon from "@material-ui/icons/Add";
-import MapIcon from "@material-ui/icons/Map";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import ListAltIcon from "@material-ui/icons/ListAlt";
-import MeetingRoom from "@material-ui/icons/MeetingRoom";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
-import LocalLibrary from "@material-ui/icons/LocalLibrary";
-import MenuBook from "@material-ui/icons/MenuBook";
-import Apartment from "@material-ui/icons/Apartment";
+import {
+    DynamicFeed,
+    MenuBook,
+    Apartment,
+    LocalLibrary,
+    LibraryBooks,
+    MeetingRoom,
+    ListAlt,
+    LockOpen,
+    Bookmarks,
+    Dashboard,
+    People,
+    SupervisedUserCircle,
+    AssignmentInd,
+} from "@material-ui/icons";
 
 import React from "react";
 /**
@@ -26,18 +21,18 @@ import React from "react";
 export const menu = [
     {
         title: "dashboard",
-        icon: <DashboardIcon />,
+        icon: <Dashboard />,
         to: "/dashboard",
         claim: "",
     },
     {
         title: "administration",
-        icon: <SupervisedUserCircleIcon />,
+        icon: <SupervisedUserCircle />,
         to: "/administration",
         items: [
             {
                 title: "users",
-                icon: <PeopleIcon />,
+                icon: <People />,
                 to: "/administration/users",
                 items: [
                     {
@@ -94,7 +89,7 @@ export const menu = [
             },
             {
                 title: "studies",
-                icon: <MeetingRoom />,
+                icon: <DynamicFeed />,
                 to: "/administration/studies",
                 items: [
                     {
@@ -112,8 +107,27 @@ export const menu = [
                 ],
             },
             {
+                title: "courses",
+                icon: <Bookmarks />,
+                to: "/administration/courses",
+                items: [
+                    {
+                        title: "coursesManager",
+                        to: "/administration/courses/coursesManagement",
+                        icon: <></>,
+                        claim: "courses.read",
+                    },
+                    {
+                        title: "addCourse",
+                        to: "/administration/courses/addCourse",
+                        icon: <></>,
+                        claim: "courses.create",
+                    },
+                ],
+            },
+            {
                 title: "roles",
-                icon: <AssignmentIndIcon />,
+                icon: <AssignmentInd />,
                 to: "/administration/roles",
                 items: [
                     {
@@ -132,7 +146,7 @@ export const menu = [
             },
             {
                 title: "types",
-                icon: <AssignmentIndIcon />,
+                icon: <AssignmentInd />,
                 to: "/administration/types",
                 items: [
                     {
@@ -151,7 +165,7 @@ export const menu = [
             },
             {
                 title: "scopes",
-                icon: <LockOpenIcon />,
+                icon: <LockOpen />,
                 to: "/administration/scopes",
                 items: [
                     {
@@ -170,7 +184,7 @@ export const menu = [
             },
             {
                 title: "claims",
-                icon: <LockOpenIcon />,
+                icon: <LockOpen />,
                 to: "administration/claim",
                 items: [
                     {
@@ -189,7 +203,7 @@ export const menu = [
             },
             {
                 title: "products",
-                icon: <ListAltIcon />,
+                icon: <ListAlt />,
                 to: "/administration/products",
                 items: [
                     {
@@ -206,7 +220,7 @@ export const menu = [
                     },
                     {
                         title: "productPermissions",
-                        icon: <LockOpenIcon />,
+                        icon: <LockOpen />,
                         to: "/administration/products/permissions",
                         items: [
                             {
@@ -286,7 +300,7 @@ export const menu = [
     },
     {
         title: "partners",
-        icon: <ListAltIcon />,
+        icon: <ListAlt />,
         to: "/partners",
         items: [
             {

@@ -50,6 +50,10 @@ import floor from "./actions/validationNumber";
 import free from "./actions/validationNumber";
 import year from "./actions/validationNumber";
 import cycle from "./actions/validationNumber";
+import academicYear from "./actions/validationNumber";
+import semester from "./actions/validationNumber";
+import studyFK from "./actions/validationNumber";
+import userFK from "./actions/validationNumber";
 
 
 const validate = {
@@ -103,7 +107,11 @@ const validate = {
 	floor,
 	free,
 	year,
-	cycle
+	cycle,
+	academicYear,
+	semester,
+	studyFK,
+	userFK
 };
 
 const useInputFormValidation = {
