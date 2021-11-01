@@ -12,6 +12,7 @@ import {
     People,
     SupervisedUserCircle,
     AssignmentInd,
+    ImportContacts
 } from "@material-ui/icons";
 
 import React from "react";
@@ -122,6 +123,25 @@ export const menu = [
                         to: "/administration/courses/addCourse",
                         icon: <></>,
                         claim: "courses.create",
+                    },
+                ],
+            },
+            {
+                title: "studentBook",
+                icon: <ImportContacts />,
+                to: "/administration/studentBook",
+                items: [
+                    {
+                        title: "studentBookManager",
+                        to: "/administration/studentBook/studentBookManagement",
+                        icon: <></>,
+                        claim: "studentBook.read",
+                    },
+                    {
+                        title: "addStudentBook",
+                        to: "/administration/studentBook/addStudentBook",
+                        icon: <></>,
+                        claim: "studentBook.create",
                     },
                 ],
             },

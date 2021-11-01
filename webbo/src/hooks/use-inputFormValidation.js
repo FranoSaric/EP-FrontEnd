@@ -54,6 +54,9 @@ import academicYear from "./actions/validationNumber";
 import semester from "./actions/validationNumber";
 import studyFK from "./actions/validationNumber";
 import userFK from "./actions/validationNumber";
+import pickUpDate from "./actions/validationNumber";
+import returnDate from "./actions/validationNumber";
+import bookFK from "./actions/validationNumber";
 
 
 const validate = {
@@ -111,7 +114,10 @@ const validate = {
 	academicYear,
 	semester,
 	studyFK,
-	userFK
+	userFK,
+	pickUpDate,
+	returnDate,
+	bookFK
 };
 
 const useInputFormValidation = {
