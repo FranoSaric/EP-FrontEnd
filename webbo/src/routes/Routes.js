@@ -2,25 +2,12 @@ import UserForm from "../components/users/userForm/UserForm";
 import Dashboard from "../components/dashboard/Dashboard";
 import Settings from "../components/settings/Settings";
 import TableOfUsers from "../components/users/tableOfUsers/TableOfUsers";
-import TableOfTypes from "../components/typesOfUser/tableOfTypes/TableOfTypes";
-import TableOfState from "../components/states/tableOfStates/TableOfState";
-import StateForm from "../components/states/stateForm/StateForm";
-import TableOfPlace from "../components/places/tableOfPlaces/TableOfPlace";
-import PlaceForm from "../components/places/placeForm/PlaceForm";
 import RoleForm from "../components/roles/roleForm/RoleForm";
-import TypeForm from "../components/typesOfUser/typeForm/TypeForm";
 import TableOfRoles from "../components/roles/tableOfRoles/TableOfRoles";
 import MapperRoleForm from "../components/claimMapperRole/mapperRoleForm/MapperRoleForm";
 import ChangePassword from "../components/changePassword/ChangePassword";
-import PermissionScopeForm from "../components/permissionScope/permissionScopeForm/PermissionScopeForm";
-import TableOfPermissionScope from "../components/permissionScope/tableOfPermissionScope/TableOfPermissionScope";
 import TableOfPermissionClaim from "../components/permissionClaim/tableOfPermissionClaim/TableOfPermissionClaim";
 import PermissionClaimForm from "../components/permissionClaim/permissionClaimForm/PermissionClaimForm";
-import ProductsForm from "../components/products/productsForm/ProductsForm";
-import TableOfProducts from "../components/products/tableOfProducts/TableOfProducts";
-import TableOfProductPermissionScope from "../components/productPermissionScope/tableOfProductPermissionScope/TableOfProductPermissionScope";
-import ProductPermissionScopeForm from "../components/productPermissionScope/productPermissionScopeForm/ProductPermissionScopeForm";
-import PartnerProductForm from "../components/partnerProduct/partnerProductForm/PartnerProductForm";
 import CategoryForm from "../components/categories/CategoryForm/CategoryForm";
 import TableOfCategories from "../components/categories/tableOfCategories/TableOfCategories";
 import BookForm from "../components/books/bookForm/BookForm";
@@ -222,48 +209,6 @@ const Routes = [
         claimValue: "roles.manageClaims",
     },
     {
-        path: "/administration/types/typesManagement",
-        name: "View Types",
-        component: TableOfTypes,
-        exact: true,
-        claimValue: "types.read",
-    },
-    {
-        path: "/administration/types/addtype",
-        name: "Add Type",
-        component: TypeForm,
-        exact: true,
-        claimValue: "types.create",
-    },
-    {
-        path: "/administration/types/addtype/:typeId",
-        name: "Add Type",
-        component: TypeForm,
-        exact: true,
-        claimValue: "types.update",
-    },
-    {
-        path: "/administration/scopes/permissionScopesManagement",
-        name: "View Permission Scopes",
-        component: TableOfPermissionScope,
-        exact: true,
-        claimValue: "scopes.read",
-    },
-    {
-        path: "/administration/scopes/addpermissionscope",
-        name: "Add Permission Scope",
-        component: PermissionScopeForm,
-        exact: true,
-        claimValue: "scopes.create",
-    },
-    {
-        path: "/administration/scopes/addpermissionscope/:scopeId",
-        name: "Add Permission Scope",
-        component: PermissionScopeForm,
-        exact: true,
-        claimValue: "scopes.update",
-    },
-    {
         path: "/administration/claim/permissionClaimManagement",
         name: "View Permission Claim",
         component: TableOfPermissionClaim,
@@ -285,60 +230,11 @@ const Routes = [
         claimValue: "claims.update",
     },
     {
-        path: "/administration/products/productsManagement",
-        name: "View Products",
-        component: TableOfProducts,
-        exact: true,
-        claimValue: "products.read",
-    },
-    {
-        path: "/administration/products/addproduct",
-        name: "Add Product",
-        component: ProductsForm,
-        exact: true,
-        claimValue: "products.create",
-    },
-    {
-        path: "/administration/products/addproduct/:productId",
-        name: "Add Product",
-        component: ProductsForm,
-        exact: true,
-        claimValue: "products.update",
-    },
-    {
-        path: "/administration/products/permissions/productPermissionScopeManagement",
-        name: "View Products Permission Scope",
-        component: TableOfProductPermissionScope,
-        exact: true,
-        claimValue: "productpermissions.read",
-    },
-    {
-        path: "/administration/products/permissions/productaddpermissionscope",
-        name: "Add Product Permission Scope",
-        component: ProductPermissionScopeForm,
-        exact: true,
-        claimValue: "productpermissions.create",
-    },
-    {
-        path: "/administration/products/permissions/productaddpermissionscope/:productPermissionScopeId",
-        name: "Add Product Permission Scope",
-        component: ProductPermissionScopeForm,
-        exact: true,
-        claimValue: "productpermissions.update",
-    },
-    {
         path: "/changePassword",
         name: "Change Password",
         component: ChangePassword,
         exact: true,
         claimValue: "",
-    },
-    {
-        path: "/partners/assignProduct",
-        name: "Assign Product",
-        component: PartnerProductForm,
-        exact: true,
-        claimValue: "partnerProduct.create",
     },
 
 /////////////////////////////////////////////////////////////////////////////////

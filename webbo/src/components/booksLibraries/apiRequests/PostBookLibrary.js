@@ -5,11 +5,10 @@ import FetchRequest from "../../../api/FetchRequest";
  * @param {object} model - object representing data for posting
  * @returns either response or error
  */
-async function PostProduct(model) {
-    const URL = process.env.REACT_APP_API_PARTNER + "/addProduct";
+async function PostBookLibrary(model) {
+    const URL = process.env.REACT_APP_API_LOCALE + "/createBookLibrary";
     const data = await FetchRequest(URL, "post", model);
-
     return data;
 }
 
-export default PostProduct;
+export default PostBookLibrary;

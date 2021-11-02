@@ -5,11 +5,10 @@ import FetchRequest from "../../../api/FetchRequest";
  * @param {object} model - object representing data for posting
  * @returns either response or error
  */
-async function PostPlace(model) {
-    const URL = process.env.REACT_APP_API_SHOP + "/addPlace";
-    const data = await FetchRequest(URL, "post", model);
-
+async function DeleteBookLibrary(model) {
+    const URL = process.env.REACT_APP_API_LOCALE + "/deleteBookLibrary";
+    const data = await FetchRequest(URL, "delete", model);
     return data;
 }
 
-export default PostPlace;
+export default DeleteBookLibrary;

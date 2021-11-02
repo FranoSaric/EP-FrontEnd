@@ -5,7 +5,6 @@ import {
     LocalLibrary,
     LibraryBooks,
     MeetingRoom,
-    ListAlt,
     LockOpen,
     Bookmarks,
     Dashboard,
@@ -75,13 +74,13 @@ export const menu = [
                 to: "/administration/classrooms",
                 items: [
                     {
-                        title: "classroomsManager",
+                        title: "classroomManagement",
                         to: "/administration/classrooms/classroomsManagement",
                         icon: <></>,
                         claim: "classrooms.read",
                     },
                     {
-                        title: "addPlace",
+                        title: "addClassroom",
                         to: "/administration/classrooms/addClassroom",
                         icon: <></>,
                         claim: "classrooms.create",
@@ -94,7 +93,7 @@ export const menu = [
                 to: "/administration/studies",
                 items: [
                     {
-                        title: "studiesManager",
+                        title: "studyManagement",
                         to: "/administration/studies/studiesManagement",
                         icon: <></>,
                         claim: "studies.read",
@@ -113,7 +112,7 @@ export const menu = [
                 to: "/administration/courses",
                 items: [
                     {
-                        title: "coursesManager",
+                        title: "courseManagement",
                         to: "/administration/courses/coursesManagement",
                         icon: <></>,
                         claim: "courses.read",
@@ -123,25 +122,6 @@ export const menu = [
                         to: "/administration/courses/addCourse",
                         icon: <></>,
                         claim: "courses.create",
-                    },
-                ],
-            },
-            {
-                title: "studentBook",
-                icon: <ImportContacts />,
-                to: "/administration/studentBook",
-                items: [
-                    {
-                        title: "studentBookManager",
-                        to: "/administration/studentBook/studentBookManagement",
-                        icon: <></>,
-                        claim: "studentBook.read",
-                    },
-                    {
-                        title: "addStudentBook",
-                        to: "/administration/studentBook/addStudentBook",
-                        icon: <></>,
-                        claim: "studentBook.create",
                     },
                 ],
             },
@@ -165,44 +145,6 @@ export const menu = [
                 ],
             },
             {
-                title: "types",
-                icon: <AssignmentInd />,
-                to: "/administration/types",
-                items: [
-                    {
-                        title: "typesManagement",
-                        to: "/administration/types/typesManagement",
-                        icon: <></>,
-                        claim: "types.read",
-                    },
-                    {
-                        title: "addType",
-                        to: "/administration/types/addtype",
-                        icon: <></>,
-                        claim: "types.create",
-                    },
-                ],
-            },
-            {
-                title: "scopes",
-                icon: <LockOpen />,
-                to: "/administration/scopes",
-                items: [
-                    {
-                        title: "permissionScopesManagement",
-                        to: "/administration/scopes/permissionScopesManagement",
-                        icon: <></>,
-                        claim: "scopes.read",
-                    },
-                    {
-                        title: "addPermissionScope",
-                        to: "/administration/scopes/addpermissionscope",
-                        icon: <></>,
-                        claim: "scopes.create",
-                    },
-                ],
-            },
-            {
                 title: "claims",
                 icon: <LockOpen />,
                 to: "administration/claim",
@@ -218,44 +160,6 @@ export const menu = [
                         to: "/administration/claim/addpermissionclaim",
                         icon: <></>,
                         claim: "claims.create",
-                    },
-                ],
-            },
-            {
-                title: "products",
-                icon: <ListAlt />,
-                to: "/administration/products",
-                items: [
-                    {
-                        title: "productsManagement",
-                        to: "/administration/products/productsManagement",
-                        icon: <></>,
-                        claim: "products.read",
-                    },
-                    {
-                        title: "addProduct",
-                        to: "/administration/products/addproduct",
-                        icon: <></>,
-                        claim: "products.create",
-                    },
-                    {
-                        title: "productPermissions",
-                        icon: <LockOpen />,
-                        to: "/administration/products/permissions",
-                        items: [
-                            {
-                                title: "productPermissionScopeManagement",
-                                to: "/administration/products/permissions/productPermissionScopeManagement",
-                                icon: <></>,
-                                claim: "productpermissions.read",
-                            },
-                            {
-                                title: "addProductPermissionScope",
-                                to: "/administration/products/permissions/productaddpermissionscope",
-                                icon: <></>,
-                                claim: "productpermissions.create",
-                            },
-                        ],
                     },
                 ],
             },
@@ -316,19 +220,25 @@ export const menu = [
                     },
                 ],
             },
-        ],
-    },
-    {
-        title: "partners",
-        icon: <ListAlt />,
-        to: "/partners",
-        items: [
             {
-                title: "assignProduct",
-                to: "/partners/assignProduct",
-                icon: <></>,
-                claim: "partnerProduct.create",
+                title: "studentBook",
+                icon: <ImportContacts />,
+                to: "/administration/studentBook",
+                items: [
+                    {
+                        title: "studentBookManager",
+                        to: "/administration/studentBook/studentBookManagement",
+                        icon: <></>,
+                        claim: "studentBook.read",
+                    },
+                    {
+                        title: "addStudentBook",
+                        to: "/administration/studentBook/addStudentBook",
+                        icon: <></>,
+                        claim: "studentBook.create",
+                    },
+                ],
             },
         ],
-    },
+    }
 ];

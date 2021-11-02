@@ -5,8 +5,14 @@ import { stringOperators } from "./Filters";
  */
 export const columns = [
     {
-        field: "institutionName",
+        field: "name",
         headerName: "name",
+        width: 200,
+        filterOperators: stringOperators,
+    },
+    {
+        field: "institutionName",
+        headerName: "institutionName",
         width: 200,
         filterOperators: stringOperators,
     },

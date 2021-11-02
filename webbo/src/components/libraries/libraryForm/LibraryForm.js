@@ -20,6 +20,7 @@ import useInputFormValidation from "../../../hooks/use-inputFormValidation";
  * @returns
  */
 const initialState = {
+	name: "",
 	institutionId: "",
 };
 function LibraryForm() {
@@ -166,6 +167,17 @@ function LibraryForm() {
 	return (
 		<TemplateForm title={isUpdate ? t("updateLibrary") : t("addLibrary")}>
 			<Grid container spacing={3}>
+				<Grid item xs={12}>
+					<InputField
+						name="name"
+						label={t("name")}
+						value={inputFieldValuesObject}
+						valueHandler={handleChange}
+						validationValues={
+							validationMessageAndValidityObject["name"]
+						}
+					/>
+				</Grid>
 				<Grid item xs={12}>
 					<SelectField
 						id={"institutions"}

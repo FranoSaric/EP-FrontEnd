@@ -23,6 +23,7 @@ async function GetByParameter({ filter, page, pageSize }) {
 	data.forEach((element) => {
 		dataArray.push({
 			id: element.id,
+			name: element.name,
             institutionId: element.institutionId,
 			institutionName: element.institution.name,
 		});

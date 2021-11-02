@@ -1,3 +1,4 @@
+import { numberOperators } from "./Filters";
 import { EditDeleteColumn } from "../../dataTable/EditDeleteColumn";
 import { stringOperators } from "./Filters";
 import CheckIcon from "@material-ui/icons/Check";
@@ -7,15 +8,27 @@ import CloseIcon from "@material-ui/icons/Close";
  */
 export const columns = [
     {
-        field: "name",
-        headerName: "name",
+        field: "pickUpDate",
+        headerName: "pickUpDate",
         width: 200,
+        filterOperators: stringOperators,
+    },
+    {
+        field: "returnDate",
+        headerName: "returnDate",
+        width: 170,
+        filterOperators: stringOperators,
+    },
+    {
+        field: "bookName",
+        headerName: "bookName",
+        width: 150,
         filterOperators: stringOperators,
     },
     {
         field: "editDelete",
         headerName: "edit/delete",
-        width: 200,
+        width: 150,
         filterable: false,
         sortable: false,
         editable: false,
@@ -24,8 +37,8 @@ export const columns = [
                 <EditDeleteColumn
                     id={params.id}
                     row={params.row}
-                    link="/administration/products/addproduct"
-                    claimType="Products.Permission"
+                    link="/administration/studentBook/addStudentBook"
+                    claimType="StudentBook.Permission"
                 />
             );
         },
