@@ -10,7 +10,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import useStyles from "../../UI/TemplateForm/TemplateFormStyles";
 import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
-import PostStudentBook from "../apiRequests/PostBookLibrary";
+import PostTerm from "../apiRequests/PostTerm";
 import InputField from "../../UI/InputField";
 import { useTranslation } from "react-i18next";
 import useGlobalState from "../../../store/useGlobalState";
@@ -26,10 +26,14 @@ import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
  */
 
 const initialState = {
-  bookFK: "",
-  userFK: ""
+  date: "",
+  startTime: "",
+  endTime: "",
+  duration: "", 
+  courseFK: "",
+  classroomFK: ""
 };
-function StudentBookForm() {
+function TermForm() {
   //path handling hooks
   let history = useHistory();
   let params = useParams();
@@ -60,20 +64,20 @@ function StudentBookForm() {
   const [formIsValid, setFormIsValid] = useState(false);
   //fetching menu items for select field
   useEffect(() => {
-    if (params.studentBookId === undefined) {
-      fetchSelectFieldMenuItems(["books", "users"]).then((data) =>
+    if (params.termId === undefined) {
+      fetchSelectFieldMenuItems(["courses", "classrooms"]).then((data) =>
           setMenuItemsObject(data)
       );
       if (isUpdate) {
         setIsUpdate(false);
       }
     } else {
-      fetchSelectFieldMenuItems(["books", "users"]).then((data) =>
+      fetchSelectFieldMenuItems(["courses", "classrooms"]).then((data) =>
         setMenuItemsObject(data)
       );
-      let model = getRow(params.studentBookId);
-      delete model["userName"];
-      delete model["bookName"];
+      let model = getRow(params.termId);
+      delete model["courseName"];
+      delete model["classroomName"];
       if (model === undefined || model === null || Object.keys(model) <= 0) {
         history.goBack();
       } else {
@@ -106,8 +110,8 @@ function StudentBookForm() {
     setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
   };
   useEffect(() => {
-    if (params.studentBookId === undefined && isUpdate === true) {
-      fetchSelectFieldMenuItems(["users", "books"]).then((data) =>
+    if (params.termId === undefined && isUpdate === true) {
+      fetchSelectFieldMenuItems(["courses", "classrooms"]).then((data) =>
         setMenuItemsObject(data)
       );
       setIsUpdate(false);
@@ -116,24 +120,24 @@ function StudentBookForm() {
       setValidationMessageAndValidityObject(temp);
       setFormIsValid(useInputFormValidation.validateWholeForm(temp));
     }
-  }, [params.studentBookId]);
+  }, [params.termId]);
 
   async function saveClickHandler(event) {
     event.preventDefault();
     let response = {};
-    let studentBook = inputFieldValuesObject;
+    let term = inputFieldValuesObject;
     if (isUpdate) {
       setType("done");
       setTitle("successTitle");
       setContent("successContentUpdate");
-      response = await PostStudentBook(studentBook).then((data) => {
+      response = await PostTerm(term).then((data) => {
         return data;
       });
     } else {
       setType("done");
       setTitle("successTitle");
       setContent("successContentAdd");
-      response = await PostStudentBook(studentBook).then((data) => {
+      response = await PostTerm(term).then((data) => {
         return data;
       });
     }
@@ -168,54 +172,74 @@ function StudentBookForm() {
   };
   return (
     <TemplateForm
-      title={isUpdate ? t("updateStudentBook") : t("addStudentBook")}
+      title={isUpdate ? t("updateTerm") : t("addTerm")}
       size="small"
     >
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <InputField
-            name="pickUpDate"
-            label={t("pickUpDate")}
+            name="date"
+            label={t("date")}
             value={inputFieldValuesObject}
             valueHandler={handleChange}
-            validationValues={validationMessageAndValidityObject["pickUpDate"]}
+            validationValues={validationMessageAndValidityObject["date"]}
             required={true}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <InputField
-            name="returnDate"
-            label={t("returnDate")}
+            name="startTime"
+            label={t("startTime")}
             value={inputFieldValuesObject}
             valueHandler={handleChange}
-            validationValues={validationMessageAndValidityObject["returnDate"]}
+            validationValues={validationMessageAndValidityObject["startTime"]}
             required={true}
           />
         </Grid>
         
         <Grid item xs={12} sm={6}>
+          <InputField
+            name="endTime"
+            label={t("endTime")}
+            value={inputFieldValuesObject}
+            valueHandler={handleChange}
+            validationValues={validationMessageAndValidityObject["endTime"]}
+            required={true}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <InputField
+            name="duration"
+            label={t("duration")}
+            value={inputFieldValuesObject}
+            valueHandler={handleChange}
+            validationValues={validationMessageAndValidityObject["duration"]}
+            required={true}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
           <SelectField
-            name="bookFK"
-            id="books"
-            label="books"
+            name="courseFK"
+            id="courses"
+            label="courses"
             menuItemsData={menuItemsObject}
             value={inputFieldValuesObject}
             valueHandler={handleChange}
             validationValues={
-              validationMessageAndValidityObject["bookFK"]
+              validationMessageAndValidityObject["courseFK"]
             }
           />
         </Grid>
         
           <Grid item xs={12} sm={6}>
             <SelectField
-              name="userFK"
-              id="users"
-              label="userFK"
+              name="classroomFK"
+              id="classrooms"
+              label="classrooms"
               menuItemsData={menuItemsObject}
               value={inputFieldValuesObject}
               valueHandler={handleChange}
-              validationValues={validationMessageAndValidityObject["userFK"]}
+              validationValues={validationMessageAndValidityObject["classroomFK"]}
               readonly={isUpdate}
             />
           </Grid>
@@ -239,7 +263,7 @@ function StudentBookForm() {
           color="primary"
           className={classes.button}
         >
-          {isUpdate ? t("save") : t("addStudentBook")}
+          {isUpdate ? t("save") : t("addTerm")}
         </Button>
         {ctx.isModalOn && (
           <MsgBox
@@ -255,4 +279,4 @@ function StudentBookForm() {
   );
 }
 
-export default StudentBookForm;
+export default TermForm;

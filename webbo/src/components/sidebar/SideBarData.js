@@ -11,7 +11,9 @@ import {
     People,
     SupervisedUserCircle,
     AssignmentInd,
-    ImportContacts
+    ImportContacts,
+    ListAlt,
+    EventNote
 } from "@material-ui/icons";
 
 import React from "react";
@@ -84,6 +86,44 @@ export const menu = [
                         to: "/administration/classrooms/addClassroom",
                         icon: <></>,
                         claim: "classrooms.create",
+                    },
+                ],
+            },
+            {
+                title: "terms",
+                icon: <EventNote />,
+                to: "/administration/terms",
+                items: [
+                    {
+                        title: "termManagement",
+                        to: "/administration/terms/termsManagement",
+                        icon: <></>,
+                        claim: "terms.read",
+                    },
+                    {
+                        title: "addTerm",
+                        to: "/administration/terms/addTerm",
+                        icon: <></>,
+                        claim: "terms.create",
+                    },
+                ],
+            },
+            {
+                title: "records",
+                icon: <ListAlt />,
+                to: "/administration/records",
+                items: [
+                    {
+                        title: "recordManagement",
+                        to: "/administration/records/recordsManagement",
+                        icon: <></>,
+                        claim: "records.read",
+                    },
+                    {
+                        title: "addRecord",
+                        to: "/administration/records/addRecord",
+                        icon: <></>,
+                        claim: "records.create",
                     },
                 ],
             },
@@ -202,6 +242,25 @@ export const menu = [
                 ],
             },
             {
+                title: "bookLibrary",
+                icon: <MenuBook />,
+                to: "/library/bookLibrary",
+                items: [
+                    {
+                        title: "bookLibraryManagement",
+                        to: "/library/bookLibrary/bookLibraryManagement",
+                        icon: <></>,
+                        claim: "bookLibrary.read",
+                    },
+                    {
+                        title: "addBookLibrary",
+                        to: "/library/bookLibrary/addBookLibrary",
+                        icon: <></>,
+                        claim: "bookLibrary.create",
+                    },
+                ],
+            },
+            {
                 title: "booksCategories",
                 icon: <MenuBook />,
                 to: "/library/category",
@@ -223,17 +282,17 @@ export const menu = [
             {
                 title: "studentBook",
                 icon: <ImportContacts />,
-                to: "/administration/studentBook",
+                to: "/library/studentBook",
                 items: [
                     {
                         title: "studentBookManager",
-                        to: "/administration/studentBook/studentBookManagement",
+                        to: "/library/studentBook/studentBookManagement",
                         icon: <></>,
                         claim: "studentBook.read",
                     },
                     {
                         title: "addStudentBook",
-                        to: "/administration/studentBook/addStudentBook",
+                        to: "/library/studentBook/addStudentBook",
                         icon: <></>,
                         claim: "studentBook.create",
                     },

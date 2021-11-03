@@ -328,7 +328,7 @@ function UserForm() {
             color="primary"
             className={classes.button}
           >
-            {t("manageRoles")}
+            {t("manageClaims")}
           </Button>
         )}
         <Button

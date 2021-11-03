@@ -142,6 +142,7 @@
     "addLibrary": "Dodaj knjižnicu",
 
     "institutions": "Institucije",
+    "selectInstitution": "Odaberite instituciju",
 
     "booksCategories": "Kategorije knjiga",
     "categoryManagement": "Upravljanje kategorijama",
@@ -192,7 +193,27 @@
     "addStudentBook": "Dodaj knjigu",
     "pickUpDate": "Datum podizanja",
     "returnDate": "Datum povratka",
-    "bookName": "Naziv knjige"
+    "bookName": "Naziv knjige",
+
+    "bookLibrary": "Knjige u knjižnici",
+    "bookLibraryManagement": "Upravljanje knjigama u knjižnici",
+    "addBookLibrary": "Dodaj knjigu u knjižnicu",
+
+    "records": "Evidencije",
+    "recordManagement": "Upravljanje evidencijama",
+    "addRecord": "Dodaj evidenciju",
+    "checkInTime": "Vrijeme prijave",
+
+    "terms": "Termini",
+    "termManagement": "Upravljanje terminima",
+    "addTerm": "Dodaj termin",
+    "selectCourse": "Odaberite kolegij",
+    "courseFK": "Kolegiji",
+    "date": "Datum",
+    "startTime": "Početak",
+    "endTime": "Kraj",
+    "duration": "Trajanje",
+    "classroomName": "Broj učionice"
 
 
 }

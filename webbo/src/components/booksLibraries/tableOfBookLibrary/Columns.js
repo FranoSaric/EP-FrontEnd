@@ -8,21 +8,21 @@ import CloseIcon from "@material-ui/icons/Close";
  */
 export const columns = [
     {
-        field: "checkInTime",
-        headerName: "checkInTime",
-        width: 200,
+        field: "libraryName",
+        headerName: "libraryName",
+        width: 170,
         filterOperators: stringOperators,
     },
     {
-        field: "userName",
-        headerName: "userName",
+        field: "bookName",
+        headerName: "bookName",
         width: 150,
         filterOperators: stringOperators,
     },
     {
         field: "editDelete",
         headerName: "edit/delete",
-        width: 100,
+        width: 150,
         filterable: false,
         sortable: false,
         editable: false,
@@ -31,8 +31,8 @@ export const columns = [
                 <EditDeleteColumn
                     id={params.id}
                     row={params.row}
-                    link="/administration/records/addRecord"
-                    claimType="Records.Permission"
+                    link="/library/bookLibrary/addBookLibrary"
+                    claimType="BookLibrary.Permission"
                 />
             );
         },

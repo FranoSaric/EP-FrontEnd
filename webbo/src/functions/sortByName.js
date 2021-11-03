@@ -5,7 +5,6 @@
  * @returns 
  */
 export default function sortByName (unsortedArray, name) {
-    
 	let sortedData = unsortedArray.sort(function (a, b) {
 		var nameA = a[name].toUpperCase(); // ignore upper and lowercase
 		var nameB = b[name].toUpperCase(); // ignore upper and lowercase

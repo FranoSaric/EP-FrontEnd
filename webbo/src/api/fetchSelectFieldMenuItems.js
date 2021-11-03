@@ -33,6 +33,7 @@ export default async function fetchSelectFieldMenuItems(ids) {
 
             case "role":
                 url = `${process.env.REACT_APP_API_USER}/getRole`;
+                name = "name";
                 break;
 
             case "states":
@@ -53,22 +54,37 @@ export default async function fetchSelectFieldMenuItems(ids) {
             ///////////////////////////
             case "institutions":
                 url = `${process.env.REACT_APP_API_LOCALE}/getInstitutions`;
+                name = "name";
                 break;
 
             case "categories":
                 url = `${process.env.REACT_APP_API_LOCALE}/getCategories`;
+                name = "name";
                 break;
 
             case "roleFK":
                 url = `${process.env.REACT_APP_API_LOCALE}/getRoles`;
+                name = "name";
                 break;
 
             case "libraries":
                 url = `${process.env.REACT_APP_API_LOCALE}/getLibraries`;
+                name = "name";
                 break;
 
             case "books":
                 url = `${process.env.REACT_APP_API_LOCALE}/getBooks`;
+                name = "name";
+                break;
+
+            case "classrooms":
+                url = `${process.env.REACT_APP_API_LOCALE}/getClassrooms`;
+                name = "numberOfClassroom";
+                break;
+
+            case "courses":
+                url = `${process.env.REACT_APP_API_LOCALE}/getCourses`;
+                name = "name";
                 break;
 
             default:

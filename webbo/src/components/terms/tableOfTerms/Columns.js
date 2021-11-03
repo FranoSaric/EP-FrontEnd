@@ -8,20 +8,32 @@ import CloseIcon from "@material-ui/icons/Close";
  */
 export const columns = [
     {
-        field: "pickUpDate",
-        headerName: "pickUpDate",
+        field: "date",
+        headerName: "date",
         width: 200,
         filterOperators: stringOperators,
     },
     {
-        field: "returnDate",
-        headerName: "returnDate",
+        field: "startTime",
+        headerName: "startTime",
         width: 170,
         filterOperators: stringOperators,
     },
     {
-        field: "bookName",
-        headerName: "bookName",
+        field: "endTime",
+        headerName: "endTime",
+        width: 150,
+        filterOperators: stringOperators,
+    },
+    {
+        field: "duration",
+        headerName: "duration",
+        width: 150,
+        filterOperators: stringOperators,
+    },,
+    {
+        field: "classroomName",
+        headerName: "classroomName",
         width: 150,
         filterOperators: stringOperators,
     },
@@ -37,8 +49,8 @@ export const columns = [
                 <EditDeleteColumn
                     id={params.id}
                     row={params.row}
-                    link="/administration/studentBook/addStudentBook"
-                    claimType="StudentBook.Permission"
+                    link="/administration/terms/addTerm"
+                    claimType="Terms.Permission"
                 />
             );
         },

@@ -30,13 +30,11 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
     filteredData.forEach((element) => {
         dataArray.push({
             id: element.id,
-            name: element.name,
-            academicYear: element.academicYear,
-            semester: element.semester,
-            studyFK: element.studyFK,
+            checkInTime: element.checkInTime,
+            classroomFK: element.classroomFK,
             userFK: element.userFK,
-            studyName: element.study.name,
-            userName: element.user.name,
+            classroomName: element.classroom.name,
+            userName: element.user.firstName +' '+ element.user.lastName,
         });
     });
     console.log("data", data);

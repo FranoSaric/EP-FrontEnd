@@ -10,7 +10,7 @@ import MsgBox from "../../msgBox/MsgBox";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
-import DeleteStudentBook from "../apiRequests/DeleteBookLibrary";
+import DeleteTerm from "../apiRequests/DeleteTerm";
 import SelectField from "../../UI/SelectField";
 /**
  *
@@ -18,9 +18,9 @@ import SelectField from "../../UI/SelectField";
  * depends on given context (isModalOn)
  */
 const initialState = {
-    userFK: "",
+    courseFK: "",
 };
-function TableOfStudentBook() {
+function TableOfTerms() {
     //other hooks
     const { t } = useTranslation();
     const classes = useStyles();
@@ -40,7 +40,7 @@ function TableOfStudentBook() {
         return { ...column, headerName: t(column.headerName) };
     });
     useEffect(() => {
-        fetchSelectFieldMenuItems(["users"]).then((data) =>
+        fetchSelectFieldMenuItems(["courses"]).then((data) =>
             setMenuItemsObject(data)
         );
     }, []);
@@ -56,7 +56,7 @@ function TableOfStudentBook() {
 			const model = {
 				id: ctx.itemId,
 			};
-			const data = await DeleteStudentBook(model);
+			const data = await DeleteTerm(model);
 
 			if (data === undefined || data.status !== 101) {
 				setType("error");
@@ -80,13 +80,13 @@ function TableOfStudentBook() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <TemplateForm title={t("studentBookManagement")} size="medium">
-            <h3>{t("selectUser")}</h3>
+            <TemplateForm title={t("termManagement")} size="medium">
+            <h3>{t("selectCourse")}</h3>
                 <SelectField
                     className={classes.selectField}
-                    name="userFK"
-                    id="users"
-					label="userFK"
+                    name="courseFK"
+                    id="courses"
+					label="courseFK"
                     menuItemsData={menuItemsObject}
                     value={inputFieldValuesObject}
                     valueHandler={handleChange}
@@ -98,8 +98,8 @@ function TableOfStudentBook() {
                     initialPageSize={10}
                     dataGridClasses={classes.dataGrid}
                     refreshState={refreshState}
-                    tableName={"Student Book"}
-                    specialFilter={inputFieldValuesObject["userFK"]}
+                    tableName={"Terms"}
+                    specialFilter={inputFieldValuesObject["courseFK"]}
                 />
             </TemplateForm>
             {ctx.isModalOn && (
@@ -118,4 +118,4 @@ function TableOfStudentBook() {
     );
 }
 
-export default TableOfStudentBook;
+export default TableOfTerms;

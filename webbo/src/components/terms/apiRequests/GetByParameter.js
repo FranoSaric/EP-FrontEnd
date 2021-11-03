@@ -12,7 +12,7 @@ import sortByName from "../../../functions/sortByName";
  * @returns
  */
 async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
-    const URL = process.env.REACT_APP_API_LOCALE + "/getBooksLibrary";
+    const URL = process.env.REACT_APP_API_LOCALE + "/getTerms";
 
     const setLoadedTable = useGlobalState()[0];
 
@@ -23,13 +23,23 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     const data = await FetchRequest(URL, "get");
 
-    data.forEach((element) => {
+    console.log("data", data)
+
+    const filteredData = data.filter(
+        (item) => item.course.id === specialFilter
+    );
+
+    filteredData.forEach((element) => {
         dataArray.push({
             id: element.id,
-            libraryFK: element.libraryFK,
-            bookFK: element.bookFK,
-            bookName: element.book.name,
-            libraryName: element.library.name,
+            date: element.date,
+            startTime: element.startTime,
+            endTime: element.endTime,
+            duration: element.duration,
+            courseFK: element.courseFK,
+            classroomFK: element.classroomFK,
+            courseName: element.course.name,
+            classroomName: element.classroom.numberOfClassroom,
         });
     });
     console.log("data", data);

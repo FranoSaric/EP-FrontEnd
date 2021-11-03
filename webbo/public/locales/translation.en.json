@@ -2,7 +2,7 @@
     "dashboard": "Dashboard",
     "administration": "Administration",
     "users": "Users",
-    "addUser": "Add User",
+    "addUser": "Add user",
     "updateUser": "Update user",
 	"userManagement": "User management",
 	"userTypesManager": "User types management",
@@ -17,7 +17,7 @@
     "permissionClaimManagement": "Permission management",
     "addPermissionClaim": "Add permission",
     "reports": "Reports",
-    "manageRoles": "Manage Roles",
+    "manageRoles": "Manage roles",
 
     "columns": "Columns",
     "filters": "Filters",
@@ -141,8 +141,9 @@
     "addLibrary": "Add library",
 
     "institutions": "Institutions",
+    "selectInstitution": "Select institution",
 
-    "booksCategories": "Books Categories",
+    "booksCategories": "Books categories",
     "categoryManagement": "Category management",
     "addCategory": "Add category",
     "updateCategory": "Update category",
@@ -178,7 +179,7 @@
     "cycle": "Cycle",
 
     "courses": "Courses",
-    "courseManagement": "Courses Management",
+    "courseManagement": "Courses management",
     "addCourse": "Add course",
     "academicYear": "Academic year",
     "semester": "Semester",
@@ -191,6 +192,27 @@
     "addStudentBook": "Add book",
     "pickUpDate": "Pick up date",
     "returnDate": "Return date",
-    "bookName": "Book name"
+    "bookName": "Book name",
+
+    "bookLibrary": "Books in library",
+    "bookLibraryManagement": "Book management in the library",
+    "addBookLibrary": "Add book in library",
+
+    "records": "Records",
+    "recordManagement": "Record management",
+    "addRecord": "Add record",
+    "checkInTime": "Check in time",
+
+    "terms": "Terms",
+    "termManagement": "Term managemenet",
+    "addTerm": "Add term",
+    "selectCourse": "Select course",
+    "courseFK": "Courses",
+    "date": "Date",
+    "startTime": "Start time",
+    "endTime": "End time",
+    "duration": "Duration",
+    "classroomName": "Number of classroom"
+     
 
 }

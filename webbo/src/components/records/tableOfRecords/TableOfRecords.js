@@ -10,7 +10,7 @@ import MsgBox from "../../msgBox/MsgBox";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
-import DeleteCourse from "../apiRequests/DeleteRecord";
+import DeleteRecord from "../apiRequests/DeleteRecord";
 import SelectField from "../../UI/SelectField";
 /**
  *
@@ -18,9 +18,9 @@ import SelectField from "../../UI/SelectField";
  * depends on given context (isModalOn)
  */
 const initialState = {
-    userFK: "",
+    classroomFK: "",
 };
-function TableOfCourses() {
+function TableOfRecords() {
     //other hooks
     const { t } = useTranslation();
     const classes = useStyles();
@@ -40,7 +40,7 @@ function TableOfCourses() {
         return { ...column, headerName: t(column.headerName) };
     });
     useEffect(() => {
-        fetchSelectFieldMenuItems(["users"]).then((data) =>
+        fetchSelectFieldMenuItems(["classrooms"]).then((data) =>
             setMenuItemsObject(data)
         );
     }, []);
@@ -56,7 +56,7 @@ function TableOfCourses() {
 			const model = {
 				id: ctx.itemId,
 			};
-			const data = await DeleteCourse(model);
+			const data = await DeleteRecord(model);
 
 			if (data === undefined || data.status !== 101) {
 				setType("error");
@@ -80,13 +80,13 @@ function TableOfCourses() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <TemplateForm title={t("courseManagement")} size="medium">
-            <h3>{t("selectUser")}</h3>
+            <TemplateForm title={t("recordManagement")} size="medium">
+            <h3>{t("selectClassroom")}</h3>
                 <SelectField
                     className={classes.selectField}
-                    name="userFK"
-                    id="users"
-					label="userFK"
+                    name="classroomFK"
+                    id="classrooms"
+					label="classroomFK"
                     menuItemsData={menuItemsObject}
                     value={inputFieldValuesObject}
                     valueHandler={handleChange}
@@ -98,8 +98,8 @@ function TableOfCourses() {
                     initialPageSize={10}
                     dataGridClasses={classes.dataGrid}
                     refreshState={refreshState}
-                    tableName={"Courses"}
-                    specialFilter={inputFieldValuesObject["userFK"]}
+                    tableName={"Records"}
+                    specialFilter={inputFieldValuesObject["classroomFK"]}
                 />
             </TemplateForm>
             {ctx.isModalOn && (
@@ -118,4 +118,4 @@ function TableOfCourses() {
     );
 }
 
-export default TableOfCourses;
+export default TableOfRecords;

@@ -28,6 +28,12 @@ import TableOfCourses from "../components/courses/tableOfCourses/TableOfCourses"
 import CourseForm from "../components/courses/courseForm/courseForm";
 import TableOfStudentBook from "../components/studentBook/tableOfStudentBook/TableOfStudentBook";
 import StudentBookForm from "../components/studentBook/studentBookForm/studentBookForm";
+import TableOfBookLibrary from "../components/booksLibraries/tableOfBookLibrary/TableOfBookLibrary";
+import BookLibraryForm from "../components/booksLibraries/bookLibraryForm/bookLibraryForm";
+import TableOfRecords from "../components/records/tableOfRecords/TableOfRecords";
+import RecordForm from "../components/records/recordForm/RecordForm";
+import TableOfTerms from "../components/terms/tableOfTerms/TableOfTerms";
+import TermForm from "../components/terms/termForm/termForm";
 
 /**
  * all routes and their components
@@ -104,6 +110,48 @@ const Routes = [
         claimValue: "classrooms.update",
     },
     {
+        path: "/administration/terms/termsManagement",
+        name: "Term Manager",
+        component: TableOfTerms,
+        exact: true,
+        claimValue: "terms.read",
+    },
+    {
+        path: "/administration/terms/addTerm",
+        name: "Add Term",
+        component: TermForm,
+        exact: true,
+        claimValue: "terms.create",
+    },
+    {
+        path: "/administration/terms/addTerm/:termId",
+        name: "Add Term",
+        component: TermForm,
+        exact: true,
+        claimValue: "terms.update",
+    },
+    {
+        path: "/administration/records/recordsManagement",
+        name: "Record Manager",
+        component: TableOfRecords,
+        exact: true,
+        claimValue: "records.read",
+    },
+    {
+        path: "/administration/records/addRecord",
+        name: "Add Record",
+        component: RecordForm,
+        exact: true,
+        claimValue: "records.create",
+    },
+    {
+        path: "/administration/records/addRecord/:recordId",
+        name: "Add Record",
+        component: RecordForm,
+        exact: true,
+        claimValue: "records.update",
+    },
+    {
         path: "/administration/studies/studiesManagement",
         name: "Classroom Manager",
         component: TableOfStudies,
@@ -146,21 +194,21 @@ const Routes = [
         claimValue: "courses.update",
     },
     {
-        path: "/administration/studentBook/studentBookManagement",
+        path: "/library/studentBook/studentBookManagement",
         name: "Student Book Manager",
         component: TableOfStudentBook,
         exact: true,
         claimValue: "studentBook.read",
     },
     {
-        path: "/administration/studentBook/addStudentBook",
+        path: "/library/studentBook/addStudentBook",
         name: "Add Student Book",
         component: StudentBookForm,
         exact: true,
         claimValue: "studentBook.create",
     },
     {
-        path: "/administration/studentBook/addStudentBook/:studentBookId",
+        path: "/library/studentBook/addStudentBook/:studentBookId",
         name: "Add Student Book",
         component: StudentBookForm,
         exact: true,
@@ -303,6 +351,27 @@ const Routes = [
         component: BookForm,
         exact: true,
         claimValue: "books.update",
+    },
+    {
+        path: "/library/bookLibrary/bookLibraryManagement",
+        name: "Book library Manager",
+        component: TableOfBookLibrary,
+        exact: true,
+        claimValue: "bookLibrary.read",
+    },
+    {
+        path: "/library/bookLibrary/addbookLibrary",
+        name: "Add Book Library",
+        component: BookLibraryForm,
+        exact: true,
+        claimValue: "bookLibrary.create",
+    },
+    {
+        path: "/library/bookLibrary/addbookLibrary/:bookLibraryId",
+        name: "Add Book Library",
+        component: BookLibraryForm,
+        exact: true,
+        claimValue: "bookLibrary.update",
     },
 
 ];

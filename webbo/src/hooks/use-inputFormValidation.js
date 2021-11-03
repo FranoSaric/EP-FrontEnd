@@ -57,7 +57,16 @@ import userFK from "./actions/validationNumber";
 import pickUpDate from "./actions/validationNumber";
 import returnDate from "./actions/validationNumber";
 import bookFK from "./actions/validationNumber";
-
+import libraryFK from "./actions/validationNumber";
+import classroomFK from "./actions/validationNumber";
+import checkInTime from "./actions/validationNumber";
+import date from "./actions/validationNumber";
+import startTime from "./actions/validationNumber";
+import endTime from "./actions/validationNumber";
+import duration from "./actions/validationNumber";
+import courseFK from "./actions/validationNumber";
+import courseName from "./actions/validationNumber";
+import classroomName from "./actions/validationNumber";
 
 const validate = {
 	userName,
@@ -117,7 +126,17 @@ const validate = {
 	userFK,
 	pickUpDate,
 	returnDate,
-	bookFK
+	bookFK,
+	libraryFK,
+	classroomFK,
+	classroomName,
+	checkInTime,
+	date,
+	startTime,
+	endTime,
+	duration,
+	courseFK,
+	courseName
 };
 
 const useInputFormValidation = {

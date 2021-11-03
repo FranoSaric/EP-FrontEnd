@@ -52,7 +52,7 @@ function TableOfUsers() {
                     className={classes.selectField}
                     name="institutionFK"
                     id="institutions"
-					label="institutionFK"
+					label="institutions"
                     menuItemsData={menuItemsObject}
                     value={inputFieldValuesObject}
                     valueHandler={handleChange}
