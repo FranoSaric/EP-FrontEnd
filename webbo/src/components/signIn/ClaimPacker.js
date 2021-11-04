@@ -13,11 +13,9 @@ const ClaimPacker=(dataClaims)=>{
 			ClaimValues: []
 		});
 	});
-	console.log("TypeArray: ", typeArray);
 	for(let i=0;i<typeArray.length;i++){
 		typeArray[i].ClaimValues=dataClaims[typeArray[i].ClaimType];
 	}
-	console.log("Novi typeArray",typeArray);
 
 	return typeArray;
 }

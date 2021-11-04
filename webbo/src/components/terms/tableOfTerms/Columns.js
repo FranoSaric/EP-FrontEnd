@@ -1,5 +1,6 @@
 import { numberOperators } from "./Filters";
 import { EditDeleteColumn } from "../../dataTable/EditDeleteColumn";
+import { ListColumn } from "../../dataTable/ListColumn";
 import { stringOperators } from "./Filters";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
@@ -30,7 +31,8 @@ export const columns = [
         headerName: "duration",
         width: 150,
         filterOperators: stringOperators,
-    },,
+    },
+    ,
     {
         field: "classroomName",
         headerName: "classroomName",
@@ -50,6 +52,26 @@ export const columns = [
                     id={params.id}
                     row={params.row}
                     link="/administration/terms/addTerm"
+                    claimType="Terms.Permission"
+                />
+            );
+        },
+    },
+    {
+        field: "listOfStudents",
+        headerName: "listOfStudents",
+        width: 150,
+        filterable: false,
+        sortable: false,
+        editable: false,
+        renderCell: (params) => {
+            return (
+                <ListColumn
+                    numberOfClassroom={params.row.classroomName}
+                    startTime={params.row.startTime}
+                    endTime={params.row.endTime}
+                    row={params.row}
+                    link="/administration/terms/list"
                     claimType="Terms.Permission"
                 />
             );

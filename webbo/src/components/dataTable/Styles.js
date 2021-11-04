@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     editIcon: {
         color: "#6d7b91",
     },
+    listIcon: {
+        color: "#0071f2",
+    },
     deleteIcon: {
         color: "#e3244a",
     },

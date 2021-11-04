@@ -34,6 +34,7 @@ import TableOfRecords from "../components/records/tableOfRecords/TableOfRecords"
 import RecordForm from "../components/records/recordForm/RecordForm";
 import TableOfTerms from "../components/terms/tableOfTerms/TableOfTerms";
 import TermForm from "../components/terms/termForm/termForm";
+import TableOfStudents from "../components/listOfStudents/tableOfStudents/TableOfStudents";
 
 /**
  * all routes and their components
@@ -127,6 +128,13 @@ const Routes = [
         path: "/administration/terms/addTerm/:termId",
         name: "Add Term",
         component: TermForm,
+        exact: true,
+        claimValue: "terms.update",
+    },
+    {
+        path: "/administration/terms/list/:numberOfClassroom/:startTime/:endTime",
+        name: "List Of Students",
+        component: TableOfStudents,
         exact: true,
         claimValue: "terms.update",
     },

@@ -80,7 +80,7 @@ function TableOfRecords() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <TemplateForm title={t("recordManagement")} size="medium">
+            <TemplateForm title={t("recordManagement")} size="small">
             <h3>{t("selectClassroom")}</h3>
                 <SelectField
                     className={classes.selectField}

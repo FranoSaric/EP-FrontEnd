@@ -11,7 +11,8 @@ import sortByName from "../../../functions/sortByName";
  * @param {integer} pageSize - number of rows per page
  * @returns
  */
-async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
+
+async function GetByParameter({ filter, page, pageSize, sort, startTime, endTime, numberOfClassroom }) {
     const URL = process.env.REACT_APP_API_LOCALE + "/getRecords";
 
     const setLoadedTable = useGlobalState()[0];
@@ -23,10 +24,7 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     const data = await FetchRequest(URL, "get");
 
-
-    const filteredData = data.filter(
-        (item) => item.classroomFK === specialFilter
-    );
+    const filteredData = data.filter(d => new Date(startTime) <= new Date(d.checkInTime) && new Date(endTime) >= new Date(d.checkInTime) && numberOfClassroom === d.classroom.numberOfClassroom);
 
     filteredData.forEach((element) => {
         dataArray.push({

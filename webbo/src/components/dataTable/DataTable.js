@@ -57,7 +57,10 @@ function DataTable(props) {
         let filter = filterModel.items[0];
         let sort=sortModel[0];
         let specialFilter = props.specialFilter;
-        const objekt = await props.getByParameter({ filter, page, pageSize, sort, specialFilter });
+        let startTime = props.startTime;
+        let endTime = props.endTime;
+        let numberOfClassroom = props.numberOfClassroom;
+        const objekt = await props.getByParameter({ filter, page, pageSize, sort, specialFilter, startTime, endTime, numberOfClassroom });
         setRowCount(objekt.numberOfRows);
         setRows(objekt.pageOfRows);
         setLoading(false);

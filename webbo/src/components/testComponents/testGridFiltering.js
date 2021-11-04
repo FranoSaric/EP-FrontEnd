@@ -127,7 +127,6 @@ export default function CustomRatingOperator() {
         );
         columns[ratingColIndex] = newRatingColumn;
     }
-    console.log("FilterModel(XGrid): ", filterModel);
 
     return (
         <DataGrid

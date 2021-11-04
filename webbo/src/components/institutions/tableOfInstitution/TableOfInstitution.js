@@ -33,7 +33,6 @@ function TableOfInstitution() {
             const model = {
                 id: ctx.itemId,
             };
-            console.log("model", model)
             const data = await DeleteInstitution(model);
 
             if (data === undefined || data.status !== 101) {

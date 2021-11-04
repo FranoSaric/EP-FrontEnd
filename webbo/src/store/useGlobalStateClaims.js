@@ -19,7 +19,6 @@ const useGlobalState=()=>{
 	 * @param {[]} newClaims array of objects representing claims
 	 */
 	const setExistingClaims=(newClaims)=>{
-		console.log("new claims", newClaims, "claims", existingClaims)
 		existingClaims=newClaims;
 	}
 	

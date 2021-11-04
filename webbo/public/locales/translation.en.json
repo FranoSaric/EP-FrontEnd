@@ -204,7 +204,7 @@
     "checkInTime": "Check in time",
 
     "terms": "Terms",
-    "termManagement": "Term managemenet",
+    "termManagement": "Term management",
     "addTerm": "Add term",
     "selectCourse": "Select course",
     "courseFK": "Courses",
@@ -212,7 +212,9 @@
     "startTime": "Start time",
     "endTime": "End time",
     "duration": "Duration",
-    "classroomName": "Number of classroom"
+    "classroomName": "Number of classroom",
+
+    "listManagement": "List of Students"
      
 
 }

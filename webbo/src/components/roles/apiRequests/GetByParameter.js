@@ -20,7 +20,6 @@ async function GetByParameter({ filter, page, pageSize }) {
 	let dataArray = [];
 	let partnerId=parseInt(localStorage.getItem("partnerId"));
 	const data = await FetchRequest(URL, "get");
-	console.log("data",data);
 	data.forEach((element) => {
 		dataArray.push({
 			id: element.id,

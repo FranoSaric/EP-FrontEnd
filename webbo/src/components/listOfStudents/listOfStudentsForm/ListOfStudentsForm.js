@@ -10,7 +10,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import useStyles from "../../UI/TemplateForm/TemplateFormStyles";
 import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
-import PostUser from "../apiRequests/PostUser";
+import PostStudent from "../apiRequests/PostStudent";
 import InputField from "../../UI/InputField";
 import { useTranslation } from "react-i18next";
 import useGlobalState from "../../../store/useGlobalState";
@@ -26,17 +26,11 @@ import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
  */
 
 const initialState = {
-  indexNumber: "",
-  userName: "",
-  password: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  creationDate: "",
-  institutionFK: "",
-  roleFK: "",
+  checkInTime: "",
+  classroomFK: "",
+  userFK: ""
 };
-function UserForm() {
+function ListOfStudentsForm() {
   //path handling hooks
   let history = useHistory();
   let params = useParams();
@@ -53,6 +47,7 @@ function UserForm() {
   const [content, setContent] = useState("");
   //state for select field menu items
   const [menuItemsObject, setMenuItemsObject] = useState({});
+  const [responseStatus, setResponseStatus] = useState();
   //input and select fields state
   const [inputFieldValuesObject, setInputFieldValuesObject] =
     useState(initialState);
@@ -66,20 +61,20 @@ function UserForm() {
   const [formIsValid, setFormIsValid] = useState(false);
   //fetching menu items for select field
   useEffect(() => {
-    if (params.userId === undefined) {
-      fetchSelectFieldMenuItems(["institutions", "roleFK"]).then((data) =>
+    if (params.recordId === undefined) {
+      fetchSelectFieldMenuItems(["classrooms", "users"]).then((data) =>
           setMenuItemsObject(data)
       );
       if (isUpdate) {
         setIsUpdate(false);
       }
     } else {
-      fetchSelectFieldMenuItems(["institutions","roleFK"]).then((data) =>
+      fetchSelectFieldMenuItems(["classrooms", "users"]).then((data) =>
         setMenuItemsObject(data)
       );
-      let model = getRow(params.userId);
-      delete model["roleName"];
-      delete model["institutionName"];
+      let model = getRow(params.recordId);
+      delete model["userName"];
+      delete model["classroomName"];
       if (model === undefined || model === null || Object.keys(model) <= 0) {
         history.goBack();
       } else {
@@ -92,13 +87,7 @@ function UserForm() {
       }
     }
   }, []);
-  //setting is active state with checkbox
-  const activeHandler = (event) => {
-    setInputFieldValuesObject({
-      ...inputFieldValuesObject,
-      active: event.target.checked,
-    });
-  };
+ 
   //setting values in state on every click
   const handleChange = (event) => {
     event.preventDefault();
@@ -118,8 +107,8 @@ function UserForm() {
     setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
   };
   useEffect(() => {
-    if (params.userId === undefined && isUpdate === true) {
-      fetchSelectFieldMenuItems(["institutions", "roleFK"]).then((data) =>
+    if (params.recordId === undefined && isUpdate === true) {
+      fetchSelectFieldMenuItems(["users", "classrooms"]).then((data) =>
         setMenuItemsObject(data)
       );
       setIsUpdate(false);
@@ -128,55 +117,49 @@ function UserForm() {
       setValidationMessageAndValidityObject(temp);
       setFormIsValid(useInputFormValidation.validateWholeForm(temp));
     }
-  }, [params.userId]);
+  }, [params.recordId]);
 
   async function saveClickHandler(event) {
     event.preventDefault();
     let response = {};
-    let user = inputFieldValuesObject;
+    let record = inputFieldValuesObject;
     if (isUpdate) {
       setType("done");
       setTitle("successTitle");
       setContent("successContentUpdate");
-      response = await PostUser(user).then((data) => {
+      response = await PostRecord(record).then((data) => {
         return data;
       });
     } else {
       setType("done");
       setTitle("successTitle");
       setContent("successContentAdd");
-      response = await PostUser(user).then((data) => {
+      response = await PostRecord(record).then((data) => {
         return data;
       });
     }
     if (response !== undefined) {
-      if (response.isValid === true) {
-        let temp = useInputFormValidation.validateAllValues(initialState);
-        setInputFieldValuesObject(initialState);
-        setFormIsValid(useInputFormValidation.validateWholeForm(temp));
-      } else if (response.isValid === false) {
-        if (response.info === "Email already exists") {
-          setType("error");
-          setTitle("emailExistsErrorTitle");
-          setContent("emailExistsErrorContent");
-        } else if (response.info === "Username already exists") {
-          setType("error");
-          setTitle("usernameExistsErrorTitle");
-          setContent("usernameExistsErrorContent");
-        } else {
-          setType("error");
-          setTitle("errorTitle");
-          setContent("errorContent");
-        }
-      }
-    } else {
-      setType("error");
-      setTitle("errorTitle");
-      setContent("errorContent");
-    }
+      setResponseStatus(response.status);
+		    if (response.status === 101) {
+		        setType("done");
+				setTitle("successTitle");
+				setContent("successContentUpdate");
+				let temp = useInputFormValidation.validateAllValues(initialState);
+				setInputFieldValuesObject(initialState);
+				setFormIsValid(useInputFormValidation.validateWholeForm(temp));
+		    } else {
+		        setType("error");
+		        setTitle("errorTitle");
+		        setContent("errorContent");
+		    }
+		} else {
+		    setType("error");
+		    setTitle("errorTitle");
+		    setContent("errorContent");
+		}
 
-    ctx.setIsModalOn(true);
-  }
+		ctx.setIsModalOn(true);
+	}
 
   const handleModal = () => {
     ctx.setIsModalOn(false);
@@ -186,126 +169,49 @@ function UserForm() {
   };
   return (
     <TemplateForm
-      title={isUpdate ? t("updateUser") : t("addUser")}
+      title={isUpdate ? t("updateRecord") : t("addRecord")}
       size="small"
     >
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <InputField
-            name="indexNumber"
-            label={t("indexNumber")}
+            name="checkInTime"
+            label={t("checkInTime")}
             value={inputFieldValuesObject}
             valueHandler={handleChange}
-            validationValues={validationMessageAndValidityObject["indexNumber"]}
+            validationValues={validationMessageAndValidityObject["checkInTime"]}
             required={true}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <InputField
-            name="userName"
-            label={t("username")}
-            value={inputFieldValuesObject}
-            valueHandler={handleChange}
-            validationValues={validationMessageAndValidityObject["userName"]}
-            required={true}
-          />
-        </Grid>
-        {!isUpdate && (
-          <Grid item xs={12} sm={6}>
-            <InputField
-              name="password"
-              label={t("password")}
-              value={inputFieldValuesObject}
-              valueHandler={handleChange}
-              validationValues={validationMessageAndValidityObject["password"]}
-              required={true}
-            />
-          </Grid>
-        )}
-        <Grid item xs={12} sm={6}>
-          <InputField
-            name="firstName"
-            label={t("name")}
-            value={inputFieldValuesObject}
-            valueHandler={handleChange}
-            validationValues={validationMessageAndValidityObject["firstName"]}
-            required={true}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <InputField
-            name="lastName"
-            label={t("surname")}
-            value={inputFieldValuesObject}
-            valueHandler={handleChange}
-            validationValues={validationMessageAndValidityObject["lastName"]}
-            required={true}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <InputField
-            name="email"
-            label={t("e-mail")}
-            value={inputFieldValuesObject}
-            valueHandler={handleChange}
-            validationValues={validationMessageAndValidityObject["email"]}
-            required={true}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <InputField
-            name="creationDate"
-            label={t("creationDate")}
-            value={inputFieldValuesObject}
-            valueHandler={handleChange}
-            validationValues={
-              validationMessageAndValidityObject["creationDate"]
-            }
-          />
-        </Grid>
-
         <Grid item xs={12} sm={6}>
           <SelectField
-            name="institutionFK"
-            id="institutions"
+            name="classroomFK"
+            id="classrooms"
+            label="classrooms"
             menuItemsData={menuItemsObject}
             value={inputFieldValuesObject}
             valueHandler={handleChange}
             validationValues={
-              validationMessageAndValidityObject["institutionFK"]
+              validationMessageAndValidityObject["classroomFK"]
             }
           />
         </Grid>
         
           <Grid item xs={12} sm={6}>
             <SelectField
-              name="roleFK"
-              id="roleFK"
-              label="roleFK"
+              name="userFK"
+              id="users"
+              label="userFK"
               menuItemsData={menuItemsObject}
               value={inputFieldValuesObject}
               valueHandler={handleChange}
-              validationValues={validationMessageAndValidityObject["roleFK"]}
+              validationValues={validationMessageAndValidityObject["userFK"]}
               readonly={isUpdate}
             />
           </Grid>
-        
-        <Grid item xs={12} sm={6}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={inputFieldValuesObject["active"]}
-                onChange={activeHandler}
-                name="active"
-                color="primary"
-              />
-            }
-            label={t("active")}
-          />
-        </Grid>
       </Grid>
       <Container className={classes.buttons}>
-        {params.userId && (
+        {params.courseId && (
           <Button
             onClick={() => history.goBack()}
             variant="contained"
@@ -313,20 +219,6 @@ function UserForm() {
             className={classes.button}
           >
             {t("back")}
-          </Button>
-        )}
-        {params.userId && ActionValidator("users.manageClaims") && (
-          <Button
-            onClick={() =>
-              history.push(
-                "/administration/users/claimManagement/" + params.userId
-              )
-            }
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
-            {t("manageClaims")}
           </Button>
         )}
         <Button
@@ -337,7 +229,7 @@ function UserForm() {
           color="primary"
           className={classes.button}
         >
-          {isUpdate ? t("save") : t("addUser")}
+          {isUpdate ? t("save") : t("addRecord")}
         </Button>
         {ctx.isModalOn && (
           <MsgBox
@@ -353,4 +245,4 @@ function UserForm() {
   );
 }
 
-export default UserForm;
+export default ListOfStudentsForm;

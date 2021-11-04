@@ -42,7 +42,6 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             institutionName: element.institution.name,
         });
     });
-    console.log("data", data);
 
     dataArray = FilterData({ filter, dataArray });
     let pagedData = GetPagedData(dataArray, pageSize);

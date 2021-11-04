@@ -55,7 +55,6 @@ function PermissionScopeForm() {
 	const [formIsValid, setFormIsValid] = useState(false);
 
 	const activeHandler = (event) => {
-		console.log(event.target.checked);
 		let temp = 0;
 		if (event.target.checked) {
 			temp = 1;

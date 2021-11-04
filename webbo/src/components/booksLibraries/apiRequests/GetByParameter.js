@@ -32,7 +32,6 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             libraryName: element.library.name,
         });
     });
-    console.log("data", data);
 
     dataArray = FilterData({ filter, dataArray });
     let pagedData = GetPagedData(dataArray, pageSize);

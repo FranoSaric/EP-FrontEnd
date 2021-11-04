@@ -60,7 +60,6 @@ function ClassroomForm() {
 	const [formIsValid, setFormIsValid] = useState(false);
 
 	const activeHandler = (event) => {
-		console.log(event.target.checked);
 		let temp = false;
 		if (event.target.checked) {
 			temp = true;
@@ -143,7 +142,6 @@ function ClassroomForm() {
 			setContent("successContentAdd");
 			classrooms = inputFieldValuesObject;
 		}
-		console.log("post data", classrooms)
 
 		response = await PostClassroom(classrooms).then((data) => {
 		    return data;

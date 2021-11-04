@@ -39,7 +39,6 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             userName: element.user.name,
         });
     });
-    console.log("data", data);
 
     dataArray = FilterData({ filter, dataArray });
     let pagedData = GetPagedData(dataArray, pageSize);

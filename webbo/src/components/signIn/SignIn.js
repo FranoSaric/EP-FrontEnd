@@ -44,7 +44,6 @@ export default function SignIn() {
   //other hooks
   const { t } = useTranslation();
   const ctx = useContext(MsgBoxContext);
-  console.log(inputFieldValuesObject);
   // const rememberMeHandler = () => {
   // 	const temp = rememberMe;
   // 	setRememberMe(!temp);

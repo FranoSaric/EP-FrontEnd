@@ -60,7 +60,6 @@ function PermissionClaimForm() {
 		if (params.claimId) {
 			//dohvati podatke za taj id
 			const model = getRow(params.claimId);
-			console.log("model", model);
 			if (
 				model === undefined ||
 				model === null ||

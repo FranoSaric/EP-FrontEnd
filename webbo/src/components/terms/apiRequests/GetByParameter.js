@@ -23,7 +23,6 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     const data = await FetchRequest(URL, "get");
 
-    console.log("data", data)
 
     const filteredData = data.filter(
         (item) => item.course.id === specialFilter
@@ -42,7 +41,6 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             classroomName: element.classroom.numberOfClassroom,
         });
     });
-    console.log("data", data);
 
     dataArray = FilterData({ filter, dataArray });
     let pagedData = GetPagedData(dataArray, pageSize);

@@ -19,7 +19,6 @@ async function GetAllClaims() {
             value: element.value,
         });
     });
-	console.log("dataArray claims: ", dataArray);
 	let counter=0;
 	let typeCounter=0;
 	let typeArray=[];
@@ -57,7 +56,6 @@ async function GetAllClaims() {
 		});
 	}
 
-	console.log("Deder da vidimo te podatek: ", customTypesArray);
 
     return customTypesArray;
 }

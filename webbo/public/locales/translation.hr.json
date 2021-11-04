@@ -213,7 +213,9 @@
     "startTime": "Početak",
     "endTime": "Kraj",
     "duration": "Trajanje",
-    "classroomName": "Broj učionice"
+    "classroomName": "Broj učionice",
+
+    "listManagement": "Popis studenata"
 
 
 }

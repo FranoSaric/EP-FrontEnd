@@ -62,7 +62,6 @@ function LibraryForm() {
 		if (params.libraryId !== undefined) {
 			let model = getRow(params.libraryId);
 			delete model["institutionName"];
-			console.log("model", model)
 			if (
 				model === undefined ||
 				model === null ||

@@ -15,7 +15,6 @@ async function GetRoleClaims(userID) {
 	
     let dataArray = [];
 
-    console.log(userID);
 	
     const data = await FetchRequest(URL, "post", {userId: parseInt(userID)});
 	

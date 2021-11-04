@@ -131,7 +131,6 @@ function BookForm() {
 			setContent("successContentAdd");
 			books = inputFieldValuesObject;
 		}
-		console.log("update book", books)
 
 		response = await PostBook(books).then((data) => {
 		    return data;

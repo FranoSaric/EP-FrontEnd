@@ -5,11 +5,10 @@ import FetchRequest from "../../../api/FetchRequest";
  * @param {object} model - object representing data for posting
  * @returns either response or error
  */
-async function PostLibrary(model) {
-    const URL = process.env.REACT_APP_API_LOCALE + "/createLibrary";
+async function PostStudent(model) {
+    const URL = process.env.REACT_APP_API_LOCALE + "/createRecord";
     const data = await FetchRequest(URL, "post", model);
-
     return data;
 }
 
-export default PostLibrary;
+export default PostStudent;

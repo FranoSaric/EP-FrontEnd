@@ -95,7 +95,6 @@ const CustomFormControl = (props) => {
                     userFK: props.userId,
                     permissionClaimFK: props.claimId,
                 });
-                console.log(response)
                 const extractedId = response.userClaimId
                 setId(extractedId);
                 messageType = "post";

@@ -37,9 +37,7 @@ function Settings() {
 		Intl.DateTimeFormat().resolvedOptions().timeZone
 	);
 	useEffect(() => {
-		console.log(window.navigator.language)
 		if(localStorage.getItem("language") !== null){
-			console.log("not window", localStorage.getItem("language"))
 			setInputFieldValuesObject({language: localStorage.getItem("language")})
 		}else{
 			setInputFieldValuesObject({language: window.navigator.language.split("-")[0]})

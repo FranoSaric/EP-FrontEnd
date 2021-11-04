@@ -135,7 +135,6 @@ function StudyForm() {
 			setContent("successContentAdd");
 			studies = inputFieldValuesObject;
 		}
-		console.log("post data", studies)
 
 		response = await PostStudy(studies).then((data) => {
 		    return data;

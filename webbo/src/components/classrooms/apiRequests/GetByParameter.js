@@ -22,7 +22,6 @@ async function GetByParameter({ filter, page, pageSize, specialFilter }) {
 
     const data = await FetchRequest(URL, "get", { });
     data.forEach((element) => {
-        console.log(element)
         dataArray.push({
             id: element.id,
             numberOfClassroom: element.numberOfClassroom,

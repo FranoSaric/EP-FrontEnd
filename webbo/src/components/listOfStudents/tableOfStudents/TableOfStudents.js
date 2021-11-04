@@ -10,17 +10,20 @@ import MsgBox from "../../msgBox/MsgBox";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
-import DeleteTerm from "../apiRequests/DeleteTerm";
+import DeleteStudent from "../apiRequests/DeleteStudent";
 import SelectField from "../../UI/SelectField";
+
+import { useParams } from "react-router-dom";
 /**
  *
  * @returns Either Data grid table of Users or modal form for confirming item deletion,
  * depends on given context (isModalOn)
  */
 const initialState = {
-    courseFK: "",
+    classroomFK: "",
 };
-function TableOfTerms() {
+function TableOfStudents() {
+    let params = useParams();
     //other hooks
     const { t } = useTranslation();
     const classes = useStyles();
@@ -39,24 +42,13 @@ function TableOfTerms() {
     const newColumns = columns.map((column) => {
         return { ...column, headerName: t(column.headerName) };
     });
-    useEffect(() => {
-        fetchSelectFieldMenuItems(["courses"]).then((data) =>
-            setMenuItemsObject(data)
-        );
-    }, []);
-    //setting values in state on every click
-    const handleChange = (event) => {
-        event.preventDefault();
-        const { name, value } = event.target;
-        setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
-    };
 
     async function handleDelete() {
 		if (type === "delete") {
 			const model = {
 				id: ctx.itemId,
 			};
-			const data = await DeleteTerm(model);
+			const data = await DeleteStudent(model);
 
 			if (data === undefined || data.status !== 101) {
 				setType("error");
@@ -80,17 +72,7 @@ function TableOfTerms() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <TemplateForm title={t("termManagement")} size="large">
-            <h3>{t("selectCourse")}</h3>
-                <SelectField
-                    className={classes.selectField}
-                    name="courseFK"
-                    id="courses"
-					label="courseFK"
-                    menuItemsData={menuItemsObject}
-                    value={inputFieldValuesObject}
-                    valueHandler={handleChange}
-                />
+            <TemplateForm title={t("listManagement")} size="medium">
                 <DataTable
                     columns={newColumns}
                     getByParameter={GetByParameter}
@@ -98,8 +80,10 @@ function TableOfTerms() {
                     initialPageSize={10}
                     dataGridClasses={classes.dataGrid}
                     refreshState={refreshState}
-                    tableName={"Terms"}
-                    specialFilter={inputFieldValuesObject["courseFK"]}
+                    tableName={"List_Of_Students"}
+                    startTime={params.startTime}
+                    endTime={params.endTime}
+					numberOfClassroom={params.numberOfClassroom}
                 />
             </TemplateForm>
             {ctx.isModalOn && (
@@ -118,4 +102,4 @@ function TableOfTerms() {
     );
 }
 
-export default TableOfTerms;
+export default TableOfStudents;

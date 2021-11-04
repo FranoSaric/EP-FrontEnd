@@ -68,7 +68,6 @@ const UserRoleForm=()=>{
 
 	async function claimsFromRoleSetter(userId){
 		const data=await GetRoleClaims(userId);
-		console.log("deder mi ove: ", data);
 		ClaimsFromRolesSetter(data);
 	}
 	
