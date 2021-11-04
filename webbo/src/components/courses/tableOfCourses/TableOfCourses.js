@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import DataTable from "../../dataTable/DataTable";
 import { columns } from "./Columns";
@@ -26,10 +25,10 @@ function TableOfCourses() {
     const classes = useStyles();
     const ctx = useContext(MsgBoxContext);
     const [refreshState, setRefreshState] = useState("1518");
-	//state for modal window
-	const [type, setType] = useState("delete");
-	const [title, setTitle] = useState("deleteTitle");
-	const [content, setContent] = useState("deleteContent");
+    //state for modal window
+    const [type, setType] = useState("delete");
+    const [title, setTitle] = useState("deleteTitle");
+    const [content, setContent] = useState("deleteContent");
     // state for select field menu items
     const [menuItemsObject, setMenuItemsObject] = useState();
     //state for select field value
@@ -52,45 +51,49 @@ function TableOfCourses() {
     };
 
     async function handleDelete() {
-		if (type === "delete") {
-			const model = {
-				id: ctx.itemId,
-			};
-			const data = await DeleteCourse(model);
+        if (type === "delete") {
+            const model = {
+                id: ctx.itemId,
+            };
+            const data = await DeleteCourse(model);
 
-			if (data === undefined || data.status !== 101) {
-				setType("error");
-				setTitle("errorTitle");
-				setContent("errorContent");
-			} else {
-				setType("done");
-				setTitle("successTitle");
-				setContent("successContentDelete");
-			}
-		} else {
-			ctx.setItemId(0);
-			ctx.setIsModalOn(false);
-			setRefreshState(Math.random());
-			setType("delete");
-			setTitle("deleteTitle");
-			setContent("deleteContent");
-		}
-	}
+            if (data === undefined || data.status !== 101) {
+                setType("error");
+                setTitle("errorTitle");
+                setContent("errorContent");
+            } else {
+                setType("done");
+                setTitle("successTitle");
+                setContent("successContentDelete");
+            }
+        } else {
+            ctx.setItemId(0);
+            ctx.setIsModalOn(false);
+            setRefreshState(Math.random());
+            setType("delete");
+            setTitle("deleteTitle");
+            setContent("deleteContent");
+        }
+    }
+
+    const role = localStorage.getItem("role");
 
     return (
         <React.Fragment>
             <CssBaseline />
             <TemplateForm title={t("courseManagement")} size="medium">
-            <h3>{t("selectUser")}</h3>
-                <SelectField
-                    className={classes.selectField}
-                    name="userFK"
-                    id="users"
-					label="userFK"
-                    menuItemsData={menuItemsObject}
-                    value={inputFieldValuesObject}
-                    valueHandler={handleChange}
-                />
+                {role === "developer" && <h3>{t("selectUser")}</h3>}
+                {role === "developer" && (
+                    <SelectField
+                        className={classes.selectField}
+                        name="userFK"
+                        id="users"
+                        label="userFK"
+                        menuItemsData={menuItemsObject}
+                        value={inputFieldValuesObject}
+                        valueHandler={handleChange}
+                    />
+                )}
                 <DataTable
                     columns={newColumns}
                     getByParameter={GetByParameter}
@@ -103,17 +106,17 @@ function TableOfCourses() {
                 />
             </TemplateForm>
             {ctx.isModalOn && (
-				<MsgBox
-					type={type}
-					title={title}
-					content={content}
-					handleOK={handleDelete}
-					handleError={handleDelete}
-					handleBackdropClick={
-						type === "done" ? handleDelete : () => {}
-					}
-				/>
-			)}
+                <MsgBox
+                    type={type}
+                    title={title}
+                    content={content}
+                    handleOK={handleDelete}
+                    handleError={handleDelete}
+                    handleBackdropClick={
+                        type === "done" ? handleDelete : () => {}
+                    }
+                />
+            )}
         </React.Fragment>
     );
 }

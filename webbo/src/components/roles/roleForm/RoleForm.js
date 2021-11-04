@@ -109,60 +109,44 @@ function RoleForm() {
 	async function saveClickHandler(event) {
 		event.preventDefault();
 		let response = {};
-		let roles = {};
+		let role = inputFieldValuesObject;
 		if (isUpdate) {
-			setType("done");
-			setTitle("successTitle");
-			setContent("successContentUpdate");
-			delete inputFieldValuesObject["id"]
-			roles = {
-				...inputFieldValuesObject,
-				idRole: parseInt(params.roleId),
-			};
-		} else {
-			setType("done");
-			setTitle("successTitle");
-			setContent("successContentAdd");
-			roles = {
-				...inputFieldValuesObject,
-				defaultRole: false,
-			};
-		}
-
-		response = await PostRole(roles).then((data) => {
+		  setType("done");
+		  setTitle("successTitle");
+		  setContent("successContentUpdate");
+		  response = await PostRole(role).then((data) => {
 			return data;
-		});
-
-		if (!isUpdate) {
-			const extractedId = response.data.split(":")[1].replace("]", "");
-			setId(parseInt(extractedId));
-			setLoadedId(parseInt(extractedId));
-			setLoadedName(inputFieldValuesObject["name"]);
+		  });
+		} else {
+		  setType("done");
+		  setTitle("successTitle");
+		  setContent("successContentAdd");
+		  response = await PostRole(role).then((data) => {
+			return data;
+		  });
 		}
-
 		if (response !== undefined) {
-			setResponseStatus(response.status);
-			if (response.status === 101) {
-				setType("done");
-				setTitle("successTitle");
-				setContent("successContentUpdate");
-				let temp =
-					useInputFormValidation.validateAllValues(initialState);
-				setInputFieldValuesObject(initialState);
-				setFormIsValid(useInputFormValidation.validateWholeForm(temp));
+		  setResponseStatus(response.status);
+				if (response.status === 101) {
+					setType("done");
+					setTitle("successTitle");
+					setContent("successContentUpdate");
+					let temp = useInputFormValidation.validateAllValues(initialState);
+					setInputFieldValuesObject(initialState);
+					setFormIsValid(useInputFormValidation.validateWholeForm(temp));
+				} else {
+					setType("error");
+					setTitle("errorTitle");
+					setContent("errorContent");
+				}
 			} else {
 				setType("error");
 				setTitle("errorTitle");
 				setContent("errorContent");
 			}
-		} else {
-			setType("error");
-			setTitle("errorTitle");
-			setContent("errorContent");
+	
+			ctx.setIsModalOn(true);
 		}
-
-		ctx.setIsModalOn(true);
-	}
 
 	const handleModal = () => {
 		ctx.setIsModalOn(false);

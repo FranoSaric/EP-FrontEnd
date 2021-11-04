@@ -23,9 +23,17 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     const data = await FetchRequest(URL, "get");
 
-    const filteredData = data.filter(
-        (item) => item.user.id === specialFilter
-    );
+    let filterData = "";
+
+    if (!specialFilter) {
+        filterData=parseInt(localStorage.getItem("userID"));
+    }else{
+        filterData=specialFilter;
+    }
+
+    console.log("filter", filterData)
+
+    const filteredData = data.filter((item) => item.user.id === filterData);
 
     filteredData.forEach((element) => {
         dataArray.push({

@@ -5,10 +5,10 @@ import FetchRequest from "../../../api/FetchRequest";
  * @param {object} model - object representing data for posting
  * @returns either response or error
  */
-async function DeletRole(model) {
-    const URL = process.env.REACT_APP_API_USER + "/deleteRole";
-    const data = await FetchRequest(URL, "post", model);
+async function DeleteRole(model) {
+    const URL = process.env.REACT_APP_API_LOCALE + "/deleteRole";
+    const data = await FetchRequest(URL, "delete", model);
     return data;
 }
 
-export default DeletRole;
+export default DeleteRole;

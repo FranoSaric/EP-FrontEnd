@@ -33,7 +33,7 @@ function TableOfRoles() {
 	async function handleModal ()  {
 		if(type==="delete"){
 			const model = {
-				idRole: ctx.itemId,
+				id: ctx.itemId,
 			};
 			const data= await DeleteRole(model);
 			if(data.status===401){

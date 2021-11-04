@@ -89,6 +89,7 @@ export default function SignIn() {
     let response = await SignInRequest(model).then((data) => {
       return data;
     });
+    console.log("response", response)
     if (response === undefined || !isVerified) {
       if (!isVerified) {
         alert("Please verified that yu are human!");
@@ -101,6 +102,8 @@ export default function SignIn() {
       localStorage.setItem("claims", JSON.stringify(claims));
       localStorage.setItem("username", response.firstName);
       localStorage.setItem("authenticated", true);
+      localStorage.setItem("userID", response.id);
+      localStorage.setItem("role", response.roles);
       setInputFieldValuesObject(initialState);
       setFormIsValid(false);
     }
