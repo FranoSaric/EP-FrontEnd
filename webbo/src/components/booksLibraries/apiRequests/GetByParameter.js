@@ -21,7 +21,7 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
     let dataArray = [];
     // let partnerId = parseInt(localStorage.getItem("partnerId"));
 
-    const data = await FetchRequest(URL, "get");
+    const data = await FetchRequest(URL, "post", { institutionId: parseInt(localStorage.getItem("institutionId")) });
 
     data.forEach((element) => {
         dataArray.push({

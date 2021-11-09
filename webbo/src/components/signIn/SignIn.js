@@ -107,6 +107,7 @@ export default function SignIn() {
                 localStorage.setItem("authenticated", true);
                 localStorage.setItem("userID", response.id);
                 localStorage.setItem("role", response.roles);
+                localStorage.setItem("institutionId", response.institutionFK);
                 setInputFieldValuesObject(initialState);
                 setFormIsValid(false);
             }, 1000);

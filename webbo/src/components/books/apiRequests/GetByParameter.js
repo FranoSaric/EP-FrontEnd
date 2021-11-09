@@ -12,25 +12,27 @@ import sortByName from "../../../functions/sortByName";
  * @returns
  */
 async function GetByParameter({ filter, page, pageSize, specialFilter }) {
-    const URL = process.env.REACT_APP_API_LOCALE + "/getBooks";
+    const URL = process.env.REACT_APP_API_LOCALE + "/getBooksLibrary";
 
     const setLoadedTable = useGlobalState()[0];
 
     // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
 
     let dataArray = [];
+    console.log("institution", localStorage.getItem("institutionId"))
 
-    const data = await FetchRequest(URL, "get", { });
+    const data = await FetchRequest(URL, "post", { institutionId: parseInt(localStorage.getItem("institutionId")) });
+    console.log("data", data)
     // item.nazivDrzave === nazivDrzave
-    const filteredData = data.filter(item => item.category.id === specialFilter);
+    const filteredData = data.filter(item => item.book.category.id === specialFilter);
     filteredData.forEach((element) => {
         dataArray.push({
-            id: element.id,
-            barCode: element.barCode,
-            name: element.name,
-            author: element.author,
-            categoryFK: element.categoryFK,
-            categoryName: element.category.name
+            id: element.book.id,
+            barCode: element.book.barCode,
+            name: element.book.name,
+            author: element.book.author,
+            categoryFK: element.book.categoryFK,
+            categoryName: element.book.category.name
         });
     });
 	dataArray = sortByName(dataArray, "name");

@@ -103,6 +103,16 @@ const menuItemsArrayGenerator = (id, itemsData) => {
             });
             break;
 
+        case "books":
+            generatedItems = itemsData.map((listItem, index) => {
+                return (
+                    <MenuItem key={index} value={listItem.book.id}>
+                        {listItem.book.name}
+                    </MenuItem>
+                );
+            });
+            break;
+
         default:
             generatedItems = itemsData.map((listItem, index) => {
                 return (

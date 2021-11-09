@@ -37,7 +37,7 @@ export const columns = [
                 <EditDeleteColumn
                     id={params.id}
                     row={params.row}
-                    link="/administration/studentBook/addStudentBook"
+                    link="/library/studentBook/addStudentBook"
                     claimType="StudentBook.Permission"
                 />
             );

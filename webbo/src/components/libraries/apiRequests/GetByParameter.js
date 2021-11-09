@@ -17,9 +17,22 @@ async function GetByParameter({ filter, page, pageSize }) {
 
 	// console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
 
+	let role = localStorage.getItem("role");
+	let institutionId = parseInt(localStorage.getItem("institutionId"));
+	let newData = [];
+
+	const data = await FetchRequest(URL, "post", {});
+	console.log("data", data)
+
+	if(role === 'developer'){
+		newData = data;
+	}else{
+		newData = data.filter(item => item.institutionId === institutionId);
+	}
+
 	let dataArray = [];
-	const data = await FetchRequest(URL, "get", {});
-	data.forEach((element) => {
+	
+	newData.forEach((element) => {
 		dataArray.push({
 			id: element.id,
 			name: element.name,
