@@ -6,21 +6,30 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+		width: "99%",
+		maxWidth: "500px",
+		minWidth: "300px"
     },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
         width: "100%", // Fix IE 11 issue.
         marginTop: theme.spacing(1),
     },
     submit: {
-        margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(1, 0, 1),
     },
     signin: {
         marginTop: theme.spacing(4),
         fontFamily: "Arial, sans-serif",
+    },
+    captcha: {
+		margin: "16px 0",
     },
 }));
 export default useStyles;
