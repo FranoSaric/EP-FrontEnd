@@ -101,13 +101,6 @@ function UserForm() {
             }
         }
     }, []);
-    //setting is active state with checkbox
-    const activeHandler = (event) => {
-        setInputFieldValuesObject({
-            ...inputFieldValuesObject,
-            active: event.target.checked,
-        });
-    };
     //setting values in state on every click
     const handleChange = (event) => {
         event.preventDefault();
@@ -129,6 +122,7 @@ function UserForm() {
     };
 
     const handleDateTimeChange = (newValue) => {
+        console.log(newValue)
         let temp = {
             ...validationMessageAndValidityObject,
             ["creationDate"]: useInputFormValidation.validateSingleValue(
@@ -187,7 +181,6 @@ function UserForm() {
                 return data;
             });
         }
-        console.log(response);
         if (response === undefined) {
             setType("error");
             setTitle("errorTitle");
@@ -225,6 +218,18 @@ function UserForm() {
                         valueHandler={handleChange}
                         validationValues={
                             validationMessageAndValidityObject["indexNumber"]
+                        }
+                        required={true}
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <InputField
+                        name="email"
+                        label={t("e-mail")}
+                        value={inputFieldValuesObject}
+                        valueHandler={handleChange}
+                        validationValues={
+                            validationMessageAndValidityObject["email"]
                         }
                         required={true}
                     />
@@ -280,18 +285,6 @@ function UserForm() {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <InputField
-                        name="email"
-                        label={t("e-mail")}
-                        value={inputFieldValuesObject}
-                        valueHandler={handleChange}
-                        validationValues={
-                            validationMessageAndValidityObject["email"]
-                        }
-                        required={true}
-                    />
-                </Grid>
-                <Grid item xs={12}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DateTimePicker
                             name="creationDate"
@@ -328,20 +321,6 @@ function UserForm() {
                             validationMessageAndValidityObject["roleFK"]
                         }
                         readonly={isUpdate}
-                    />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={inputFieldValuesObject["active"]}
-                                onChange={activeHandler}
-                                name="active"
-                                color="primary"
-                            />
-                        }
-                        label={t("active")}
                     />
                 </Grid>
             </Grid>

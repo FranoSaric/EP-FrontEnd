@@ -11,7 +11,8 @@ export default async function fetchSelectFieldMenuItems(ids) {
     let url = "";
     let name = "name";
     let method = "";
-    let model = {}
+    let model = {};
+    const role = localStorage.getItem("role");
     for (let i = 0; i < ids.length; i++) {
         switch (ids[i]) {
             case "userType":
@@ -24,14 +25,23 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 method = "post";
                 name = "firstName";
                 model = {
-                    institutionId: parseInt(localStorage.getItem("institutionId"))
-                }
+                    institutionId: parseInt(
+                        localStorage.getItem("institutionId")
+                    ),
+                };
                 break;
 
             case "studies":
                 url = `${process.env.REACT_APP_API_LOCALE}/getStudies`;
-                method = "get";
+                method = "post";
                 name = "name";
+                if (role !== "developer") {
+                    model = {
+                        institutionId: parseInt(
+                            localStorage.getItem("institutionId")
+                        ),
+                    };
+                }
                 break;
 
             case "scopePermission":
@@ -67,8 +77,15 @@ export default async function fetchSelectFieldMenuItems(ids) {
             ///////////////////////////
             case "institutions":
                 url = `${process.env.REACT_APP_API_LOCALE}/getInstitutions`;
-                method = "get";
+                method = "post";
                 name = "name";
+                if (role !== "developer") {
+                    model = {
+                        institutionId: parseInt(
+                            localStorage.getItem("institutionId")
+                        ),
+                    };
+                }
                 break;
 
             case "categories":
@@ -88,8 +105,10 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 method = "post";
                 name = "name";
                 model = {
-                    institutionId: parseInt(localStorage.getItem("institutionId"))
-                }
+                    institutionId: parseInt(
+                        localStorage.getItem("institutionId")
+                    ),
+                };
                 break;
 
             case "books":
@@ -97,20 +116,36 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 method = "post";
                 name = "books";
                 model = {
-                    institutionId: parseInt(localStorage.getItem("institutionId"))
-                }
+                    institutionId: parseInt(
+                        localStorage.getItem("institutionId")
+                    ),
+                };
                 break;
 
             case "classrooms":
                 url = `${process.env.REACT_APP_API_LOCALE}/getClassrooms`;
-                method = "get";
+                method = "post";
                 name = "numberOfClassroom";
+                if (role !== "developer") {
+                    model = {
+                        institutionId: parseInt(
+                            localStorage.getItem("institutionId")
+                        ),
+                    };
+                }
                 break;
 
             case "courses":
                 url = `${process.env.REACT_APP_API_LOCALE}/getCourses`;
-                method = "get";
+                method = "post";
                 name = "name";
+                if (role !== "developer") {
+                    model = {
+                        userId: parseInt(
+                            localStorage.getItem("userID")
+                        ),
+                    };
+                }
                 break;
 
             default:
@@ -118,7 +153,7 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 method = "get";
                 break;
         }
-        let data = await getData(url,method, model);
+        let data = await getData(url, method, model);
         let sortedArray = sortByName(data, name);
         sortedDataObjects = { ...sortedDataObjects, [ids[i]]: sortedArray };
     }

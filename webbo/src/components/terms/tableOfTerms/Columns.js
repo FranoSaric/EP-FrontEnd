@@ -59,7 +59,7 @@ export const columns = [
     },
     {
         field: "listOfStudents",
-        headerName: "listOfStudents",
+        headerName: "listManagement",
         width: 150,
         filterable: false,
         sortable: false,

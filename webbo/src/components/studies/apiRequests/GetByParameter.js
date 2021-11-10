@@ -17,11 +17,21 @@ async function GetByParameter({ filter, page, pageSize, specialFilter }) {
     const setLoadedTable = useGlobalState()[0];
 
     // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
-
+    let role = localStorage.getItem("role");
+    let institutionId = parseInt(localStorage.getItem("institutionId"));
+    let newData = [];
     let dataArray = [];
 
-    const data = await FetchRequest(URL, "get", { });
-    data.forEach((element) => {
+    const data = await FetchRequest(URL, "post");
+
+    if (role === "developer") {
+        newData = data.filter((item) => item.institution.id === specialFilter);
+    } else {
+        console.log("djeltnik");
+        newData = data.filter((item) => item.institutionFK === institutionId);
+    }
+	
+	newData.forEach((element) => {
         dataArray.push({
             id: element.id,
             name: element.name,

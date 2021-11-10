@@ -9,7 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 export const columns = [
     {
         field: "libraryName",
-        headerName: "libraryName",
+        headerName: "library",
         width: 170,
         filterOperators: stringOperators,
     },

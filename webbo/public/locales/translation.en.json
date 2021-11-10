@@ -163,9 +163,11 @@
     "address": "Address",
     "giroAccount": "Giro account",
     "contact": "Contact",
+    "institutionName": "Institution",
 
     "classrooms": "Classrooms",
     "addClassroom": "Add classroom",
+    "updateClassroom": "Update classroom",
     "classroomManagement": "Classroom management",
     "numberOfClassroom": "Number of classroom",
     "numberOfSeats": "Number of seats",
@@ -189,7 +191,8 @@
 
     "studentBook": "Rented books",
     "studentBookManager": "Rented books management",
-    "addStudentBook": "Add book",
+    "rentBook": "Rent book",
+    "updateRentedBook": "Update rented book",
     "pickUpDate": "Pick up date",
     "returnDate": "Return date",
     "bookName": "Book name",
@@ -206,6 +209,7 @@
     "terms": "Terms",
     "termManagement": "Term management",
     "addTerm": "Add term",
+    "updateTerm": "Update term",
     "selectCourse": "Select course",
     "courseFK": "Courses",
     "date": "Date",
@@ -213,6 +217,8 @@
     "endTime": "End time",
     "duration": "Duration",
     "classroomName": "Number of classroom",
+    "selectClassroom": "Select classroom",
+    "classroomFK": "Classroom",
 
     "listManagement": "List of Students"
      

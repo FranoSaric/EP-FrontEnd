@@ -164,9 +164,11 @@
     "address": "Adresa",
     "giroAccount": "Žiro račun",
     "contact": "Kontakt",
+    "institutionName": "Institucija",
 
     "classrooms": "Učionice",
     "addClassroom": "Dodaj učionicu",
+    "updateClassroom": "Uredi učionicu",
     "classroomManagement": "Upravljanje učionicama",
     "numberOfClassroom": "Broj učionice",
     "numberOfSeats": "Broj mjesta",
@@ -190,7 +192,8 @@
 
     "studentBook": "Iznajmljene knjige",
     "studentBookManager": "Upravljanje iznajmljenim knjigama",
-    "addStudentBook": "Dodaj knjigu",
+    "rentBook": "Iznajmi knjigu",
+    "updateRentedBook": "Uredi iznajmljenu knjigu",
     "pickUpDate": "Datum podizanja",
     "returnDate": "Datum povratka",
     "bookName": "Naziv knjige",
@@ -207,6 +210,7 @@
     "terms": "Termini",
     "termManagement": "Upravljanje terminima",
     "addTerm": "Dodaj termin",
+    "updateTerm": "Uredi termin",
     "selectCourse": "Odaberite kolegij",
     "courseFK": "Kolegiji",
     "date": "Datum",
@@ -214,6 +218,8 @@
     "endTime": "Kraj",
     "duration": "Trajanje",
     "classroomName": "Broj učionice",
+    "selectClassroom": "Odaberi učionicu",
+    "classroomFK": "Učionica",
 
     "listManagement": "Popis studenata"
 

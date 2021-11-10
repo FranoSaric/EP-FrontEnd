@@ -291,7 +291,7 @@ export const menu = [
                         claim: "studentBook.read",
                     },
                     {
-                        title: "addStudentBook",
+                        title: "rentBook",
                         to: "/library/studentBook/addStudentBook",
                         icon: <></>,
                         claim: "studentBook.create",

@@ -19,7 +19,7 @@ async function GetByParameter({ filter, page, pageSize }) {
 
     let dataArray = [];
 
-    const data = await FetchRequest(URL, "get", {});
+    const data = await FetchRequest(URL, "post", {});
 
     data.forEach((element) => {
         dataArray.push({

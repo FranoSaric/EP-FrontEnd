@@ -190,7 +190,7 @@ function BookLibraryForm() {
             <SelectField
               name="libraryFK"
               id="libraries"
-              label="libraryFK"
+              label="library"
               menuItemsData={menuItemsObject}
               value={inputFieldValuesObject}
               valueHandler={handleChange}

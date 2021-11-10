@@ -15,7 +15,7 @@ export const columns = [
     },
     {
         field: "userName",
-        headerName: "userName",
+        headerName: "username",
         width: 150,
         filterOperators: stringOperators,
     },

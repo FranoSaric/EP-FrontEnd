@@ -18,16 +18,27 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
 
+    let role = localStorage.getItem("role");
+	let institutionId = parseInt(localStorage.getItem("institutionId"));
+    let newData = [];
     let dataArray = [];
     // let partnerId = parseInt(localStorage.getItem("partnerId"));
 
     const data = await FetchRequest(URL, "post");
+    console.log("start data", data)
 
-    const filteredData = data.filter(
-        (item) => item.institution.id === specialFilter
-    );
+    if(role === 'developer'){
+		newData = data.filter(
+            (item) => item.institution.id === specialFilter
+        );
+	}else{
+        console.log("djeltnik")
+		newData = data.filter(item => item.institutionFK === institutionId);
+	}
 
-    filteredData.forEach((element) => {
+    console.log("data", newData)
+
+    newData.forEach((element) => {
         dataArray.push({
             id: element.id,
             indexNumber: element.indexNumber,

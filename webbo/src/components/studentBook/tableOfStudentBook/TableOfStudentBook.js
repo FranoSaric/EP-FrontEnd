@@ -80,7 +80,7 @@ function TableOfStudentBook() {
     return (
         <React.Fragment>
             <CssBaseline />
-            <TemplateForm title={t("studentBookManagement")} size="medium">
+            <TemplateForm title={t("studentBookManager")} size="medium">
             <h3>{t("selectUser")}</h3>
                 <SelectField
                     className={classes.selectField}

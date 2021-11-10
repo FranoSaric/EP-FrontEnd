@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import DataTable from "../../dataTable/DataTable";
 import { columns } from "./Columns";
@@ -43,20 +42,23 @@ function TableOfUsers() {
         const { name, value } = event.target;
         setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
     };
+    const role = localStorage.getItem("role");
     return (
         <React.Fragment>
             <CssBaseline />
             <TemplateForm title={t("userManagement")} size="large">
-            <h3>{t("selectInstitution")}</h3>
-                <SelectField
-                    className={classes.selectField}
-                    name="institutionFK"
-                    id="institutions"
-					label="institutions"
-                    menuItemsData={menuItemsObject}
-                    value={inputFieldValuesObject}
-                    valueHandler={handleChange}
-                />
+                {role === "developer" && <h3>{t("selectInstitution")}</h3>}
+                {role === "developer" && (
+                    <SelectField
+                        className={classes.selectField}
+                        name="institutionFK"
+                        id="institutions"
+                        label="institutions"
+                        menuItemsData={menuItemsObject}
+                        value={inputFieldValuesObject}
+                        valueHandler={handleChange}
+                    />
+                )}
                 <DataTable
                     columns={newColumns}
                     getByParameter={GetByParameter}
