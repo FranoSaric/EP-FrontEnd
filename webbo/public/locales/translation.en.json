@@ -220,7 +220,12 @@
     "selectClassroom": "Select classroom",
     "classroomFK": "Classroom",
 
-    "listManagement": "List of Students"
-     
+    "listManagement": "List of Students",
+
+    "indexNumberInvalid": "Invalid index number",
+    "addressInvalid": "Invalid address",
+    "giroAccountInvalid": "Giro account must contains 16 numbers",
+    "numberInvalid": "Field can only contains numbers",
+    "characterInvalid": "Field can only contains letters"
 
 }

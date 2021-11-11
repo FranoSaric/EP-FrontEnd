@@ -5,6 +5,6 @@ export default function validate(value) {
 			message = "phoneNumberInvalid";
 		} else message = "";
 
-	}else message = "";
+	}else message = "inputReq";
 	return message;
 }
