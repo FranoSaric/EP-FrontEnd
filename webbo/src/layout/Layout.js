@@ -27,8 +27,14 @@ import StatusError from "../components/UI/ErrorMessage/StatusError";
 import logo from "../assets/back-office-logo.png";
 import logo2 from "../assets/back-office-logo2.png";
 import { logger } from "../hooks/functions/Logger";
-import { RoutesValidator, validatedRoutes } from "../validators/RoutesValidator";
-import { SideBarValidator, validatedSideBar } from "../validators/SideBarValidator";
+import {
+    RoutesValidator,
+    validatedRoutes,
+} from "../validators/RoutesValidator";
+import {
+    SideBarValidator,
+    validatedSideBar,
+} from "../validators/SideBarValidator";
 
 /**
  * component that renders main layout of the page
@@ -41,9 +47,7 @@ export default function Layout() {
     const classes = useStyles();
     const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
     const claims = JSON.parse(localStorage.getItem("claims"));
-
-    // console.log("layout menu", menu);
-
+	
     RoutesValidator();
     SideBarValidator();
 
@@ -51,7 +55,6 @@ export default function Layout() {
         if (localStorage.getItem("showNav") === "false") {
             return setShowNav(false);
         }
-
         setShowNav(true);
     }, []);
 
@@ -73,7 +76,11 @@ export default function Layout() {
             <CssBaseline />
             <AppBar
                 position="fixed"
-                className={clsx(classes.appBar, showNav && classes.appBarShift)}
+                className={clsx(
+                    classes.appBar,
+                    !isMobile && showNav && classes.appBarShift,
+                    isMobile && showNav && classes.appBarShiftMobile,
+                )}
             >
                 <Toolbar className={classes.toolbar}>
                     <IconButton
@@ -106,8 +113,10 @@ export default function Layout() {
                 variant={isMobile ? "persistent" : "permanent"}
                 classes={{
                     paper: clsx(
-                        classes.drawerPaper,
-                        !showNav && classes.drawerPaperClose
+                        !isMobile && classes.drawerPaper,
+                        !isMobile && !showNav && classes.drawerPaperClose,
+                        isMobile && classes.drawerPaperMobile,
+                        isMobile && !showNav && classes.drawerPaperClose
                     ),
                 }}
                 open={showNav}
@@ -128,28 +137,34 @@ export default function Layout() {
                         <ChevronLeftIcon className={classes.items} />
                     </IconButton>
                 </div>
-                <Divider />
-                <List className={classes.items}>
-                    {validatedSideBar.map((item, key) => (
-                        <MenuItem
-                            expandedId={expandedId}
-                            setExpandedId={setExpandedId}
-                            isSelected={isSelected}
-                            setIsSelected={setIsSelected}
-                            key={key}
-                            id={key}
-                            item={item}
-                            showNav={showNav}
-                            setShowNav={setShowNav}
-                            onClick={() => {
-                                setShowNav(!showNav);
-                                setIsSelected(!isSelected);
-                            }}
-                        />
-                    ))}
-                </List>
+                <div className={classes.menuSubContainer}>
+                    <List className={classes.items}>
+                        {validatedSideBar.map((item, key) => (
+                            <MenuItem
+                                expandedId={expandedId}
+                                setExpandedId={setExpandedId}
+                                isSelected={isSelected}
+                                setIsSelected={setIsSelected}
+                                key={key}
+                                id={key}
+                                item={item}
+                                showNav={showNav}
+                                setShowNav={setShowNav}
+                                onItemClick={() => {
+                                    setShowNav(!showNav);
+                                    setIsSelected(!isSelected);
+                                }}
+                            />
+                        ))}
+                    </List>
+                    <Divider />
 
-                <Divider />
+                    {showNav && (
+                        <h5 className={classes.version}>
+                            {process.env.REACT_APP_VERSION}
+                        </h5>
+                    )}
+                </div>
             </Drawer>
             {isMobile && (
                 <SimpleBackdrop

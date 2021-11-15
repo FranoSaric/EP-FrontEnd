@@ -1,0 +1,7 @@
+.buttonContainer {
+	margin: 24px 0 12px 0;
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	flex-wrap: wrap;
+}

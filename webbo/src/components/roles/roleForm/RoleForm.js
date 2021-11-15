@@ -153,9 +153,6 @@ function RoleForm() {
 		if (isUpdate && responseStatus === 101) {
 			history.replace("/administration/roles/rolesManagement");
 		}
-		if (!isUpdate && responseStatus === 101) {
-			history.replace("/administration/roles/addClaimsToRole/" + id);
-		}
 	};
 
 	return (

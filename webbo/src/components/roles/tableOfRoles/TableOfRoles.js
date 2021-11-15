@@ -9,6 +9,10 @@ import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import MsgBox from "../../msgBox/MsgBox";
 import { useTranslation } from "react-i18next";
 import DeleteRole from "../apiRequests/DeleteRole";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 
 /**
  *
@@ -16,6 +20,7 @@ import DeleteRole from "../apiRequests/DeleteRole";
  * depends on given context (isModalOn)
  */
 function TableOfRoles() {
+	let history = useHistory();
 	const { t } = useTranslation();
 	const classes = useStyles();
 	
@@ -76,6 +81,14 @@ function TableOfRoles() {
 					tableName={"Roles"}
 					refreshState={refreshState}
 				/>
+				<ButtonContainer>
+                {ActionValidator("roles.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/administration/roles/roleForm")}
+                        >
+                        {t("addRole")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
 			</TemplateForm>
 			{ctx.isModalOn && (
 				<MsgBox type={type} title={title} content={content} handleOK={handleModal} handleError={handleModal} handleBackdropClick={type==="done" ? handleModal : ()=>{}} />

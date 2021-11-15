@@ -165,6 +165,7 @@
     "giroAccount": "Žiro račun",
     "contact": "Kontakt",
     "institutionName": "Institucija",
+    "updateInstitution": "Uredi instituciju",
 
     "classrooms": "Učionice",
     "addClassroom": "Dodaj učionicu",
@@ -184,6 +185,7 @@
     "courses": "Kolegiji",
     "courseManagement": "Upravljanje kolegijima",
     "addCourse": "Dodaj kolegij",
+    "updateCourse": "Uredi kolegij",
     "academicYear": "Akademska godina",
     "semester": "Semestar",
     "studyName": "Naziv studija",
@@ -221,7 +223,14 @@
     "selectClassroom": "Odaberi učionicu",
     "classroomFK": "Učionica",
 
-    "listManagement": "Popis studenata"
+    "listManagement": "Popis studenata",
+
+    "indexNumberInvalid": "Neispravan broj indeksa",
+    "addressInvalid": "Neispravna adresa",
+    "giroAccountInvalid": "Žiro račun mora sadržavati 16 brojeva",
+    "numberInvalid": "Polje može sadržavat jedino brojeve",
+    "characterInvalid": "Polje može sadržavat jedino slova",
+    "invalidInput": "Neispravan unos"
 
 
 }

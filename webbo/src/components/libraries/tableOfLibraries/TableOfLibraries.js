@@ -9,6 +9,10 @@ import MsgBox from "../../msgBox/MsgBox";
 import { useTranslation } from "react-i18next";
 import DeleteLibrary from "../apiRequests/DeleteLibrary";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 
 /**
  *
@@ -17,6 +21,7 @@ import TemplateForm from "../../UI/TemplateForm/TemplateForm";
  */
 
 function TableOfLibraries() {
+	let history = useHistory();
 	//other hooks
 	const { t } = useTranslation();
 	const ctx = useContext(MsgBoxContext);
@@ -72,6 +77,14 @@ function TableOfLibraries() {
 					tableName={"Libraries"}
 					refreshState={refreshState}
 				/>
+				<ButtonContainer>
+                {ActionValidator("library.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/library/addLibrary")}
+                        >
+                        {t("addLibrary")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
 			</TemplateForm>{" "}
 			{ctx.isModalOn && (
 				<MsgBox

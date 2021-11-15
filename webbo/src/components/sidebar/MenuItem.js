@@ -22,7 +22,8 @@ const MenuItem = (props) => {
             props.setIsSelected(false);
         }
     }, [window.location.href]);
-
+    
+    
     const Component = HasChildren(props.item) ? MultiLevel : SingleLevel;
     return (
         <Component
@@ -34,9 +35,7 @@ const MenuItem = (props) => {
             item={props.item}
             showNav={props.showNav}
             setShowNav={props.setShowNav}
-            onClick={() => {
-                props.setShowNav(!props.showNav);
-            }}
+            onItemClick={props.onItemClick}
         />
     );
 };

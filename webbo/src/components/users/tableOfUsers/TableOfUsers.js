@@ -9,6 +9,10 @@ import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import SelectField from "../../UI/SelectField";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 /**
  *
  * @returns Either Data grid table of Users or modal form for confirming item deletion,
@@ -18,6 +22,7 @@ const initialState = {
     institutionFK: "",
 };
 function TableOfUsers() {
+    let history = useHistory();
     //other hooks
     const { t } = useTranslation();
     const classes = useStyles();
@@ -68,6 +73,14 @@ function TableOfUsers() {
                     tableName={"Users"}
                     specialFilter={inputFieldValuesObject["institutionFK"]}
                 />
+                <ButtonContainer>
+                {ActionValidator("users.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/administration/users/adduser")}
+                        >
+                        {t("addUser")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
             </TemplateForm>
         </React.Fragment>
     );

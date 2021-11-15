@@ -10,6 +10,10 @@ import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import DeleteBookLibrary from "../apiRequests/DeleteBookLibrary";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 /**
  *
  * @returns Either Data grid table of Users or modal form for confirming item deletion,
@@ -17,6 +21,7 @@ import DeleteBookLibrary from "../apiRequests/DeleteBookLibrary";
  */
 
 function TableOfBookLibrary() {
+    let history = useHistory();
     //other hooks
     const { t } = useTranslation();
     const classes = useStyles();
@@ -70,6 +75,14 @@ function TableOfBookLibrary() {
                     refreshState={refreshState}
                     tableName={"Book Library"}
                 />
+                <ButtonContainer>
+                {ActionValidator("bookLibrary.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/library/bookLibrary/addBookLibrary")}
+                        >
+                        {t("addBookLibrary")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
             </TemplateForm>
             {ctx.isModalOn && (
                 <MsgBox

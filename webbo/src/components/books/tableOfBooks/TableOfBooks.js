@@ -13,6 +13,10 @@ import SelectField from "../../UI/SelectField";
 import useFormValidation from "../../../hooks/use-formValidation";
 import useInputFormValidation from "../../../hooks/use-inputFormValidation";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 
 /**
  *
@@ -24,6 +28,7 @@ const initialState = {
 	categoryFK: "",
 };
 function TableOfBooks() {
+	let history = useHistory();
 	//other hooks
 	const { t } = useTranslation();
 	const ctx = useContext(MsgBoxContext);
@@ -104,6 +109,14 @@ function TableOfBooks() {
 					refreshState={refreshState}
 					specialFilter={inputFieldValuesObject["categoryFK"]}
 				/>
+				<ButtonContainer>
+                {ActionValidator("books.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/library/books/addBooks")}
+                        >
+                        {t("addBook")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
 			</TemplateForm>{" "}
 			{ctx.isModalOn && (
 				<MsgBox

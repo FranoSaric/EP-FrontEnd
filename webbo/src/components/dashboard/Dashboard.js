@@ -8,18 +8,56 @@ import Deposits from "./Deposits";
 import Orders from "./Orders";
 import Copyright from "./Copyright";
 import { makeStyles } from "@material-ui/core/styles";
+import StatsCard from "./StatsCard.js";
+import Title from "../UI/Title";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Box from "@material-ui/core/Box";
+import PeopleIcon from "@material-ui/icons/People";
+import ListAlt from "@material-ui/icons/ListAlt";
+import LocalLibrary from "@material-ui/icons/LocalLibrary";
+import ReceiptIcon from "@material-ui/icons/Receipt";
+import ActionValidator from "../../validators/ActionValidator";
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        display: "flex",
+        padding: "0",
+    },
+    title: {
         flexGrow: 1,
     },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: "center",
-        color: theme.palette.text.secondary,
+    content: {
+        flexGrow: 1,
+        height: "100vh",
     },
-    card: {
-        padding: theme.spacing(5),
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4),
+    },
+    paper: {
+        borderTopLeftRadius: "12px",
+        borderTopRightRadius: "12px",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+        width: "99%",
+        // minWidth:"200px",
+        margin: "auto",
+    },
+    fixedHeight: {
+        height: 340,
+    },
+    autoHeight: {
+        height: "fit-content",
+    },
+    cardWrapper: {
+        padding: "16px",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
     },
 }));
 
@@ -32,78 +70,87 @@ const data = {
     ],
 };
 
-function Dashboard(props) {
-    const classes = props.classes;
+function Dashboard() {
+    const classes = useStyles();
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    const autoHeightPaper = clsx(classes.paper, classes.autoHeight);
 
     return (
-        <React.Fragment>
-            <div className={classes.appBarSpacer} />
-            <Container maxWidth="lg" className={classes.container}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} md={12} lg={12} xl={12}>
-                        <Chart />
+        <div className={classes.root}>
+            <CssBaseline />
+            <main className={classes.content}>
+                <Container maxWidth="lg" className={classes.container}>
+                    <Grid container spacing={3}>
+                        {/* Chart */}
+                        {/* <Grid item xs={12} lg={12}>
+								<Paper className={fixedHeightPaper}>
+									<Title>Today</Title>
+									<Chart />
+								</Paper>
+							</Grid>
+							<Grid item xs={12} lg={12}>
+								<Paper className={fixedHeightPaper}>
+									<Title>Today</Title>
+									<ChartTwo />
+								</Paper>
+							</Grid> */}
+                        {/* Cards */}
+                        <Grid item xs={12} lg={12}>
+                            <Paper className={autoHeightPaper}>
+                                <Title>Base Stats</Title>
+                                <div className={classes.cardWrapper}>
+                                    {ActionValidator("users.read") && (
+                                        <StatsCard
+                                            link="/administration/users/userManagement"
+                                            title="Users"
+                                            subTitle="Number of users: "
+                                            number="12"
+                                            color="red"
+                                            img={<PeopleIcon />}
+                                        />
+                                    )}
+                                    {ActionValidator("records.read") && (
+                                        <StatsCard
+                                            link="/administration/records/recordsManagement"
+                                            title="Records"
+                                            subTitle="Number of records: "
+                                            number="7"
+                                            color="yellow"
+                                            img={<ListAlt />}
+                                        />
+                                    )}
+                                    {ActionValidator("library.read") && (
+                                        <StatsCard
+                                            link="/library/libraryManagement"
+                                            title="Library"
+                                            subTitle="Number of libraries: "
+                                            number="22"
+                                            color="green"
+                                            img={<LocalLibrary />}
+                                        />
+                                    )}
+                                </div>
+                            </Paper>
+                        </Grid>
+                        {/* <Grid item xs={12}>
+							<Paper className={autoHeightPaper}>
+								<Orders />
+							</Paper>
+						</Grid> */}
+                        {/* Recent Deposits */}
+                        {/* <Grid item xs={12} lg={12}>
+							<Paper className={autoHeightPaper}>
+								<TicketPayins />
+							</Paper>
+						</Grid> */}
+                        {/* Recent Orders */}
                     </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        md={4}
-                        lg={2}
-                        xl={2}
-                        className={classes.card}
-                    >
-                        <Deposits />
-                    </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        md={4}
-                        lg={2}
-                        xl={2}
-                        className={classes.card}
-                    >
-                        <Deposits />
-                    </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        md={4}
-                        lg={2}
-                        xl={2}
-                        className={classes.card}
-                    >
-                        <Deposits />
-                    </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        md={4}
-                        lg={2}
-                        xl={2}
-                        className={classes.card}
-                    >
-                        <Deposits />
-                    </Grid>
-                    <Grid
-                        item
-                        xs={12}
-                        md={4}
-                        lg={2}
-                        xl={2}
-                        className={classes.card}
-                    >
-                        <Deposits />
-                    </Grid>
-
-                    {/* Recent Orders */}
-
-                    <Grid item xs={12}>
-                        <Orders />
-                    </Grid>
-                </Grid>
-                <Copyright />
-            </Container>
-        </React.Fragment>
+                    <Box pt={4}>
+                        <Copyright />
+                    </Box>
+                </Container>
+            </main>
+        </div>
     );
 }
 

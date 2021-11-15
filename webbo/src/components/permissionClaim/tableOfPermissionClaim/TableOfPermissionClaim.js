@@ -9,6 +9,10 @@ import MsgBox from "../../msgBox/MsgBox";
 import { useTranslation } from "react-i18next";
 import DeletePermissionClaim from "../apiRequests/DeletePermissionClaim";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 
 /**
  *
@@ -16,6 +20,7 @@ import TemplateForm from "../../UI/TemplateForm/TemplateForm";
  * depends on given context (isModalOn)
  */
 function TableOfPermissionClaim() {
+    let history = useHistory();
     const { t } = useTranslation();
     const classes = useStyles();
 
@@ -69,6 +74,14 @@ function TableOfPermissionClaim() {
                     tableName={"PermissionClaim"}
                     refreshState={refreshState}
                 />
+                <ButtonContainer>
+                {ActionValidator("claims.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/administration/claim/addpermissionclaim")}
+                        >
+                        {t("addpermissionclaim")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
             </TemplateForm>
             {ctx.isModalOn && (
                 <MsgBox

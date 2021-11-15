@@ -58,22 +58,24 @@ const SingleLevel = (props) => {
     }, [props.showNav, window.location.href, props.expandedId]);
 
     return (
-        <ListItem
-            className={classes.sublink}
-            button
-            onClick={() => handleExpandClick(props.id)}
-            classes={{
-                selected: classes.selected,
-            }}
-            selected={props.isSelected}
-        >
-            <ListItemIcon className={classes.button}>
-                <Tooltip title={t(props.item.title)}>{props.item.icon}</Tooltip>
-            </ListItemIcon>
-            <NavLink exact to={props.item.to} className={classes.sublink}>
-                <ListItemText primary={t(props.item.title)} />
-            </NavLink>
-        </ListItem>
+        <NavLink exact to={props.item.to} className={classes.sublink}>
+            <ListItem
+                className={classes.sublink}
+                button
+                onClick={() => {handleExpandClick(props.id);
+                                if(isMobile)props.onItemClick();
+                                }}
+                classes={{
+                    selected: classes.selected,
+                }}
+                selected={props.isSelected}
+            >
+                <ListItemIcon className={classes.button}>
+                    <Tooltip title={t(props.item.title)}>{props.item.icon}</Tooltip>
+                </ListItemIcon>
+                    <ListItemText primary={t(props.item.title)} />
+            </ListItem>
+        </NavLink>
     );
 };
 

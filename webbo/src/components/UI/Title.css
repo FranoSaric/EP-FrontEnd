@@ -1,0 +1,9 @@
+.title_block {
+	margin:  0 0 24px;
+	background: rgb(221 229 236);
+	padding: 16px;
+	color: #414b66;
+	font-weight: 600;
+	font-size: 24px;
+	height: fit-content;
+}

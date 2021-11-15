@@ -41,6 +41,8 @@ const initialState = {
     institutionFK: "",
     roleFK: "",
 };
+
+console.log("start",initialState)
 function UserForm() {
     //path handling hooks
     let history = useHistory();
@@ -157,6 +159,8 @@ function UserForm() {
         }
     }, [params.userId]);
 
+    console.log("input values", inputFieldValuesObject)
+
     async function saveClickHandler(event) {
         event.preventDefault();
         let response = {};
@@ -170,6 +174,7 @@ function UserForm() {
                 ...inputFieldValuesObject,
                 id: parseInt(params.userId),
             };
+            console.log("USER", user)
             response = await PostUser(user).then((data) => {
                 return data;
             });
@@ -204,6 +209,9 @@ function UserForm() {
             history.goBack();
         }
     };
+
+    console.log("valid", validationMessageAndValidityObject);
+
     return (
         <TemplateForm
             title={isUpdate ? t("updateUser") : t("addUser")}

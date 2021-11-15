@@ -164,6 +164,7 @@
     "giroAccount": "Giro account",
     "contact": "Contact",
     "institutionName": "Institution",
+    "updateInstitution": "Update institution",
 
     "classrooms": "Classrooms",
     "addClassroom": "Add classroom",
@@ -183,6 +184,7 @@
     "courses": "Courses",
     "courseManagement": "Courses management",
     "addCourse": "Add course",
+    "updateCourse": "Update course",
     "academicYear": "Academic year",
     "semester": "Semester",
     "studyName": "Study name",
@@ -226,6 +228,7 @@
     "addressInvalid": "Invalid address",
     "giroAccountInvalid": "Giro account must contains 16 numbers",
     "numberInvalid": "Field can only contains numbers",
-    "characterInvalid": "Field can only contains letters"
+    "characterInvalid": "Field can only contains letters",
+    "invalidInput": "Invalid input"
 
 }

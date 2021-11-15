@@ -9,6 +9,10 @@ import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import MsgBox from "../../msgBox/MsgBox";
 import { useTranslation } from "react-i18next";
 import DeleteCategory from "../apiRequests/DeleteCategory";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 
 /**
  *
@@ -16,6 +20,8 @@ import DeleteCategory from "../apiRequests/DeleteCategory";
  * depends on given context (isModalOn)
  */
 function TableOfCategories() {
+	let history = useHistory();
+
 	const { t } = useTranslation();
 	const classes = useStyles();
 	
@@ -76,6 +82,14 @@ function TableOfCategories() {
 					tableName={"Categories"}
 					refreshState={refreshState}
 				/>
+				<ButtonContainer>
+                {ActionValidator("category.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/library/category/addCategory")}
+                        >
+                        {t("addCategory")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
 			</TemplateForm>
 			{ctx.isModalOn && (
 				<MsgBox type={type} title={title} content={content} handleOK={handleModal} handleError={handleModal} handleBackdropClick={type==="done" ? handleModal : ()=>{}} />

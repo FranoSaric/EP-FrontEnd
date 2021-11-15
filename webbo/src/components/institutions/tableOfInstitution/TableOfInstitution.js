@@ -9,6 +9,10 @@ import MsgBox from "../../msgBox/MsgBox";
 import { useTranslation } from "react-i18next";
 import DeleteInstitution from "../apiRequests/DeleteInstitution";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 
 /**
  *
@@ -16,6 +20,7 @@ import TemplateForm from "../../UI/TemplateForm/TemplateForm";
  * depends on given context (isModalOn)
  */
 function TableOfInstitution() {
+    let history = useHistory();
     const { t } = useTranslation();
     const classes = useStyles();
     const [refreshState, setRefreshState] = useState("1518");
@@ -67,6 +72,14 @@ function TableOfInstitution() {
                     tableName={"Institutions"}
                     refreshState={refreshState}
                 />
+                <ButtonContainer>
+                {ActionValidator("institutions.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/administration/institutions/addInstitution")}
+                        >
+                        {t("addInstitution")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
             </TemplateForm>{" "}
             {ctx.isModalOn && (
                 <MsgBox

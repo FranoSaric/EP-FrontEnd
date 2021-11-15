@@ -11,6 +11,10 @@ import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import DeleteCourse from "../apiRequests/DeleteCourse";
 import SelectField from "../../UI/SelectField";
+import { useHistory } from "react-router-dom";
+import FloatingButton from "../../UI/FloatingButton/FloatingButton";
+import ButtonContainer from "../../UI/Buttons/ButtonContainer";
+import ActionValidator from "../../../validators/ActionValidator";
 /**
  *
  * @returns Either Data grid table of Users or modal form for confirming item deletion,
@@ -20,6 +24,7 @@ const initialState = {
     userFK: "",
 };
 function TableOfCourses() {
+    let history = useHistory();
     //other hooks
     const { t } = useTranslation();
     const classes = useStyles();
@@ -104,6 +109,14 @@ function TableOfCourses() {
                     tableName={"Courses"}
                     specialFilter={inputFieldValuesObject["userFK"]}
                 />
+                <ButtonContainer>
+                {ActionValidator("courses.create") && <FloatingButton elevation={5}
+                        onClick={() => history.push("/administration/courses/addCourse")}
+                        >
+                        {t("addCourse")}
+                    </FloatingButton>
+                }
+                </ButtonContainer>
             </TemplateForm>
             {ctx.isModalOn && (
                 <MsgBox

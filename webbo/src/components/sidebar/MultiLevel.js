@@ -11,6 +11,8 @@ import useStyles from "./MenuStyles";
 import MenuItem from "./MenuItem";
 import { useTranslation } from "react-i18next";
 import Typography from "@material-ui/core/Typography";
+import clsx from "clsx";
+import { useMediaQuery } from "react-responsive";
 
 /**
  * Prints items that have children and gives them some functionality
@@ -28,6 +30,8 @@ const MultiLevel = (props) => {
     const [showNav, setShowNav] = useState(true);
     const [expandedId, setExpandedId] = useState(-1);
     const [isSelected, setIsSelected] = useState(false);
+
+    const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
     const handleExpandClick = (i) => {
         props.setExpandedId(props.expandedId === i ? -1 : i);
@@ -74,7 +78,7 @@ const MultiLevel = (props) => {
                     </Tooltip>
                 </ListItemIcon>
                 <ListItemText
-                    className={classes.link}
+                    className={clsx(!isMobile && classes.link)}
                     primary={t(props.item.title)}
                 />
                 {props.expandedId === props.id ? (
@@ -100,10 +104,7 @@ const MultiLevel = (props) => {
                             id={key}
                             showNav={showNav}
                             setShowNav={setShowNav}
-                            onClick={() => {
-                                setShowNav(!showNav);
-                                setIsSelected(!isSelected);
-                            }}
+                            onItemClick={props.onItemClick}
                         />
                     ))}
                 </List>
