@@ -12,7 +12,15 @@ import sortByName from "../../../functions/sortByName";
  * @returns
  */
 
-async function GetByParameter({ filter, page, pageSize, sort, startTime, endTime, numberOfClassroom }) {
+async function GetByParameter({
+    filter,
+    page,
+    pageSize,
+    sort,
+    startTime,
+    endTime,
+    numberOfClassroom,
+}) {
     const URL = process.env.REACT_APP_API_LOCALE + "/getRecords";
 
     const setLoadedTable = useGlobalState()[0];
@@ -23,9 +31,20 @@ async function GetByParameter({ filter, page, pageSize, sort, startTime, endTime
     // let partnerId = parseInt(localStorage.getItem("partnerId"));
 
     const data = await FetchRequest(URL, "get");
-
-    const filteredData = data.filter(d => new Date(startTime) <= new Date(d.checkInTime) && new Date(endTime) >= new Date(d.checkInTime) && numberOfClassroom === d.classroom.numberOfClassroom);
-
+    console.log("DATA", data);
+    const filteredData = data.filter(
+        (d) =>
+            new Date(startTime) <= new Date(d.checkInTime) &&
+            new Date(endTime) >= new Date(d.checkInTime) &&
+            numberOfClassroom === d.classroom.numberOfClassroom
+    );
+    const consoleData = data.filter((d) => {
+        console.log(new Date(startTime) <= new Date(d.checkInTime) )
+        console.log("classroom", numberOfClassroom, "class", d.classroom.numberOfClassroom )
+        console.log( new Date(endTime) >= new Date(d.checkInTime) )
+        console.log(numberOfClassroom === d.classroom.numberOfClassroom)
+    });
+    console.log("filtered data", consoleData);
     filteredData.forEach((element) => {
         dataArray.push({
             id: element.id,
@@ -33,7 +52,7 @@ async function GetByParameter({ filter, page, pageSize, sort, startTime, endTime
             classroomFK: element.classroomFK,
             userFK: element.userFK,
             classroomName: element.classroom.name,
-            userName: element.user.firstName +' '+ element.user.lastName,
+            userName: element.user.firstName + " " + element.user.lastName,
         });
     });
 

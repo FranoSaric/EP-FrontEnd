@@ -68,8 +68,8 @@ export const columns = [
             return (
                 <ListColumn
                     numberOfClassroom={params.row.classroomName}
-                    startTime={params.row.startTime}
-                    endTime={params.row.endTime}
+                    startTime={new Date(params.row.startTime)}
+                    endTime={new Date(params.row.endTime)}
                     row={params.row}
                     link="/administration/terms/list"
                     claimType="Terms.Permission"

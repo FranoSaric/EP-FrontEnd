@@ -19,10 +19,8 @@ async function GetByParameter({ filter, page, pageSize, specialFilter }) {
     // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
 
     let dataArray = [];
-    console.log("institution", localStorage.getItem("institutionId"))
 
     const data = await FetchRequest(URL, "post", { institutionId: parseInt(localStorage.getItem("institutionId")) });
-    console.log("data", data)
     // item.nazivDrzave === nazivDrzave
     const filteredData = data.filter(item => item.book.category.id === specialFilter);
     filteredData.forEach((element) => {

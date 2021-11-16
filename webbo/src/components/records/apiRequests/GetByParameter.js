@@ -23,7 +23,6 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     const data = await FetchRequest(URL, "get");
 
-
     const filteredData = data.filter(
         (item) => item.classroomFK === specialFilter
     );
@@ -31,13 +30,14 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
     filteredData.forEach((element) => {
         dataArray.push({
             id: element.id,
-            checkInTime: element.checkInTime,
+            checkInTime: new Date(element.checkInTime).toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
             classroomFK: element.classroomFK,
             userFK: element.userFK,
             classroomName: element.classroom.name,
             userName: element.user.firstName +' '+ element.user.lastName,
         });
     });
+
 
     dataArray = FilterData({ filter, dataArray });
     let pagedData = GetPagedData(dataArray, pageSize);

@@ -24,7 +24,7 @@ async function GetByParameter({ filter, page, pageSize }) {
 	const data = await FetchRequest(URL, "post", {});
 	console.log("data", data)
 
-	if(role === 'developer'){
+	if(role === 'Developer'){
 		newData = data;
 	}else{
 		newData = data.filter(item => item.institutionId === institutionId);

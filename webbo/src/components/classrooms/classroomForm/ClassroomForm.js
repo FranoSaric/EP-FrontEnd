@@ -59,13 +59,6 @@ function ClassroomForm() {
 	);
 	const [formIsValid, setFormIsValid] = useState(false);
 
-	const activeHandler = (event) => {
-		let temp = false;
-		if (event.target.checked) {
-			temp = true;
-		}
-		setInputFieldValuesObject({ ...inputFieldValuesObject, free: temp });
-	};
 	// used to check if it's add new or update existing item
 	useEffect(() => {
 		fetchSelectFieldMenuItems(["institutions"]).then((data) =>
@@ -106,6 +99,13 @@ function ClassroomForm() {
 			}
 		}
 	}, [params.classroomId]);
+	//setting is active state with checkbox
+	const activeHandler = (event) => {
+		setInputFieldValuesObject({
+			...inputFieldValuesObject,
+			free: event.target.checked,
+		});
+	};
 	const handleChange = (event) => {
 		event.preventDefault();
 		const { name, value } = event.target;
@@ -176,6 +176,7 @@ function ClassroomForm() {
 			history.goBack();
 		}
 	};
+
 	
 	return (
 		<TemplateForm title={isUpdate ? t("updateClassroom") : t("addClassroom")}>
@@ -230,7 +231,7 @@ function ClassroomForm() {
 				<FormControlLabel
 					control={
 						<Checkbox
-							checked={inputFieldValuesObject["free"] === false ? false : true}
+							checked={inputFieldValuesObject["free"]}
 							onChange={activeHandler}
 							name="free"
 							color="primary"

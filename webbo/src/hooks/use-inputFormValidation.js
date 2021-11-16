@@ -20,6 +20,7 @@ import barCode from "./actions/validationBarCode";
 import roleName from "./actions/validationUsername";
 import institutionName from "./actions/validationUsername";
 import categoryFK from "./actions/validationUserType";
+import language from "./actions/validationISO3";
 import roleFK from "./actions/validationUserType";
 import creationDate from "./actions/validateAll";
 import indexNumber from "./actions/validationIndexNumber";
@@ -29,7 +30,7 @@ import contact from "./actions/validationPhoneNumber";
 import numberOfClassroom from "./actions/validationNumber";
 import numberOfSeats from "./actions/validationNumber";
 import floor from "./actions/validationNumber";
-import free from "./actions/validationNumber";
+import free from "./actions/validationFree";
 import year from "./actions/validationNumber";
 import cycle from "./actions/validationCharacter";
 import academicYear from "./actions/validateAll";
@@ -62,6 +63,7 @@ const validate = {
 	email,
 	id,
 	name,
+	language,
 	type,
 	value,
 	active,

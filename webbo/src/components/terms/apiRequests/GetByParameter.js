@@ -31,9 +31,9 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
     filteredData.forEach((element) => {
         dataArray.push({
             id: element.id,
-            date: element.date,
-            startTime: element.startTime,
-            endTime: element.endTime,
+            date: new Date(element.date).toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
+            startTime: new Date(element.startTime).toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
+            endTime: new Date(element.endTime).toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
             duration: element.duration,
             courseFK: element.courseFK,
             classroomFK: element.classroomFK,

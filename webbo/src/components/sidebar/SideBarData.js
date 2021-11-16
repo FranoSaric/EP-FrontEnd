@@ -71,6 +71,44 @@ export const menu = [
                 ],
             },
             {
+                title: "studies",
+                icon: <DynamicFeed />,
+                to: "/administration/studies",
+                items: [
+                    {
+                        title: "studyManagement",
+                        to: "/administration/studies/studiesManagement",
+                        icon: <></>,
+                        claim: "studies.read",
+                    },
+                    {
+                        title: "addStudy",
+                        to: "/administration/studies/addStudy",
+                        icon: <></>,
+                        claim: "studies.create",
+                    },
+                ],
+            },
+            {
+                title: "courses",
+                icon: <Bookmarks />,
+                to: "/administration/courses",
+                items: [
+                    {
+                        title: "courseManagement",
+                        to: "/administration/courses/coursesManagement",
+                        icon: <></>,
+                        claim: "courses.read",
+                    },
+                    {
+                        title: "addCourse",
+                        to: "/administration/courses/addCourse",
+                        icon: <></>,
+                        claim: "courses.create",
+                    },
+                ],
+            },
+            {
                 title: "classrooms",
                 icon: <MeetingRoom />,
                 to: "/administration/classrooms",
@@ -124,44 +162,6 @@ export const menu = [
                         to: "/administration/records/addRecord",
                         icon: <></>,
                         claim: "records.create",
-                    },
-                ],
-            },
-            {
-                title: "studies",
-                icon: <DynamicFeed />,
-                to: "/administration/studies",
-                items: [
-                    {
-                        title: "studyManagement",
-                        to: "/administration/studies/studiesManagement",
-                        icon: <></>,
-                        claim: "studies.read",
-                    },
-                    {
-                        title: "addStudy",
-                        to: "/administration/studies/addStudy",
-                        icon: <></>,
-                        claim: "studies.create",
-                    },
-                ],
-            },
-            {
-                title: "courses",
-                icon: <Bookmarks />,
-                to: "/administration/courses",
-                items: [
-                    {
-                        title: "courseManagement",
-                        to: "/administration/courses/coursesManagement",
-                        icon: <></>,
-                        claim: "courses.read",
-                    },
-                    {
-                        title: "addCourse",
-                        to: "/administration/courses/addCourse",
-                        icon: <></>,
-                        claim: "courses.create",
                     },
                 ],
             },

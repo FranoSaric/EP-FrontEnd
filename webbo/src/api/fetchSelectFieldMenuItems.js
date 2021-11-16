@@ -35,7 +35,7 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 url = `${process.env.REACT_APP_API_LOCALE}/getStudies`;
                 method = "post";
                 name = "name";
-                if (role !== "developer") {
+                if (role !== "Developer") {
                     model = {
                         institutionId: parseInt(
                             localStorage.getItem("institutionId")
@@ -79,7 +79,7 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 url = `${process.env.REACT_APP_API_LOCALE}/getInstitutions`;
                 method = "post";
                 name = "name";
-                if (role !== "developer") {
+                if (role !== "Developer") {
                     model = {
                         institutionId: parseInt(
                             localStorage.getItem("institutionId")
@@ -126,7 +126,7 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 url = `${process.env.REACT_APP_API_LOCALE}/getClassrooms`;
                 method = "post";
                 name = "numberOfClassroom";
-                if (role !== "developer") {
+                if (role !== "Developer") {
                     model = {
                         institutionId: parseInt(
                             localStorage.getItem("institutionId")
@@ -139,7 +139,7 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 url = `${process.env.REACT_APP_API_LOCALE}/getCourses`;
                 method = "post";
                 name = "name";
-                if (role !== "developer") {
+                if (role !== "Developer") {
                     model = {
                         userId: parseInt(
                             localStorage.getItem("userID")

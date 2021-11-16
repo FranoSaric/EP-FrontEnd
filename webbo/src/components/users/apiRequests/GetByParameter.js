@@ -25,18 +25,14 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
     // let partnerId = parseInt(localStorage.getItem("partnerId"));
 
     const data = await FetchRequest(URL, "post");
-    console.log("start data", data)
 
-    if(role === 'developer'){
+    if(role === 'Developer'){
 		newData = data.filter(
             (item) => item.institution.id === specialFilter
         );
 	}else{
-        console.log("djeltnik")
 		newData = data.filter(item => item.institutionFK === institutionId);
 	}
-
-    console.log("data", newData)
 
     newData.forEach((element) => {
         dataArray.push({
@@ -46,7 +42,7 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             firstName: element.firstName,
             lastName: element.lastName,
             email: element.email,
-            creationDate: element.creationDate,
+            creationDate: new Date(element.creationDate).toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
             roleFK: element.roleFK,
             institutionFK: element.institutionFK,
             roleName: element.role.name,

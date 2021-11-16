@@ -9,7 +9,6 @@ export default function sortByName(unsortedArray, name) {
     if (name === "books") {
         sortedData = unsortedArray.sort(function (a, b) {
             var nameA = a.book.name.toUpperCase(); // ignore upper and lowercase
-			console.log(nameA)
             var nameB = b.book.name.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
                 return -1;

@@ -90,8 +90,8 @@ function TableOfClassrooms() {
         <React.Fragment>
             <CssBaseline />
             <TemplateForm title={t("classroomManagement")} size="large">
-                {role === "developer" && <h3>{t("selectInstitution")}</h3>}
-                {role === "developer" && (
+                {role === "Developer" && <h3>{t("selectInstitution")}</h3>}
+                {role === "Developer" && (
                     <SelectField
                         className={classes.selectField}
                         name="institutionFK"

@@ -28,7 +28,7 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
 
     const data = await FetchRequest(URL, "post");
 
-    if (role === "developer") {
+    if (role === "Developer") {
         newData = data.filter((item) => item.user.id === specialFilter);
     } else {
         newData = data.filter((item) => item.userFK === userId);
@@ -38,7 +38,7 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
         dataArray.push({
             id: element.id,
             name: element.name,
-            academicYear: element.academicYear,
+            academicYear: new Date(element.academicYear).toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
             semester: element.semester,
             studyFK: element.studyFK,
             userFK: element.userFK,

@@ -129,7 +129,6 @@ function RecordForm() {
     }, [params.recordId]);
 
     const handleDateTimeChange = (newValue) => {
-        console.log(newValue);
         let temp = {
             ...validationMessageAndValidityObject,
             ["checkInTime"]: useInputFormValidation.validateSingleValue(
@@ -201,6 +200,7 @@ function RecordForm() {
             history.goBack();
         }
     };
+
     return (
         <TemplateForm
             title={isUpdate ? t("updateRecord") : t("addRecord")}

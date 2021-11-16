@@ -10,7 +10,7 @@ export const columns = [
     {
         field: "institutionName",
         headerName: "institutions",
-        width: 120,
+        width: 300,
         filterOperators: stringOperators,
     },
     {
@@ -40,13 +40,13 @@ export const columns = [
     {
         field: "email",
         headerName: "e-mail",
-        width: 300,
+        width: 500,
         filterOperators: stringOperators,
     },
     {
         field: "creationDate",
         headerName: "creationDate",
-        width: 200,
+        width: 500,
         filterOperators: stringOperators,
     },
     {

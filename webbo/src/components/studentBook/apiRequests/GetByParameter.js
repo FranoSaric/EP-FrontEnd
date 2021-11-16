@@ -30,8 +30,8 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
     filteredData.forEach((element) => {
         dataArray.push({
             id: element.id,
-            pickUpDate: element.pickUpDate,
-            returnDate: element.returnDate,
+            pickUpDate: new Date(element.pickUpDate).toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
+            returnDate: new Date(element.returnDate).toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
             userFK: element.userFK,
             bookFK: element.bookFK,
             bookName: element.book.name,

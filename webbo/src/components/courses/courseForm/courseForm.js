@@ -119,7 +119,6 @@ function CourseForm() {
     };
 
     const handleDateTimeChange = (newValue) => {
-      console.log(newValue)
       let temp = {
           ...validationMessageAndValidityObject,
           ["academicYear"]: useInputFormValidation.validateSingleValue(

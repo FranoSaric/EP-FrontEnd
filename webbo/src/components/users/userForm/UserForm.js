@@ -37,12 +37,11 @@ const initialState = {
     firstName: "",
     lastName: "",
     email: "",
-    creationDate: new Date(),
+    creationDate: new Date().toLocaleString("en-US", {timeZone: "Europe/Sarajevo"}),
     institutionFK: "",
     roleFK: "",
 };
 
-console.log("start",initialState)
 function UserForm() {
     //path handling hooks
     let history = useHistory();
@@ -124,7 +123,6 @@ function UserForm() {
     };
 
     const handleDateTimeChange = (newValue) => {
-        console.log(newValue)
         let temp = {
             ...validationMessageAndValidityObject,
             ["creationDate"]: useInputFormValidation.validateSingleValue(
@@ -159,7 +157,6 @@ function UserForm() {
         }
     }, [params.userId]);
 
-    console.log("input values", inputFieldValuesObject)
 
     async function saveClickHandler(event) {
         event.preventDefault();
@@ -174,7 +171,6 @@ function UserForm() {
                 ...inputFieldValuesObject,
                 id: parseInt(params.userId),
             };
-            console.log("USER", user)
             response = await PostUser(user).then((data) => {
                 return data;
             });
@@ -210,7 +206,6 @@ function UserForm() {
         }
     };
 
-    console.log("valid", validationMessageAndValidityObject);
 
     return (
         <TemplateForm
