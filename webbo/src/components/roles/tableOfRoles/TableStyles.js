@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up(700 + theme.spacing(3) * 2)]: {
             height: 820,
         },
+        border: "none !important"
     },
     buttons: {
         display: "flex",

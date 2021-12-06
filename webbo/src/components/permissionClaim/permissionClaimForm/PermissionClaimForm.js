@@ -15,224 +15,214 @@ import useFormValidation from "../../../hooks/use-formValidation";
 import SelectField from "../../UI/SelectField";
 import useInputFormValidation from "../../../hooks/use-inputFormValidation";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
+import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 
 /**
  * Add user form with validation for every user input, form validation and connected country and city select input values
  * @returns
  */
 const initialState = {
-	type: "",
-	value: "",
+  type: "",
+  value: "",
 };
 function PermissionClaimForm() {
-	//path handling hooks
-	let history = useHistory();
-	const params = useParams();
-	//state for differentiating between add and update pages
-	const [isUpdate, setIsUpdate] = useState(false);
-	//other hooks
-	const { t } = useTranslation();
-	const ctx = useContext(MsgBoxContext);
-	const classes = useStyles();
-	const getRow = useGlobalState()[1];
-	//state for modal window
-	const [type, setType] = useState("");
-	const [title, setTitle] = useState("");
-	const [content, setContent] = useState("");
-	//state for select field menu items
-	const [menuItemsObject, setMenuItemsObject] = useState({});
-	//state for response status when data are posted on server
-	const [responseStatus, setResponseStatus] = useState();
-	//state for input values
-	const [inputFieldValuesObject, setInputFieldValuesObject] =
-		useState(initialState);
-	//state for form validity checks
-	const [
-		validationMessageAndValidityObject,
-		setValidationMessageAndValidityObject,
-	] = useState(
-		useInputFormValidation.validateAllValues(inputFieldValuesObject)
-	);
-	const [formIsValid, setFormIsValid] = useState(false);
+  //path handling hooks
+  let history = useHistory();
+  const params = useParams();
+  //state for differentiating between add and update pages
+  const [isUpdate, setIsUpdate] = useState(false);
+  //other hooks
+  const { t } = useTranslation();
+  const ctx = useContext(MsgBoxContext);
+  const classes = useStyles();
+  const getRow = useGlobalState()[1];
+  //state for modal window
+  const [type, setType] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  //state for select field menu items
+  const [menuItemsObject, setMenuItemsObject] = useState({});
+  //state for response status when data are posted on server
+  const [responseStatus, setResponseStatus] = useState();
+  //state for input values
+  const [inputFieldValuesObject, setInputFieldValuesObject] =
+    useState(initialState);
+  //state for form validity checks
+  const [
+    validationMessageAndValidityObject,
+    setValidationMessageAndValidityObject,
+  ] = useState(
+    useInputFormValidation.validateAllValues(inputFieldValuesObject)
+  );
+  const [formIsValid, setFormIsValid] = useState(false);
 
-	// used to check if it's add new or update existing item
-	useEffect(() => {
-		if (params.claimId) {
-			//dohvati podatke za taj id
-			const model = getRow(params.claimId);
-			if (
-				model === undefined ||
-				model === null ||
-				Object.keys(model) <= 0
-			) {
-				history.goBack();
-			} else {
-				let temp;
-				for (const [key, value] of Object.entries(model)) {
-					if (value === null || value === undefined) {
-						model = {
-							...model,
-							[key]: "",
-						};
-					}
-				}
-				temp = useInputFormValidation.validateAllValues(model);
-				setInputFieldValuesObject(model);
-				setValidationMessageAndValidityObject(temp);
-				setFormIsValid(useInputFormValidation.validateWholeForm(temp));
-				setIsUpdate(true);
-			}
-		} else {
-			if (isUpdate) {
-				setIsUpdate(false);
-			}
-		}
-	}, [params.claimId]);
+  // used to check if it's add new or update existing item
+  useEffect(() => {
+    if (params.claimId) {
+      //dohvati podatke za taj id
+      const model = getRow(params.claimId);
+      if (model === undefined || model === null || Object.keys(model) <= 0) {
+        history.goBack();
+      } else {
+        let temp;
+        for (const [key, value] of Object.entries(model)) {
+          if (value === null || value === undefined) {
+            model = {
+              ...model,
+              [key]: "",
+            };
+          }
+        }
+        temp = useInputFormValidation.validateAllValues(model);
+        setInputFieldValuesObject(model);
+        setValidationMessageAndValidityObject(temp);
+        setFormIsValid(useInputFormValidation.validateWholeForm(temp));
+        setIsUpdate(true);
+      }
+    } else {
+      if (isUpdate) {
+        setIsUpdate(false);
+      }
+    }
+  }, [params.claimId]);
 
-	const handleChange = (event) => {
-		event.preventDefault();
-		const { name, value } = event.target;
-		let temp = {
-			...validationMessageAndValidityObject,
-			[name]: useInputFormValidation.validateSingleValue(name, value),
-		};
-		if (formIsValid !== useInputFormValidation.validateWholeForm(temp)) {
-			setFormIsValid(useInputFormValidation.validateWholeForm(temp));
-		}
-		if (
-			temp[name].message !==
-			validationMessageAndValidityObject[name].message
-		) {
-			setValidationMessageAndValidityObject(temp);
-		}
-		setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
-	};
+  const handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    let temp = {
+      ...validationMessageAndValidityObject,
+      [name]: useInputFormValidation.validateSingleValue(name, value),
+    };
+    if (formIsValid !== useInputFormValidation.validateWholeForm(temp)) {
+      setFormIsValid(useInputFormValidation.validateWholeForm(temp));
+    }
+    if (
+      temp[name].message !== validationMessageAndValidityObject[name].message
+    ) {
+      setValidationMessageAndValidityObject(temp);
+    }
+    setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
+  };
 
-	async function saveClickHandler(event) {
-		event.preventDefault();
-		let response = {};
-		let claim = {};
-		if (isUpdate) {
-			setType("done");
-			setTitle("successTitle");
-			setContent("successContentUpdate");
-			claim = {
-				...inputFieldValuesObject,
-				id: parseInt(params.claimId),
-			};
-		} else {
-			setType("done");
-			setTitle("successTitle");
-			setContent("successContentAdd");
-			claim = inputFieldValuesObject;
-		}
+  async function saveClickHandler(event) {
+    event.preventDefault();
+    let response = {};
+    let claim = {};
+    if (isUpdate) {
+      setType("done");
+      setTitle("successTitle");
+      setContent("successContentUpdate");
+      claim = {
+        ...inputFieldValuesObject,
+        id: parseInt(params.claimId),
+      };
+    } else {
+      setType("done");
+      setTitle("successTitle");
+      setContent("successContentAdd");
+      claim = inputFieldValuesObject;
+    }
 
-		response = await PostPermissionClaim(claim).then((data) => {
-			return data;
-		});
+    response = await PostPermissionClaim(claim).then((data) => {
+      return data;
+    });
 
-		if (response !== undefined) {
-			setResponseStatus(response.status);
-			if (response.status === 101) {
-				if (isUpdate) {
-					setType("done");
-					setTitle("successTitle");
-					setContent("successContentUpdate");
-				} else {
-					setType("done");
-					setTitle("successTitle");
-					setContent("successContentAdd");
-				}
-				let tempVal = { ...inputFieldValuesObject};
-				let temp = useInputFormValidation.validateAllValues(tempVal);
-				setInputFieldValuesObject(tempVal);
-				setFormIsValid(useInputFormValidation.validateWholeForm(temp));
-			} else {
-				setType("warning");
-				setTitle("updateWarningTitle");
-				setContent("updateWarningContent");
-			}
-		} else {
-			setType("warning");
-			setTitle("updateWarningTitle");
-			setContent("updateWarningContent");
-		}
+    if (response !== undefined) {
+      setResponseStatus(response.status);
+      if (response.status === 101) {
+        if (isUpdate) {
+          setType("done");
+          setTitle("successTitle");
+          setContent("successContentUpdate");
+        } else {
+          setType("done");
+          setTitle("successTitle");
+          setContent("successContentAdd");
+        }
+        let tempVal = { ...inputFieldValuesObject };
+        let temp = useInputFormValidation.validateAllValues(tempVal);
+        setInputFieldValuesObject(tempVal);
+        setFormIsValid(useInputFormValidation.validateWholeForm(temp));
+      } else {
+        setType("warning");
+        setTitle("updateWarningTitle");
+        setContent("updateWarningContent");
+      }
+    } else {
+      setType("warning");
+      setTitle("updateWarningTitle");
+      setContent("updateWarningContent");
+    }
 
-		ctx.setIsModalOn(true);
-	}
+    ctx.setIsModalOn(true);
+  }
 
-	const handleModal = () => {
-		ctx.setIsModalOn(false);
-		if (isUpdate && responseStatus === 101) {
-			history.goBack();
-		}
-	};
-	
-	return (
-		<TemplateForm
-			title={
-				isUpdate ? t("updatePermissionClaim") : t("addPermissionClaim")
-			}
-		>
-			<Grid container spacing={3}>
-				<Grid item xs={12}>
-					<InputField
-						name="type"
-						label={t("type")}
-						value={inputFieldValuesObject}
-						valueHandler={handleChange}
-						validationValues={
-							validationMessageAndValidityObject["type"]
-						}
-					/>
-				</Grid>
-				<Grid item xs={12}>
-					<InputField
-						name="value"
-						label={t("value")}
-						value={inputFieldValuesObject}
-						valueHandler={handleChange}
-						validationValues={
-							validationMessageAndValidityObject["value"]
-						}
-					/>
-				</Grid>
-			</Grid>
+  const handleModal = () => {
+    ctx.setIsModalOn(false);
+    if (isUpdate && responseStatus === 101) {
+      history.goBack();
+    }
+  };
 
-			<div className={classes.buttons}>
-				{params.claimId && (
-					<Button
-						onClick={() => history.goBack()}
-						variant="contained"
-						color="primary"
-						className={classes.button}
-					>
-						{t("back")}
-					</Button>
-				)}
-				<Button
-					disabled={!formIsValid}
-					onClick={saveClickHandler}
-					variant="contained"
-					color="primary"
-					className={classes.button}
-				>
-					{isUpdate ? t("save") : t("addPermissionClaim")}
-				</Button>
-				{ctx.isModalOn && (
-					<MsgBox
-						type={type}
-						title={title}
-						content={content}
-						handleOK={handleModal}
-						handleBackdropClick={
-							type === "done" ? handleModal : () => {}
-						}
-					/>
-				)}
-			</div>
-		</TemplateForm>
-	);
+  return (
+    <ContentWrapper
+      link="/administration/claim/permissionClaimManagement"
+      title={isUpdate ? t("updatePermissionClaim") : t("addPermissionClaim")}
+      size="small"
+    >
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <InputField
+            name="type"
+            label={t("type")}
+            value={inputFieldValuesObject}
+            valueHandler={handleChange}
+            validationValues={validationMessageAndValidityObject["type"]}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <InputField
+            name="value"
+            label={t("value")}
+            value={inputFieldValuesObject}
+            valueHandler={handleChange}
+            validationValues={validationMessageAndValidityObject["value"]}
+          />
+        </Grid>
+      </Grid>
+
+      <div className={classes.buttons}>
+        {params.claimId && (
+          <Button
+            onClick={() => history.goBack()}
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            {t("back")}
+          </Button>
+        )}
+        <Button
+          disabled={!formIsValid}
+          onClick={saveClickHandler}
+          variant="contained"
+          color="primary"
+          className={classes.button}
+        >
+          {isUpdate ? t("save") : t("addPermissionClaim")}
+        </Button>
+        {ctx.isModalOn && (
+          <MsgBox
+            type={type}
+            title={title}
+            content={content}
+            handleOK={handleModal}
+            handleBackdropClick={type === "done" ? handleModal : () => {}}
+          />
+        )}
+      </div>
+    </ContentWrapper>
+  );
 }
 
 export default PermissionClaimForm;

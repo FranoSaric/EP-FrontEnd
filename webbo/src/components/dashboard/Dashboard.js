@@ -81,31 +81,13 @@ function Dashboard() {
             <main className={classes.content}>
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container spacing={3}>
-                        {/* Chart */}
-                        {/* <Grid item xs={12} lg={12}>
-								<Paper className={fixedHeightPaper}>
-									<Title>Today</Title>
-									<Chart />
-								</Paper>
-							</Grid>
-							<Grid item xs={12} lg={12}>
-								<Paper className={fixedHeightPaper}>
-									<Title>Today</Title>
-									<ChartTwo />
-								</Paper>
-							</Grid> */}
-                        {/* Cards */}
                         <Grid item xs={12} lg={12}>
-                            <Paper className={autoHeightPaper}>
-                                <Title>Base Stats</Title>
                                 <div className={classes.cardWrapper}>
                                     {ActionValidator("users.read") && (
                                         <StatsCard
                                             link="/administration/users/userManagement"
                                             title="Users"
-                                            subTitle="Number of users: "
                                             number="12"
-                                            color="red"
                                             img={<PeopleIcon />}
                                         />
                                     )}
@@ -113,9 +95,7 @@ function Dashboard() {
                                         <StatsCard
                                             link="/administration/records/recordsManagement"
                                             title="Records"
-                                            subTitle="Number of records: "
                                             number="7"
-                                            color="yellow"
                                             img={<ListAlt />}
                                         />
                                     )}
@@ -123,27 +103,12 @@ function Dashboard() {
                                         <StatsCard
                                             link="/library/libraryManagement"
                                             title="Library"
-                                            subTitle="Number of libraries: "
                                             number="22"
-                                            color="green"
                                             img={<LocalLibrary />}
                                         />
                                     )}
                                 </div>
-                            </Paper>
                         </Grid>
-                        {/* <Grid item xs={12}>
-							<Paper className={autoHeightPaper}>
-								<Orders />
-							</Paper>
-						</Grid> */}
-                        {/* Recent Deposits */}
-                        {/* <Grid item xs={12} lg={12}>
-							<Paper className={autoHeightPaper}>
-								<TicketPayins />
-							</Paper>
-						</Grid> */}
-                        {/* Recent Orders */}
                     </Grid>
                     <Box pt={4}>
                         <Copyright />

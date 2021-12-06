@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
             height: 820,
         },
         marginTop: theme.spacing(5),
+        border: "none !important"
     },
     buttons: {
         display: "flex",
@@ -26,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(3),
         marginLeft: theme.spacing(1),
     },
+    selectField: {
+        width: "50%",
+        marginBottom: "8px",
+      },
+      selectWrapper: {
+        padding: "0 16px",
+      },
 }));
 
 export default useStyles;

@@ -13,6 +13,7 @@ import { useHistory } from "react-router-dom";
 import FloatingButton from "../../UI/FloatingButton/FloatingButton";
 import ButtonContainer from "../../UI/Buttons/ButtonContainer";
 import ActionValidator from "../../../validators/ActionValidator";
+import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 
 /**
  *
@@ -20,81 +21,79 @@ import ActionValidator from "../../../validators/ActionValidator";
  * depends on given context (isModalOn)
  */
 function TableOfPermissionClaim() {
-    let history = useHistory();
-    const { t } = useTranslation();
-    const classes = useStyles();
+  let history = useHistory();
+  const { t } = useTranslation();
+  const classes = useStyles();
 
-    const [refreshState, setRefreshState] = useState("1518");
-    const [type, setType] = useState("delete");
-    const [title, setTitle] = useState("deleteTitle");
-    const [content, setContent] = useState("deleteContent");
+  const [refreshState, setRefreshState] = useState("1518");
+  const [type, setType] = useState("delete");
+  const [title, setTitle] = useState("deleteTitle");
+  const [content, setContent] = useState("deleteContent");
 
-    const ctx = useContext(MsgBoxContext);
+  const ctx = useContext(MsgBoxContext);
 
-    const newColumns = columns.map((column) => {
-        return { ...column, headerName: t(column.headerName) };
-    });
+  const newColumns = columns.map((column) => {
+    return { ...column, headerName: t(column.headerName) };
+  });
 
-    async function handleDelete() {
-        if (type === "delete") {
-            const model = {
-                id: ctx.itemId,
-            };
-            const data = await DeletePermissionClaim(model);
+  async function handleDelete() {
+    if (type === "delete") {
+      const model = {
+        id: ctx.itemId,
+      };
+      const data = await DeletePermissionClaim(model);
 
-            if (data === undefined || data.status !== 101) {
-                setType("error");
-                setTitle("errorTitle");
-                setContent("errorContent");
-            } else {
-                setType("done");
-                setTitle("successTitle");
-                setContent("successContentDelete");
-            }
-        } else {
-            ctx.setItemId(0);
-            ctx.setIsModalOn(false);
-            setRefreshState(Math.random());
-            setType("delete");
-            setTitle("deleteTitle");
-            setContent("deleteContent");
-        }
+      if (data === undefined || data.status !== 101) {
+        setType("error");
+        setTitle("errorTitle");
+        setContent("errorContent");
+      } else {
+        setType("done");
+        setTitle("successTitle");
+        setContent("successContentDelete");
+      }
+    } else {
+      ctx.setItemId(0);
+      ctx.setIsModalOn(false);
+      setRefreshState(Math.random());
+      setType("delete");
+      setTitle("deleteTitle");
+      setContent("deleteContent");
     }
+  }
 
-    return (
-        <React.Fragment>
-            <CssBaseline />
-            <TemplateForm title={t("permissionClaimManagement")} size="small">
-                <DataTable
-                    columns={newColumns}
-                    getByParameter={GetByParameter}
-                    pageSizeOptions={[5, 10, 15, 20, 30, 40, 50, 100]}
-                    initialPageSize={10}
-                    dataGridClasses={classes.dataGrid}
-                    tableName={"PermissionClaim"}
-                    refreshState={refreshState}
-                />
-                <ButtonContainer>
-                {ActionValidator("claims.create") && <FloatingButton elevation={5}
-                        onClick={() => history.push("/administration/claim/addpermissionclaim")}
-                        >
-                        {t("addpermissionclaim")}
-                    </FloatingButton>
-                }
-                </ButtonContainer>
-            </TemplateForm>
-            {ctx.isModalOn && (
-                <MsgBox
-                    type={type}
-                    title={title}
-                    content={content}
-                    handleOK={handleDelete}
-                    handleError={handleDelete}
-                    handleBackdropClick={type==="done" ? handleDelete : ()=>{}}
-                />
-            )}
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <ContentWrapper
+        text={t("newPermission")}
+        validator="claims.create"
+        linkAdd="/administration/claim/addpermissionclaim"
+        title={t("permissionClaimManagement")}
+        size="large"
+      >
+        <DataTable
+          columns={newColumns}
+          getByParameter={GetByParameter}
+          pageSizeOptions={[5, 10, 15, 20, 30, 40, 50, 100]}
+          initialPageSize={10}
+          dataGridClasses={classes.dataGrid}
+          tableName={"PermissionClaim"}
+          refreshState={refreshState}
+        />
+      </ContentWrapper>
+      {ctx.isModalOn && (
+        <MsgBox
+          type={type}
+          title={title}
+          content={content}
+          handleOK={handleDelete}
+          handleError={handleDelete}
+          handleBackdropClick={type === "done" ? handleDelete : () => {}}
+        />
+      )}
+    </React.Fragment>
+  );
 }
 
 export default TableOfPermissionClaim;

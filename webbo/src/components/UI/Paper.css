@@ -1,0 +1,11 @@
+.paper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: rgba(255, 255, 255, 1);
+	overflow: visible;
+	height: fit-content;
+}
+.elevation1 {
+	box-shadow: 0 12px 15px -10px rgb(0 0 0 / 8%), 0 4px 6px -2px rgb(0 0 0 / 1%)
+}

@@ -29,6 +29,7 @@
     "email": "E-mail",
     "phoneNumber": "Phone number",
     "edit/delete": "Edit/Delete",
+    "edit": "Edit",
     "contains": "Contains",
     "equals": "Equals",
     "filterValue": "Filter value",
@@ -230,6 +231,8 @@
     "giroAccountInvalid": "Giro account must contains 16 numbers",
     "numberInvalid": "Field can only contains numbers",
     "characterInvalid": "Field can only contains letters",
-    "invalidInput": "Invalid input"
+    "invalidInput": "Invalid input",
+
+    "newUser": "New user"
 
 }

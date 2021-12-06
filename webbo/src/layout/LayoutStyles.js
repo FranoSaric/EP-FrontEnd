@@ -8,6 +8,13 @@ const useStyles = makeStyles(
         root: {
             backgroundColor: "rgba(241,245,249,1)",
             display: "flex",
+            '& .MuiGrid-spacing-xs-3': {
+                width: 'auto !important',
+                margin: 0
+             },
+             '& .MuiGrid-spacing-xs-3 > .MuiGrid-item': {
+                padding: "12px 16px"
+             },
         },
         toolbar: {
             paddingRight: 24, // keep right padding when drawer closed

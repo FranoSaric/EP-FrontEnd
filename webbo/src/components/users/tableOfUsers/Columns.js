@@ -57,7 +57,7 @@ export const columns = [
     },
     {
         field: "editDelete",
-        headerName: "edit/delete",
+        headerName: "edit",
         width: 100,
         filterable: false,
         sortable: false,

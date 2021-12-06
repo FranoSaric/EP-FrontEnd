@@ -5,85 +5,81 @@ import GetByParameter from "../apiRequests/GetByParameter";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useStyles from "./TableStyles.js";
 import MsgBoxContext from "../../../store/MsgBoxContext";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import SelectField from "../../UI/SelectField";
 import { useHistory } from "react-router-dom";
-import FloatingButton from "../../UI/FloatingButton/FloatingButton";
-import ButtonContainer from "../../UI/Buttons/ButtonContainer";
-import ActionValidator from "../../../validators/ActionValidator";
+import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 /**
  *
  * @returns Either Data grid table of Users or modal form for confirming item deletion,
  * depends on given context (isModalOn)
  */
 const initialState = {
-    institutionFK: "",
+  institutionFK: "",
 };
 function TableOfUsers() {
-    let history = useHistory();
-    //other hooks
-    const { t } = useTranslation();
-    const classes = useStyles();
-    const ctx = useContext(MsgBoxContext);
-    // state for select field menu items
-    const [menuItemsObject, setMenuItemsObject] = useState();
-    //state for select field value
-    const [inputFieldValuesObject, setInputFieldValuesObject] =
-        useState(initialState);
+  let history = useHistory();
+  //other hooks
+  const { t } = useTranslation();
+  const classes = useStyles();
+  const ctx = useContext(MsgBoxContext);
+  // state for select field menu items
+  const [menuItemsObject, setMenuItemsObject] = useState();
+  //state for select field value
+  const [inputFieldValuesObject, setInputFieldValuesObject] =
+    useState(initialState);
 
-    const newColumns = columns.map((column) => {
-        return { ...column, headerName: t(column.headerName) };
-    });
-    useEffect(() => {
-        fetchSelectFieldMenuItems(["institutions"]).then((data) =>
-            setMenuItemsObject(data)
-        );
-    }, []);
-    //setting values in state on every click
-    const handleChange = (event) => {
-        event.preventDefault();
-        const { name, value } = event.target;
-        setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
-    };
-    const role = localStorage.getItem("role");
-    return (
-        <React.Fragment>
-            <CssBaseline />
-            <TemplateForm title={t("userManagement")} size="large">
-                {role === "Developer" && <h3>{t("selectInstitution")}</h3>}
-                {role === "Developer" && (
-                    <SelectField
-                        className={classes.selectField}
-                        name="institutionFK"
-                        id="institutions"
-                        label="institutions"
-                        menuItemsData={menuItemsObject}
-                        value={inputFieldValuesObject}
-                        valueHandler={handleChange}
-                    />
-                )}
-                <DataTable
-                    columns={newColumns}
-                    getByParameter={GetByParameter}
-                    pageSizeOptions={[5, 10, 15, 20, 30, 40, 50, 100]}
-                    initialPageSize={10}
-                    dataGridClasses={classes.dataGrid}
-                    tableName={"Users"}
-                    specialFilter={inputFieldValuesObject["institutionFK"]}
-                />
-                <ButtonContainer>
-                {ActionValidator("users.create") && <FloatingButton elevation={5}
-                        onClick={() => history.push("/administration/users/adduser")}
-                        >
-                        {t("addUser")}
-                    </FloatingButton>
-                }
-                </ButtonContainer>
-            </TemplateForm>
-        </React.Fragment>
+  const newColumns = columns.map((column) => {
+    return { ...column, headerName: t(column.headerName) };
+  });
+  useEffect(() => {
+    fetchSelectFieldMenuItems(["institutions"]).then((data) =>
+      setMenuItemsObject(data)
     );
+  }, []);
+  //setting values in state on every click
+  const handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    setInputFieldValuesObject({ ...inputFieldValuesObject, [name]: value });
+  };
+  const role = localStorage.getItem("role");
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <ContentWrapper
+        text={t("newUser")}
+        validator="users.create"
+        linkAdd="/administration/users/adduser"
+        title={t("userManagement")}
+        size="large"
+      >
+        {role === "Developer" && (
+          <div className={classes.selectWrapper}>
+            <SelectField
+              className={classes.selectField}
+              name="institutionFK"
+              id="institutions"
+              label="selectInstitution"
+              menuItemsData={menuItemsObject}
+              value={inputFieldValuesObject}
+              valueHandler={handleChange}
+            />
+          </div>
+        )}
+        <DataTable
+          columns={newColumns}
+          getByParameter={GetByParameter}
+          pageSizeOptions={[5, 10, 15, 20, 30, 40, 50, 100]}
+          initialPageSize={10}
+          dataGridClasses={classes.dataGrid}
+          tableName={"Users"}
+          specialFilter={inputFieldValuesObject["institutionFK"]}
+        />
+      </ContentWrapper>
+    </React.Fragment>
+  );
 }
 
 export default TableOfUsers;

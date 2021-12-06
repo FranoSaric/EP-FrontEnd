@@ -15,7 +15,7 @@ export const columns = [
     {
         field: "year",
         headerName: "year",
-        width: 200,
+        width: 150,
         filterOperators: stringOperators,
     },
     {
