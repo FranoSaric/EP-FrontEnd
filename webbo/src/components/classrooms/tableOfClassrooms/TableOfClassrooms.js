@@ -8,13 +8,9 @@ import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
 import { useTranslation } from "react-i18next";
 import DeleteClassroom from "../apiRequests/DeleteClassroom";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import SelectField from "../../UI/SelectField";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import { useHistory } from "react-router-dom";
-import FloatingButton from "../../UI/FloatingButton/FloatingButton";
-import ButtonContainer from "../../UI/Buttons/ButtonContainer";
-import ActionValidator from "../../../validators/ActionValidator";
 import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 
 /**
@@ -90,7 +86,7 @@ function TableOfClassrooms() {
       <CssBaseline />
       <ContentWrapper
         text={t("newClassroom")}
-        validator="classrooms.create"
+        validator="classrooms.manage"
         linkAdd="/administration/classrooms/addClassroom"
         title={t("classroomManagement")}
         size="large"

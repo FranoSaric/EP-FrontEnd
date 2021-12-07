@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
             height: 820,
         },
         marginTop: theme.spacing(5),
+        border: "none !important"
     },
     buttons: {
         display: "flex",

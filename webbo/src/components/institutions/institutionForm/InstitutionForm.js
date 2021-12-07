@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import Button from "@material-ui/core/Button";
 import useStyles from "../../UI/TemplateForm/TemplateFormStyles";
 import MsgBoxContext from "../../../store/MsgBoxContext";

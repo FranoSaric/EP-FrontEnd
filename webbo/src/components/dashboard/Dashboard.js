@@ -86,7 +86,7 @@ function Dashboard() {
                                     {ActionValidator("users.read") && (
                                         <StatsCard
                                             link="/administration/users/userManagement"
-                                            title="Users"
+                                            title="users"
                                             number="12"
                                             img={<PeopleIcon />}
                                         />
@@ -94,7 +94,7 @@ function Dashboard() {
                                     {ActionValidator("records.read") && (
                                         <StatsCard
                                             link="/administration/records/recordsManagement"
-                                            title="Records"
+                                            title="records"
                                             number="7"
                                             img={<ListAlt />}
                                         />
@@ -102,7 +102,7 @@ function Dashboard() {
                                     {ActionValidator("library.read") && (
                                         <StatsCard
                                             link="/library/libraryManagement"
-                                            title="Library"
+                                            title="libraries"
                                             number="22"
                                             img={<LocalLibrary />}
                                         />

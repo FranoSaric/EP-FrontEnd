@@ -11,10 +11,10 @@ export const EditDeleteClaimValidator=(claimType)=>{
 		});
 		if(claims[0]!==undefined){
 			claims[0].ClaimValues.forEach((value)=>{
-				if(value.includes("update")){
+				if(value.includes("manage")){
 					updateClaim=true;
 				}
-				if(value.includes("delete")){
+				if(value.includes("manage")){
 					deleteClaim=true;
 				}
 			});

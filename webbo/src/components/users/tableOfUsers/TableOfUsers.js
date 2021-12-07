@@ -50,7 +50,7 @@ function TableOfUsers() {
       <CssBaseline />
       <ContentWrapper
         text={t("newUser")}
-        validator="users.create"
+        validator="users.manage"
         linkAdd="/administration/users/adduser"
         title={t("userManagement")}
         size="large"

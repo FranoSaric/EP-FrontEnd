@@ -9,9 +9,7 @@ import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
 import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
-import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import DeleteStudent from "../apiRequests/DeleteStudent";
-import SelectField from "../../UI/SelectField";
 
 import { useParams } from "react-router-dom";
 /**

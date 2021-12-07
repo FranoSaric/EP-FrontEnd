@@ -6,15 +6,11 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useStyles from "./TableStyles.js";
 import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import DeleteCourse from "../apiRequests/DeleteCourse";
 import SelectField from "../../UI/SelectField";
 import { useHistory } from "react-router-dom";
-import FloatingButton from "../../UI/FloatingButton/FloatingButton";
-import ButtonContainer from "../../UI/Buttons/ButtonContainer";
-import ActionValidator from "../../../validators/ActionValidator";
 import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 /**
  *
@@ -89,7 +85,7 @@ function TableOfCourses() {
       <CssBaseline />
       <ContentWrapper
         text={t("newCourse")}
-        validator="courses.create"
+        validator="courses.manage"
         linkAdd="/administration/courses/addCourse"
         title={t("courseManagement")}
         size="large"

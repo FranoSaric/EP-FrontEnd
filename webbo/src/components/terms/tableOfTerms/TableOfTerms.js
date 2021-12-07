@@ -6,15 +6,11 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import useStyles from "./TableStyles.js";
 import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useTranslation } from "react-i18next";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import DeleteTerm from "../apiRequests/DeleteTerm";
 import SelectField from "../../UI/SelectField";
 import { useHistory } from "react-router-dom";
-import FloatingButton from "../../UI/FloatingButton/FloatingButton";
-import ButtonContainer from "../../UI/Buttons/ButtonContainer";
-import ActionValidator from "../../../validators/ActionValidator";
 import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 /**
  *
@@ -87,7 +83,7 @@ function TableOfTerms() {
       <CssBaseline />
       <ContentWrapper
         text={t("newTerm")}
-        validator="terms.create"
+        validator="terms.manage"
         linkAdd="/administration/terms/addTerm"
         title={t("termManagement")}
         size="large"

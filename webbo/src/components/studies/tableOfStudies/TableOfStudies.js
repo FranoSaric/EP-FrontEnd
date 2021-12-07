@@ -11,9 +11,6 @@ import DeleteStudy from "../apiRequests/DeleteStudy";
 import SelectField from "../../UI/SelectField";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import { useHistory } from "react-router-dom";
-import FloatingButton from "../../UI/FloatingButton/FloatingButton";
-import ButtonContainer from "../../UI/Buttons/ButtonContainer";
-import ActionValidator from "../../../validators/ActionValidator";
 import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 
 /**
@@ -91,7 +88,7 @@ function TableOfStudies() {
       <CssBaseline />
       <ContentWrapper
         text={t("newStudy")}
-        validator="studies.create"
+        validator="studies.manage"
         linkAdd="/administration/studies/addStudy"
         title={t("studyManagement")}
         size="large"

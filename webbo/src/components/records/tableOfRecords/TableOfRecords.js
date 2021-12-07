@@ -83,7 +83,7 @@ function TableOfRecords() {
       <CssBaseline />
       <ContentWrapper
         text={t("newRecord")}
-        validator="records.create"
+        validator="records.manage"
         linkAdd="/administration/records/addRecord"
         title={t("recordManagement")}
         size="large"

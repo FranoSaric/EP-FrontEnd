@@ -8,11 +8,11 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(3),
+    marginLeft: "12px",
     height: "2rem",
     width: "fit-content",
   },
   buttonContainer: {
-    margin: "24px 0 12px 0",
     display: "flex",
     justifyContent: "center",
     alignContent: "center",

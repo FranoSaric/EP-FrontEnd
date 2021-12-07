@@ -1,24 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import Button from "@material-ui/core/Button";
-// import emailjs from "emailjs-com";
-import DoneIcon from "@material-ui/icons/Done";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import useStyles from "../../UI/TemplateForm/TemplateFormStyles";
 import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
 import PostBookLibrary from "../apiRequests/PostBookLibrary";
-import InputField from "../../UI/InputField";
 import { useTranslation } from "react-i18next";
 import useGlobalState from "../../../store/useGlobalState";
 import SelectField from "../../UI/SelectField";
 import { Container } from "@material-ui/core";
-import ActionValidator from "../../../validators/ActionValidator";
 import useInputFormValidation from "../../../hooks/use-inputFormValidation";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
+import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 
 /**
  * Add user form with validation for every user input, form validation and connected country and city select input values
@@ -27,7 +21,7 @@ import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 
 const initialState = {
   bookFK: "",
-  libraryFK: ""
+  libraryFK: "",
 };
 function BookLibraryForm() {
   //path handling hooks
@@ -62,7 +56,7 @@ function BookLibraryForm() {
   useEffect(() => {
     if (params.bookLibraryId === undefined) {
       fetchSelectFieldMenuItems(["books", "libraries"]).then((data) =>
-          setMenuItemsObject(data)
+        setMenuItemsObject(data)
       );
       if (isUpdate) {
         setIsUpdate(false);
@@ -86,7 +80,7 @@ function BookLibraryForm() {
       }
     }
   }, []);
- 
+
   //setting values in state on every click
   const handleChange = (event) => {
     event.preventDefault();
@@ -139,26 +133,26 @@ function BookLibraryForm() {
     }
     if (response !== undefined) {
       setResponseStatus(response.status);
-		    if (response.status === 101) {
-		        setType("done");
-				setTitle("successTitle");
-				setContent("successContentUpdate");
-				let temp = useInputFormValidation.validateAllValues(initialState);
-				setInputFieldValuesObject(initialState);
-				setFormIsValid(useInputFormValidation.validateWholeForm(temp));
-		    } else {
-		        setType("error");
-		        setTitle("errorTitle");
-		        setContent("errorContent");
-		    }
-		} else {
-		    setType("error");
-		    setTitle("errorTitle");
-		    setContent("errorContent");
-		}
+      if (response.status === 101) {
+        setType("done");
+        setTitle("successTitle");
+        setContent("successContentUpdate");
+        let temp = useInputFormValidation.validateAllValues(initialState);
+        setInputFieldValuesObject(initialState);
+        setFormIsValid(useInputFormValidation.validateWholeForm(temp));
+      } else {
+        setType("error");
+        setTitle("errorTitle");
+        setContent("errorContent");
+      }
+    } else {
+      setType("error");
+      setTitle("errorTitle");
+      setContent("errorContent");
+    }
 
-		ctx.setIsModalOn(true);
-	}
+    ctx.setIsModalOn(true);
+  }
 
   const handleModal = () => {
     ctx.setIsModalOn(false);
@@ -167,11 +161,12 @@ function BookLibraryForm() {
     }
   };
   return (
-    <TemplateForm
-      title={isUpdate ? t("updateBookLibrary") : t("addBookLibrary")}
+    <ContentWrapper
+      link="/library/bookLibrary/bookLibraryManagement"
+      title={isUpdate ? t("updateBookLibrary") : t("newBookInLibrary")}
       size="small"
     >
-      <Grid container spacing={3}>        
+      <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <SelectField
             name="bookFK"
@@ -180,24 +175,22 @@ function BookLibraryForm() {
             menuItemsData={menuItemsObject}
             value={inputFieldValuesObject}
             valueHandler={handleChange}
-            validationValues={
-              validationMessageAndValidityObject["bookFK"]
-            }
+            validationValues={validationMessageAndValidityObject["bookFK"]}
           />
         </Grid>
-        
-          <Grid item xs={12} sm={6}>
-            <SelectField
-              name="libraryFK"
-              id="libraries"
-              label="library"
-              menuItemsData={menuItemsObject}
-              value={inputFieldValuesObject}
-              valueHandler={handleChange}
-              validationValues={validationMessageAndValidityObject["libraryFK"]}
-              readonly={isUpdate}
-            />
-          </Grid>
+
+        <Grid item xs={12} sm={6}>
+          <SelectField
+            name="libraryFK"
+            id="libraries"
+            label="library"
+            menuItemsData={menuItemsObject}
+            value={inputFieldValuesObject}
+            valueHandler={handleChange}
+            validationValues={validationMessageAndValidityObject["libraryFK"]}
+            readonly={isUpdate}
+          />
+        </Grid>
       </Grid>
       <Container className={classes.buttons}>
         {params.courseId && (
@@ -230,7 +223,7 @@ function BookLibraryForm() {
           />
         )}
       </Container>
-    </TemplateForm>
+    </ContentWrapper>
   );
 }
 

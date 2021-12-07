@@ -61,7 +61,7 @@ function TableOfInstitution() {
       <CssBaseline />
       <ContentWrapper
         text={t("newInstitution")}
-        validator="institutions.create"
+        validator="institutions.manage"
         linkAdd="/administration/institutions/addInstitution"
         title={t("institutionManager")}
         size="large"

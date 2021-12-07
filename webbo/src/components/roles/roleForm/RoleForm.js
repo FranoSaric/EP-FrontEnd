@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import Button from "@material-ui/core/Button";
 import useStyles from "../../UI/TemplateForm/TemplateFormStyles";
 import MsgBoxContext from "../../../store/MsgBoxContext";
@@ -10,7 +9,6 @@ import PostRole from "../apiRequests/PostRole";
 import InputField from "../../UI/InputField";
 import { useTranslation } from "react-i18next";
 import useGlobalState from "../../../store/useGlobalState";
-import useFormValidation from "../../../hooks/use-formValidation";
 import ActionValidator from "../../../validators/ActionValidator";
 import useInputFormValidation from "../../../hooks/use-inputFormValidation";
 import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
@@ -170,18 +168,6 @@ function RoleForm() {
         </Grid>
       </Grid>
       <div className={classes.buttons}>
-        {params.roleId && (
-          <Button
-            onClick={() =>
-              history.replace("/administration/roles/rolesManagement")
-            }
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
-            {t("back")}
-          </Button>
-        )}
         {params.roleId && ActionValidator("roles.manageClaims") && (
           <Button
             onClick={() =>

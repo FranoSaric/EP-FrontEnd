@@ -13,7 +13,6 @@ import SelectField from "../../UI/SelectField";
 import ActionValidator from "../../../validators/ActionValidator";
 import useInputFormValidation from "../../../hooks/use-inputFormValidation";
 import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
-// or @mui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -309,31 +308,21 @@ function UserForm() {
             />
           </Grid>
         </Grid>
-        {params.userId && (
-          <Button
-            onClick={() => history.goBack()}
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
-            {t("back")}
-          </Button>
-        )}
-        {params.userId && ActionValidator("users.manageClaims") && (
-          <Button
-            onClick={() =>
-              history.push(
-                "/administration/users/claimManagement/" + params.userId
-              )
-            }
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
-            {t("manageClaims")}
-          </Button>
-        )}
-        <div className={classes.buttonContainer} >
+        <div className={classes.buttonContainer}>
+          {params.userId && ActionValidator("users.manageClaims") && (
+            <Button
+              onClick={() =>
+                history.push(
+                  "/administration/users/claimManagement/" + params.userId
+                )
+              }
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              {t("managePermissions")}
+            </Button>
+          )}
           <Button
             type="submit"
             disabled={!formIsValid}

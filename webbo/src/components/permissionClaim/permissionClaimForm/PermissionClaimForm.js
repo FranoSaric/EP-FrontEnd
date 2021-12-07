@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import Button from "@material-ui/core/Button";
 import useStyles from "../../UI/TemplateForm/TemplateFormStyles";
 import MsgBoxContext from "../../../store/MsgBoxContext";
@@ -11,10 +9,7 @@ import PostPermissionClaim from "../apiRequests/PostPermissionClaim";
 import InputField from "../../UI/InputField";
 import { useTranslation } from "react-i18next";
 import useGlobalState from "../../../store/useGlobalState";
-import useFormValidation from "../../../hooks/use-formValidation";
-import SelectField from "../../UI/SelectField";
 import useInputFormValidation from "../../../hooks/use-inputFormValidation";
-import fetchSelectFieldMenuItems from "../../../api/fetchSelectFieldMenuItems";
 import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 
 /**

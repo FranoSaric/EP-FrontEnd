@@ -64,10 +64,10 @@ function TableOfRoles() {
       <CssBaseline />
       <ContentWrapper
         text={t("newRole")}
-        validator="roles.create"
+        validator="roles.manage"
         linkAdd="/administration/roles/roleForm"
         title={t("rolesManagement")}
-        size="large"
+        size="small"
       >
         <DataTable
           columns={newColumns}

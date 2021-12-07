@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import Button from "@material-ui/core/Button";
-// import emailjs from "emailjs-com";
-import DoneIcon from "@material-ui/icons/Done";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import useStyles from "../../UI/TemplateForm/TemplateFormStyles";
 import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";

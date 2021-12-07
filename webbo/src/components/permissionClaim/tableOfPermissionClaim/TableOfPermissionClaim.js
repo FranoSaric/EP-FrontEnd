@@ -8,11 +8,7 @@ import MsgBoxContext from "../../../store/MsgBoxContext";
 import MsgBox from "../../msgBox/MsgBox";
 import { useTranslation } from "react-i18next";
 import DeletePermissionClaim from "../apiRequests/DeletePermissionClaim";
-import TemplateForm from "../../UI/TemplateForm/TemplateForm";
 import { useHistory } from "react-router-dom";
-import FloatingButton from "../../UI/FloatingButton/FloatingButton";
-import ButtonContainer from "../../UI/Buttons/ButtonContainer";
-import ActionValidator from "../../../validators/ActionValidator";
 import ContentWrapper from "../../UI/ContentWrapper/ContentWrapper";
 
 /**
@@ -67,7 +63,7 @@ function TableOfPermissionClaim() {
       <CssBaseline />
       <ContentWrapper
         text={t("newPermission")}
-        validator="claims.create"
+        validator="claims.manage"
         linkAdd="/administration/claim/addpermissionclaim"
         title={t("permissionClaimManagement")}
         size="large"
