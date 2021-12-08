@@ -91,7 +91,7 @@ function TableOfStudies() {
         validator="studies.manage"
         linkAdd="/administration/studies/addStudy"
         title={t("studyManagement")}
-        size="large"
+        size="middle"
       >
         {role === "Developer" && (
           <div className={classes.selectWrapper}>

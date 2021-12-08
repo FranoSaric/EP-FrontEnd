@@ -68,7 +68,7 @@ function TableOfCategories() {
         validator="category.manage"
         linkAdd="/library/category/addCategory"
         title={t("categoryManagement")}
-        size="small"
+        size="extraSmall"
       >
         <DataTable
           columns={newColumns}

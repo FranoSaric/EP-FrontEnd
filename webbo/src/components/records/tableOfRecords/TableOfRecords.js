@@ -86,7 +86,7 @@ function TableOfRecords() {
         validator="records.manage"
         linkAdd="/administration/records/addRecord"
         title={t("recordManagement")}
-        size="large"
+        size="small"
       >
         <div className={classes.selectWrapper}>
           <SelectField

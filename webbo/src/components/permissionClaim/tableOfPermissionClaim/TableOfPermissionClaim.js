@@ -66,7 +66,7 @@ function TableOfPermissionClaim() {
         validator="claims.manage"
         linkAdd="/administration/claim/addpermissionclaim"
         title={t("permissionClaimManagement")}
-        size="large"
+        size="small"
       >
         <DataTable
           columns={newColumns}

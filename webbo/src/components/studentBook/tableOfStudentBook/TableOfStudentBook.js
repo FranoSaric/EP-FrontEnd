@@ -86,7 +86,7 @@ function TableOfStudentBook() {
         validator="studentBook.manage"
         linkAdd="/library/studentBook/addStudentBook"
         title={t("studentBookManager")}
-        size="medium"
+        size="small"
       >
         <div className={classes.selectWrapper}>
           <SelectField

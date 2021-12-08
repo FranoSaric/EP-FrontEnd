@@ -6,8 +6,9 @@ import FetchRequest from "../../../api/FetchRequest";
  * @returns either response or error
  */
 async function ChangePassword(model){
-	const URL = process.env.REACT_APP_API_USER + "/changePassword";
-    const data = await FetchRequest(URL, "post", model);
+	const URL = process.env.REACT_APP_API_LOCALE + "/changePassword";
+    const data = await FetchRequest(URL, "post", {...model, id: localStorage.getItem("userID")});
+    
     return data;
 }
 

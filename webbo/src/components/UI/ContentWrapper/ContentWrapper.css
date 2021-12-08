@@ -5,6 +5,9 @@
 .large {
 	max-width: 1700px;
 }
+.middle {
+	max-width: 1010px;
+}
 .medium {
 	max-width: 835px;
 }

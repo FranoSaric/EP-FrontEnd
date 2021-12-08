@@ -67,7 +67,7 @@ function TableOfRoles() {
         validator="roles.manage"
         linkAdd="/administration/roles/roleForm"
         title={t("rolesManagement")}
-        size="small"
+        size="extraSmall"
       >
         <DataTable
           columns={newColumns}

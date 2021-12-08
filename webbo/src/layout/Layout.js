@@ -24,8 +24,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { MsgBoxContextProvider } from "../store/MsgBoxContext";
 import StatusError from "../components/UI/ErrorMessage/StatusError";
-import logo from "../assets/back-office-logo.png";
-import logo2 from "../assets/back-office-logo2.png";
+import logo2 from "../assets/SumitLogo-blue.png";
+import logo from "../assets/sumLogo-white.png";
 import { logger } from "../hooks/functions/Logger";
 import {
     RoutesValidator,

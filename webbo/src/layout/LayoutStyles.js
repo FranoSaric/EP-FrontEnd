@@ -134,8 +134,8 @@ const useStyles = makeStyles(
             color: "#c3c2c8",
         },
         logo: {
-            height: "45px",
-            width: "140px",
+            height: "55px",
+            width: "115px",
         },
         version: {
             width: "100%",

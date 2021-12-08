@@ -88,7 +88,7 @@ function TableOfCourses() {
         validator="courses.manage"
         linkAdd="/administration/courses/addCourse"
         title={t("courseManagement")}
-        size="large"
+        size="medium"
       >
         {role === "Developer" && (
           <div className={classes.selectWrapper}>

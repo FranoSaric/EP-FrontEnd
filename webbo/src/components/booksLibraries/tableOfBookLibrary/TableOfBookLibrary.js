@@ -66,7 +66,7 @@ function TableOfBookLibrary() {
         validator="bookLibrary.manage"
         linkAdd="/library/bookLibrary/addBookLibrary"
         title={t("bookLibraryManagement")}
-        size="medium"
+        size="small"
       >
         <DataTable
           columns={newColumns}

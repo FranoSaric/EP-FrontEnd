@@ -64,7 +64,7 @@ function TableOfInstitution() {
         validator="institutions.manage"
         linkAdd="/administration/institutions/addInstitution"
         title={t("institutionManager")}
-        size="large"
+        size="middle"
       >
         <DataTable
           columns={newColumns}
