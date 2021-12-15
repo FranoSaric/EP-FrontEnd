@@ -31,7 +31,7 @@ import StudentBookForm from "../components/studentBook/studentBookForm/studentBo
 import TableOfBookLibrary from "../components/booksLibraries/tableOfBookLibrary/TableOfBookLibrary";
 import BookLibraryForm from "../components/booksLibraries/bookLibraryForm/bookLibraryForm";
 import TableOfRecords from "../components/records/tableOfRecords/TableOfRecords";
-import RecordForm from "../components/records/recordForm/RecordForm";
+import RecordForm from "../components/records/recordForm/recordForm";
 import TableOfTerms from "../components/terms/tableOfTerms/TableOfTerms";
 import TermForm from "../components/terms/termForm/termForm";
 import TableOfStudents from "../components/listOfStudents/tableOfStudents/TableOfStudents";

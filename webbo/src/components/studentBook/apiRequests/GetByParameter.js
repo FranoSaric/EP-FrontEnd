@@ -35,7 +35,7 @@ async function GetByParameter({ filter, page, pageSize, sort, specialFilter }) {
             userFK: element.userFK,
             bookFK: element.bookFK,
             bookName: element.book.name,
-            userName: element.user.name,
+            userName: element.user.firstName + " " + element.user.lastName,
         });
     });
 

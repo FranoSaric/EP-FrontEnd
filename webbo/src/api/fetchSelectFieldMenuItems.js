@@ -112,9 +112,9 @@ export default async function fetchSelectFieldMenuItems(ids) {
                 break;
 
             case "books":
-                url = `${process.env.REACT_APP_API_LOCALE}/getBooksLibrary`;
+                url = `${process.env.REACT_APP_API_LOCALE}/getBooks`;
                 method = "post";
-                name = "books";
+                name = "name";
                 model = {
                     institutionId: parseInt(
                         localStorage.getItem("institutionId")

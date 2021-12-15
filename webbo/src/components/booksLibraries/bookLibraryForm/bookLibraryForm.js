@@ -101,7 +101,7 @@ function BookLibraryForm() {
   };
   useEffect(() => {
     if (params.bookLibraryId === undefined && isUpdate === true) {
-      fetchSelectFieldMenuItems(["users", "libraries"]).then((data) =>
+      fetchSelectFieldMenuItems(["books", "libraries"]).then((data) =>
         setMenuItemsObject(data)
       );
       setIsUpdate(false);

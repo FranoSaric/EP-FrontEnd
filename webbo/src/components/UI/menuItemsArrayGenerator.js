@@ -106,8 +106,8 @@ const menuItemsArrayGenerator = (id, itemsData) => {
         case "books":
             generatedItems = itemsData.map((listItem, index) => {
                 return (
-                    <MenuItem key={index} value={listItem.book.id}>
-                        {listItem.book.name}
+                    <MenuItem key={index} value={listItem.id}>
+                        {listItem.name}
                     </MenuItem>
                 );
             });

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>WWin-Williams for all games:online sport betting live, In-Play, Lucky six Bingo, Lotto 5/48, Loto 7/48, Live Casino, Poker Texas hold'em, Slots</title>
+    <link href="../public/assets/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta runat="server" id="mdesc" name="description" content="WWin-Williams for all games:online sport betting live, In-Play, Lucky six Bingo, Lotto 5/48, Loto 7/48, Live Casino, Poker Texas hold'em, Slots" />
+    <meta runat="server" id="mkey" name="keywords" content="Williams, kladionica, live, klađenje, uživo, Poker, Bingo, Casino" />
+
+    <!-- <script src="../Javascript/jquery.wwin.min.js" type="text/javascript"></script> -->
+
+    <!-- <link rel="stylesheet" href="https://use.typekit.net/xuf4ssa.css" /> -->
+    <!--<link rel="stylesheet" href="CSS/fonticon.css" />-->
+    <!-- <link type="text/css" href="../CSS/main.min.css" rel="stylesheet" /> -->
+    </script>
+
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background-color: #e4e8f0;
+            color: #747e99;
+            font-family: sans-serif;
+            /* height: 100%; */
+            width: 100%;
+            margin: 32px 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        a {
+            color: #117ed1;
+        }
+
+        .offline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 12px 32px;
+            text-align: center;
+        }
+
+            .offline p {
+                font-size: 16px;
+                color: #414b66;
+                line-height: 24px;
+                margin: 16px 0 32px 0;
+                text-align: left;
+            }
+
+            .offline h1 {
+                font-size: 28px;
+                font-weight: bold;
+                color: #414b66;
+                margin: 32px 0;
+            }
+
+        .offline-logo {
+            margin-bottom: 32px;
+        }
+
+        .offline-icon {
+            font-size: 56px;
+            margin: 16px 0;
+            color: #eb3471;
+        }
+
+        .offline button {
+            margin: 16px 0;
+            width: 70%;
+            max-width: 240px;
+        }
+
+        .btn--fill {
+            box-shadow: inset 0 -2px 0 0 rgba(0,0,0,0.32);
+            border: none;
+            color: #fff;
+            min-width: 160px;
+            font-weight: bold;
+            padding: 0 20px;
+        }
+
+        .btn--accent {
+            background-color: #1894f2;
+            color: #fff;
+        }
+
+            .btn--accent:hover {
+                background-color: rgba(24,148,242, 0.4);
+            }
+
+        .btn--large {
+            height: 56px;
+            font-size: 18px;
+            line-height: 20px;
+            border-radius: 12px;
+        }
+
+        .btn--br8 {
+            border-radius: 8px;
+        }
+
+        strong {
+            font-weight: 800;
+        }
+    </style>
+
+   
+
+</head>
+<body>
+    <div class="offline">
+        <div>
+            <img class="offline-logo" src="back-office__logo-offline.png" width="185" height="64" alt="Back Office"/>
+            <div class="offline-icon">
+                <img src="no-wifi.png" alt="" width="200" height="200">
+            </div>
+            <div id="en" style="display:none;">
+                <h1>Oops! We have problems with connecting to site</h1>
+                <p>
+                    We can't connect to the server at <strong>m.wwin.com</strong><br /><br />
+                    <strong>If that address is correct try these steps:</strong><br /><br />
+                    👉 Try again later.<br />
+                    👉 Check your network connection.<br />
+                    👉 If you need help contact <a href="mailto:support@wwin.com">our support</a>.
+                    <br />
+                </p>
+            </div>
+            <div id="hr" style="display:none;">
+                <h1>Ups! Imamo poteškoća sa povezivanjem na stranicu</h1>
+                <p>
+                    Ne možemo se povezati s poslužiteljem na <strong>wwin.com</strong><br /><br />
+                    <strong>Ako je ta adresa točna, pokušajte sljedeće:</strong><br /><br />
+                    👉 Pokušajte ponovno kasnije.<br />
+                    👉 Provjerite svoju mrežnu vezu.<br />
+                    👉 Ako vam je potrebna pomoć, kontaktirajte  <a href="mailto:support@wwin.com">našu podršku</a>.
+                    <br />
+                </p>
+            </div>
+            <div id="de" style="display:none;">
+                <h1>Hoppla! Wir haben Probleme mit der Verbindung zur Site</h1>
+                <p>
+                    Wir können keine Verbindung zum Server unter herstellen <strong>wwin.com</strong><br /><br />
+                    <strong>Wenn diese Adresse korrekt ist, versuchen Sie diese Schritte:</strong><br /><br />
+                    👉 Versuchen Sie es später erneut.<br />
+                    👉 Überprüfen Sie Ihre Netzwerkverbindung.<br />
+                    👉 Wenn Sie Hilfe benötigen, wenden Sie sich an <a href="mailto:support@wwin.com">unseren Support</a>.
+                    <br />
+                </p>
+            </div>
+            <button class="btn--fill btn--accent btn--large btn--br8" type="button">Reload</button>
+        </div>
+    </div>
+    <script>
+        // Manual reload feature.
+        document.querySelector("button").addEventListener("click", () => {
+            window.location.reload();
+        });
+
+        // Listen to changes in the network state, reload when online.
+        // This handles the case when the device is completely offline.
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+
+        // Check if the server is responding and reload the page if it is.
+        // This handles the case when the device is online, but the server
+        // is offline or misbehaving.
+        async function checkNetworkAndReload() {
+            try {
+                const response = await fetch('.');
+                // Verify we get a valid response from the server
+                if (response.status >= 200 && response.status < 500) {
+                    window.location.reload();
+                    return;
+                }
+            } catch {
+                // Unable to connect to the server, ignore.
+            }
+            window.setTimeout(checkNetworkAndReload, 5000);
+        }
+
+            //checkNetworkAndReload();
+    </script>
+     <script type="text/javascript">
+        var userLang = navigator.language || navigator.userLanguage;
+        //  console.log("The language is: " + userLang);
+
+         userLang = userLang.substring(0, 2).toLowerCase();
+
+         switch (userLang) {
+             case "hr":
+             case "bs":
+             case "sr":
+                 document.getElementById("hr").style.display = "block";
+                 break;
+             case "de":
+                 document.getElementById("de").style.display = "block";
+                 break;
+             default:
+                 document.getElementById("en").style.display = "block";
+                 break;
+
+         }
+    </script>
+</body>
+</html>

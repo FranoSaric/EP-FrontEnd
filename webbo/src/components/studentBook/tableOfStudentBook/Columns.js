@@ -8,6 +8,12 @@ import CloseIcon from "@material-ui/icons/Close";
  */
 export const columns = [
     {
+        field: "userName",
+        headerName: "userFK",
+        width: 200,
+        filterOperators: stringOperators,
+    },
+    {
         field: "pickUpDate",
         headerName: "pickUpDate",
         width: 200,
