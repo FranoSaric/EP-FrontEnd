@@ -207,6 +207,7 @@
   "bookLibrary": "Books in library",
   "bookLibraryManagement": "Book management in the library",
   "addBookLibrary": "Add book in library",
+  "updateBookLibrary": "Update book in library",
 
   "records": "Records",
   "recordManagement": "Record management",
