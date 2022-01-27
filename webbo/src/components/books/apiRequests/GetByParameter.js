@@ -12,37 +12,41 @@ import sortByName from "../../../functions/sortByName";
  * @returns
  */
 async function GetByParameter({ filter, page, pageSize, specialFilter }) {
-    const URL = process.env.REACT_APP_API_LOCALE + "/getBooks";
+  const URL = process.env.REACT_APP_API_LOCALE + "/getBooks";
 
-    const setLoadedTable = useGlobalState()[0];
+  const setLoadedTable = useGlobalState()[0];
 
-    // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
+  // console.log("Data fetched by paramteres: filter: ",filter,",page: ",page, ",pagesize: ", pageSize);
 
-    let dataArray = [];
+  let dataArray = [];
 
-    const data = await FetchRequest(URL, "post", { institutionId: parseInt(localStorage.getItem("institutionId")) });
-    console.log("data", data)
-    const filteredData = data.filter(item => item.category.id === specialFilter);
-    filteredData.forEach((element) => {
-        dataArray.push({
-            id: element.id,
-            barCode: element.barCode,
-            name: element.name,
-            author: element.author,
-            categoryFK: element.categoryFK,
-            categoryName: element.category.name
-        });
+  const data = await FetchRequest(URL, "post", {
+    institutionId: parseInt(localStorage.getItem("institutionId")),
+  });
+
+  const filteredData = data.filter(
+    (item) => item.category.id === specialFilter
+  );
+  filteredData.forEach((element) => {
+    dataArray.push({
+      id: element.id,
+      barCode: element.barCode,
+      name: element.name,
+      author: element.author,
+      categoryFK: element.categoryFK,
+      categoryName: element.category.name,
     });
-	dataArray = sortByName(dataArray, "name");
-    dataArray = FilterData({ filter, dataArray });
-    let pagedData = GetPagedData(dataArray, pageSize);
+  });
+  dataArray = sortByName(dataArray, "name");
+  dataArray = FilterData({ filter, dataArray });
+  let pagedData = GetPagedData(dataArray, pageSize);
 
-    const numberOfRows = dataArray.length;
-    const pageOfRows = pagedData[page];
+  const numberOfRows = dataArray.length;
+  const pageOfRows = pagedData[page];
 
-    setLoadedTable(pageOfRows);
+  setLoadedTable(pageOfRows);
 
-    return { numberOfRows, pageOfRows };
+  return { numberOfRows, pageOfRows };
 }
 
 export default GetByParameter;

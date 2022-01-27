@@ -6,7 +6,6 @@ import FetchRequest from "../../../api/FetchRequest";
  * @returns either response or error
  */
 async function PostExam(model) {
-  console.log("MODEL", model);
   const URL = process.env.REACT_APP_API_LOCALE + "/createExam";
   const data = await FetchRequest(URL, "post", model);
   return data;
