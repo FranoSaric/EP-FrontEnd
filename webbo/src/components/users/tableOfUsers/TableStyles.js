@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiDataGrid-columnHeader": {
       minWidth: "unset !important",
       maxWidth: "none !important",
-      width: "11% !important",
+      width: "9% !important",
       display: "flex !important",
     },
     "& .MuiDataGrid-columnHeaderDraggableContainer": {
@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "& .MuiDataGrid-cell": {
       whiteSpace: "normal",
-      width: "11%",
+      width: "9%",
       minWidth: "unset !important",
       maxWidth: "none !important",
       borderBottom: "none !important",

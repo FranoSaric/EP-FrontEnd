@@ -35,6 +35,7 @@ const initialState = {
     timeZone: "Europe/Sarajevo",
   }),
   institutionFK: "",
+  studiesFK: "",
   roleFK: "",
 };
 
@@ -69,19 +70,20 @@ function UserForm() {
   //fetching menu items for select field
   useEffect(() => {
     if (params.userId === undefined) {
-      fetchSelectFieldMenuItems(["institutions", "roleFK"]).then((data) =>
-        setMenuItemsObject(data)
+      fetchSelectFieldMenuItems(["institutions", "roleFK", "studiesFK"]).then(
+        (data) => setMenuItemsObject(data)
       );
       if (isUpdate) {
         setIsUpdate(false);
       }
     } else {
-      fetchSelectFieldMenuItems(["institutions", "roleFK"]).then((data) =>
-        setMenuItemsObject(data)
+      fetchSelectFieldMenuItems(["institutions", "roleFK", "studiesFK"]).then(
+        (data) => setMenuItemsObject(data)
       );
       let model = getRow(params.userId);
       delete model["roleName"];
       delete model["institutionName"];
+      delete model["studyName"];
       if (model === undefined || model === null || Object.keys(model) <= 0) {
         history.goBack();
       } else {
@@ -137,8 +139,11 @@ function UserForm() {
   };
   useEffect(() => {
     if (params.userId === undefined && isUpdate === true) {
-      fetchSelectFieldMenuItems(["institutions", "roleFK"]).then((data) =>
-        setMenuItemsObject(data)
+      fetchSelectFieldMenuItems(["institutions", "roleFK", "studiesFK"]).then(
+        (data) => {
+          console.log(data);
+          setMenuItemsObject(data);
+        }
       );
       setIsUpdate(false);
       let temp = useInputFormValidation.validateAllValues(initialState);
@@ -292,6 +297,17 @@ function UserForm() {
               validationValues={
                 validationMessageAndValidityObject["institutionFK"]
               }
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <SelectField
+              name="studiesFK"
+              id="studiesFK"
+              menuItemsData={menuItemsObject}
+              value={inputFieldValuesObject}
+              valueHandler={handleChange}
+              validationValues={validationMessageAndValidityObject["studiesFK"]}
             />
           </Grid>
 

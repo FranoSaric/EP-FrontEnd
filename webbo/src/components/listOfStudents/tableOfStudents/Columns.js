@@ -7,34 +7,35 @@ import CloseIcon from "@material-ui/icons/Close";
  * Defined columns of the data grid
  */
 export const columns = [
-    {
-        field: "checkInTime",
-        headerName: "checkInTime",
-        width: 200,
-        filterOperators: stringOperators,
+  {
+    field: "checkInTime",
+    headerName: "checkInTime",
+    width: 200,
+    filterOperators: stringOperators,
+  },
+  {
+    field: "userName",
+    headerName: "username",
+    width: 150,
+    filterOperators: stringOperators,
+  },
+  {
+    field: "editDelete",
+    headerName: "edit/delete",
+    width: 200,
+    filterable: false,
+    sortable: false,
+    editable: false,
+    renderCell: (params) => {
+      return (
+        <EditDeleteColumn
+          id={params.id}
+          row={params.row}
+          link="/administration/records/addRecord"
+          claimType="Records.Permission"
+          editDisabled={true}
+        />
+      );
     },
-    {
-        field: "userName",
-        headerName: "username",
-        width: 150,
-        filterOperators: stringOperators,
-    },
-    {
-        field: "editDelete",
-        headerName: "edit/delete",
-        width: 100,
-        filterable: false,
-        sortable: false,
-        editable: false,
-        renderCell: (params) => {
-            return (
-                <EditDeleteColumn
-                    id={params.id}
-                    row={params.row}
-                    link="/administration/records/addRecord"
-                    claimType="Records.Permission"
-                />
-            );
-        },
-    },
+  },
 ];

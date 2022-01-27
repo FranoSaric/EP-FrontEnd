@@ -6,9 +6,10 @@ import FetchRequest from "../../../api/FetchRequest";
  * @returns either response or error
  */
 async function PostUser(model) {
-    const URL = process.env.REACT_APP_API_LOCALE + "/signUp";
-    const data = await FetchRequest(URL, "post", model);
-    return data;
+  console.log(model);
+  const URL = process.env.REACT_APP_API_LOCALE + "/signUp";
+  const data = await FetchRequest(URL, "post", model);
+  return data;
 }
 
 export default PostUser;

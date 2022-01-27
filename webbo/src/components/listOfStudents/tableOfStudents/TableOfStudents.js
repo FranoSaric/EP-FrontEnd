@@ -73,6 +73,7 @@ function TableOfStudents() {
         linkAdd="/administration/terms/termsManagement"
         title={t("listManagement")}
         size="medium"
+        back
       >
         <DataTable
           columns={newColumns}

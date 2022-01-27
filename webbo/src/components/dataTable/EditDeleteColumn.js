@@ -4,9 +4,14 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import { useHistory } from "react-router-dom";
 import MsgBoxContext from "../../store/MsgBoxContext";
-import {Typography} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import useStyles from "./Styles";
-import {EditDeleteClaimValidator, updateClaim, deleteClaim, Unvalidate} from "../../validators/EditDeleteClaimValidator";
+import {
+  EditDeleteClaimValidator,
+  updateClaim,
+  deleteClaim,
+  Unvalidate,
+} from "../../validators/EditDeleteClaimValidator";
 /**
  * data grid cell component for Edit/Delete column that contains buttons for edit and delete it's row
  * @param {integer} id - int value representing id of selected row from table
@@ -18,37 +23,47 @@ import {EditDeleteClaimValidator, updateClaim, deleteClaim, Unvalidate} from "..
  * @returns
  */
 export const EditDeleteColumn = (props) => {
-    const ctx = useContext(MsgBoxContext);
-    const classes = useStyles();
-    const history = useHistory();
-    
-    EditDeleteClaimValidator(props.claimType);
-    useEffect(()=>{
-        return ()=>{
-            Unvalidate();
-        }
-    }, []);
-    const editClickHandler = () => {
-        history.push(`${props.link}/${props.id}`);
-    };
+  const ctx = useContext(MsgBoxContext);
+  const classes = useStyles();
+  const history = useHistory();
 
-    const deleteClickHandler = () => {
-        ctx.setIsModalOn(true);
-        ctx.setItemId(props.id);
+  EditDeleteClaimValidator(props.claimType);
+  useEffect(() => {
+    return () => {
+      Unvalidate();
     };
-    
-    const slash = <h2>/</h2>;
-    
-    
-    return (
-        <React.Fragment>
-            { updateClaim && <IconButton onClick={editClickHandler}>
-                <EditIcon className={classes.editIcon} />
-            </IconButton>}
-            {updateClaim && deleteClaim && !props.deleteDisabled && <Typography variant="h5" component="p">/</Typography>}
-            { deleteClaim && !props.deleteDisabled && <IconButton onClick={deleteClickHandler}>
-                <DeleteIcon className={classes.deleteIcon} />
-            </IconButton>}
-        </React.Fragment>
-    );
+  }, []);
+  const editClickHandler = () => {
+    history.push(`${props.link}/${props.id}`);
+  };
+
+  const deleteClickHandler = () => {
+    ctx.setIsModalOn(true);
+    ctx.setItemId(props.id);
+  };
+
+  const slash = <h2>/</h2>;
+
+  return (
+    <React.Fragment>
+      {updateClaim && !props.editDisabled && (
+        <IconButton onClick={editClickHandler}>
+          <EditIcon className={classes.editIcon} />
+        </IconButton>
+      )}
+      {updateClaim &&
+        deleteClaim &&
+        !props.deleteDisabled &&
+        !props.editDisabled && (
+          <Typography variant="h5" component="p">
+            /
+          </Typography>
+        )}
+      {deleteClaim && !props.deleteDisabled && (
+        <IconButton onClick={deleteClickHandler}>
+          <DeleteIcon className={classes.deleteIcon} />
+        </IconButton>
+      )}
+    </React.Fragment>
+  );
 };

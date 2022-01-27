@@ -12,7 +12,7 @@ import id from "./actions/validationUserType";
 import name from "./actions/validationDescription";
 import active from "./actions/validationUserType";
 import type from "./actions/validationDescription";
-import value from"./actions/validationDescription";
+import value from "./actions/validationDescription";
 import institutionId from "./actions/validationUserType";
 import institutionFK from "./actions/validationUserType";
 import author from "./actions/validationCharacter";
@@ -36,6 +36,7 @@ import cycle from "./actions/validationCharacter";
 import academicYear from "./actions/validateAll";
 import semester from "./actions/validationNumber";
 import studyFK from "./actions/validationNumber";
+import studiesFK from "./actions/validationNumber";
 import userFK from "./actions/validationNumber";
 import pickUpDate from "./actions/validateAll";
 import returnDate from "./actions/validateAll";
@@ -52,90 +53,90 @@ import courseName from "./actions/validationNumber";
 import classroomName from "./actions/validationNumber";
 
 const validate = {
-	userName,
-	firstName,
-	lastName,
-	password,
-	newPassword,
-	newPassword2,
-	oldPassword,
-	phoneNumber,
-	email,
-	id,
-	name,
-	language,
-	type,
-	value,
-	active,
-	institutionId,
-	institutionFK,
-	author,
-	barCode,
-	categoryFK,
-	roleFK,
-	creationDate,
-	indexNumber,
-	roleName,
-	institutionName,
-	address,
-	giroAccount,
-	contact,
-	numberOfClassroom,
-	numberOfSeats,
-	floor,
-	free,
-	year,
-	cycle,
-	academicYear,
-	semester,
-	studyFK,
-	userFK,
-	pickUpDate,
-	returnDate,
-	bookFK,
-	libraryFK,
-	classroomFK,
-	classroomName,
-	checkInTime,
-	date,
-	startTime,
-	endTime,
-	duration,
-	courseFK,
-	courseName
+  userName,
+  firstName,
+  lastName,
+  password,
+  newPassword,
+  newPassword2,
+  oldPassword,
+  phoneNumber,
+  email,
+  id,
+  name,
+  language,
+  type,
+  value,
+  active,
+  institutionId,
+  institutionFK,
+  author,
+  barCode,
+  categoryFK,
+  roleFK,
+  creationDate,
+  indexNumber,
+  roleName,
+  institutionName,
+  address,
+  giroAccount,
+  contact,
+  numberOfClassroom,
+  numberOfSeats,
+  floor,
+  free,
+  year,
+  cycle,
+  academicYear,
+  semester,
+  studyFK,
+  userFK,
+  pickUpDate,
+  returnDate,
+  bookFK,
+  libraryFK,
+  classroomFK,
+  classroomName,
+  checkInTime,
+  date,
+  startTime,
+  endTime,
+  duration,
+  courseFK,
+  courseName,
+  studiesFK,
 };
 
 const useInputFormValidation = {
-	
-	validateAllValues: function(valuesObject){
-		let temp;
-		for (const [key, value] of Object.entries(valuesObject)) {
-			temp = {
-				...temp,
-				[key]: {
-					message: validate[key](value),
-					isValid: validate[key](value) === "",
-				},
-			};
-		}
-		return temp;
-	},
+  validateAllValues: function (valuesObject) {
+    let temp;
+    for (const [key, value] of Object.entries(valuesObject)) {
+      temp = {
+        ...temp,
+        [key]: {
+          message: validate[key](value),
+          isValid: validate[key](value) === "",
+        },
+      };
+    }
+    return temp;
+  },
 
-	validateSingleValue: function(name, value){
-		return {
-			message: validate[name](value),
-			isValid: validate[name](value) === "",
-		};
-	},
-	
-	validateWholeForm: function(validationValuesObject){
-		for (const [key, value] of Object.entries(validationValuesObject)) {
-			if (value.isValid === false) {
-				return false;
-			}
-		}
-		return true;
-	},
+  validateSingleValue: function (name, value) {
+    return {
+      message: validate[name](value),
+      isValid: validate[name](value) === "",
+    };
+  },
+
+  validateWholeForm: function (validationValuesObject) {
+    for (const [key, value] of Object.entries(validationValuesObject)) {
+      if (value.isValid === false) {
+        return false;
+      }
+    }
+    return true;
+  },
 };
 
 export default useInputFormValidation;
