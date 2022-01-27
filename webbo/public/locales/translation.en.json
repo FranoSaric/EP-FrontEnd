@@ -218,6 +218,10 @@
   "termManagement": "Term management",
   "addTerm": "Add term",
   "updateTerm": "Update term",
+  "exams": "Exams",
+  "examManagement": "Exam management",
+  "addExam": "Add exam",
+  "updateExam": "Update exam",
   "selectCourse": "Select course",
   "courseFK": "Courses",
   "date": "Date",
@@ -251,6 +255,7 @@
   "newBookInLibrary": "Assign book to library",
   "newCategory": "New category",
   "newRenting": "New renting",
+  "newExam": "New exam",
 
   "alertSuccessAddMessage": "Successfully added",
   "alertErrorAddMessage": "Something went wrong! Item was not added in the database",

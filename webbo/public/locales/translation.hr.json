@@ -215,6 +215,10 @@
   "termManagement": "Upravljanje terminima",
   "addTerm": "Dodaj termin",
   "updateTerm": "Uredi termin",
+  "exams": "Ispiti",
+  "examManagement": "Upravljanje ispitima",
+  "addExam": "Dodaj ispit",
+  "updateExam": "Uredi ispit",
   "selectCourse": "Odaberite kolegij",
   "courseFK": "Kolegiji",
   "date": "Datum",
@@ -250,11 +254,12 @@
   "newBookInLibrary": "Pridruži knjigu knjižnici",
   "newCategory": "Nova kategorija",
   "newRenting": "Novo iznajmljivanje",
+  "newExam": "Novi ispit",
 
   "alertSuccessAddMessage": "Uspješno dodano!",
   "alertErrorAddMessage": "Nešto je pošlo po krivu! Neuspješno upisivanje u bazu.",
   "alertSuccessDeleteMessage": "Uspješno uklonjeno!",
   "alertErrorDeleteMessage": "Nešto je pošlo po krivu! Neuspješno brisanje iz baze.",
-  
+
   "moreInfo": "Više detalja"
 }

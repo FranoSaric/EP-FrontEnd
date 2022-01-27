@@ -69,6 +69,12 @@ export const menu = [
         claim: "terms.read",
       },
       {
+        title: "exams",
+        to: "/administration/exams/examsManagement",
+        icon: <></>,
+        claim: "exams.read",
+      },
+      {
         title: "records",
         to: "/administration/records/recordsManagement",
         icon: <></>,
